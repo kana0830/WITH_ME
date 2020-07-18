@@ -1,0 +1,55 @@
+doctype html
+html
+  head
+    title
+      | WITH ME
+    = favicon_link_tag('favicon.ico')
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"
+    link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet"
+
+  body
+    header.sticky-top
+      .navbar.clearfix
+        .nav.navbar-nav.mr-auto.bar-left
+          = link_to root_path do
+            = image_tag 'logo.jpg', :size => '300x150'
+
+        .nav.navbar-nav.bar-right
+          ul.box-1
+            li.btn.btn-light.= link_to 'about', about_path, class: 'list'
+            li.btn.btn-light= link_to 'sign up', new_user_registration_path, class: 'list'
+            li.btn.btn-light= link_to 'login', new_user_session_path, class: 'list'
+            li.btn.btn-light= link_to 'guest', new_user_session_path, class: 'list'
+
+    main
+      .container
+        / フラッシュメッセージ
+        p.notice= notice
+        p.alert= alert
+
+        = yield
+    
+    footer
+      .container
+        .row
+          .col-lg-5.footer-content
+            p トップページ
+            p プライバシーポリシー
+            p 利用規約
+            p お問い合わせ
+          .col-lg-5.footer-title
+            p WITH ME
+            p 2020. All Rights Reserved.
+          .col-lg-2
+            p.sns SNS
+            ul
+              li.float-left.icon
+                i.fab.fa-twitter
+              li.float-left.icon
+                i.fab.fa-facebook-square
+              li.float-left.icon
+                i.fab.fa-instagram

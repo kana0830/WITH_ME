@@ -1,0 +1,118 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// 背景画像
+.main-visual{
+  z-index:0;
+  overflow: hidden;
+}
+
+.main-visual::before{
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 800px;
+  content: '';
+  background-image: url(main12.jpg);/*背景画像のURL*/
+  filter: blur(6px);/*ぼかし度*/
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+}
+
+.main-visual-content{
+  width: 100%;
+  height: 800px;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+  background-color: rgba(234, 237, 243, 0.4);
+}
+
+// 中央タイトル
+.theme{
+  margin-top: 50px;
+  margin-bottom: 40px;
+  font-size: 40px;
+  line-height: 0.6em;
+}
+
+.theme p,b{
+  color: #ffffff;
+  font-family: "Nunito","游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
+}
+.theme b{
+  font-weight: 900;
+}
+
+.btn{
+  margin: 10px;
+  margin-bottom: 50px;
+}
+
+.frame-top{
+  text-align: center;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  border: solid 3px #ffffff;/*線*/
+  border-radius: 5px;/*角の丸み*/
+  background-color: rgba(115, 135, 250, 0.4);
+}
+
+
+
+
+
+
+
+// ⭐︎about page⭐︎
+
+.frame{
+  text-align: center;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #ED553B;/*文字色*/
+  border: solid 3px #ED553B;/*線*/
+  border-radius: 50px;/*角の丸み*/
+}
+
+.about-title{
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.about-btn{
+  margin-bottom: 20px;
+}
+
+
+
+
+// タイピング文字
+// @-webkit-keyframes typing { from { width: 0; } }
+// @-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
+
+// h1 { 
+// 	font: bold 300% Consolas, Monaco, monospace;
+// 	border-right: .1em solid black;
+// 	width: 16.5em; 
+// 	width: 21ch;
+// 	margin: 2em 1em;
+// 	white-space: nowrap;
+// 	overflow: hidden;
+// 	-webkit-animation: typing 4s steps(10, end),
+// 	           blink-caret .5s step-end infinite alternate;
+// }
+
+
+

@@ -66,7 +66,7 @@ html
 
             / ＝＝＝＝＝⭐︎アドミンログイン後⭐︎＝＝＝＝＝
             - if admin_signed_in?
-              li.font-weight-bold.btn.btn-light= link_to "会員一覧", user_path(current_user), class: 'list'
+              li.font-weight-bold.btn.btn-light= link_to "会員一覧"
               li.font-weight-bold.btn.btn-light= link_to "ゲレンデ一覧", admin_gelandes_path, class: 'list'
               li.btn.btn-light= link_to "logout", destroy_admin_session_path, method: :delete, class: 'list'
 

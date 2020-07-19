@@ -20,10 +20,18 @@ html
 
         .nav.navbar-nav.bar-right
           ul.box-1
-            li.btn.btn-light.= link_to 'about', about_path, class: 'list'
-            li.btn.btn-light= link_to 'sign up', new_user_registration_path, class: 'list'
-            li.btn.btn-light= link_to 'login', new_user_session_path, class: 'list'
-            li.btn.btn-light= link_to 'guest', new_user_session_path, class: 'list'
+            li.btn.btn-light= link_to about_path, class: 'list' do
+              i.fas.fa-address-card
+              |  about
+            li.btn.btn-light= link_to new_user_registration_path, class: 'list' do
+              i.fas.fa-user-plus
+              |  sign up
+            li.btn.btn-light= link_to new_user_session_path, class: 'list' do
+              i.fas.fa-sign-in-alt
+              |  login
+            li.btn.btn-light= link_to new_user_session_path, class: 'list' do
+              i.fas.fa-key
+              |  guest
 
     main
       .container
@@ -36,7 +44,7 @@ html
     footer
       .container
         .row
-          .col-lg-5.footer-content
+          .col-lg-5.footer-content.font-weight-bold
             p トップページ
             p プライバシーポリシー
             p 利用規約

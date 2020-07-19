@@ -33,7 +33,7 @@
 
 
 
-// ヘッダー
+// ⭐︎ヘッダー⭐︎
 .navbar{
   background-color: #eaedf3;  
   height: 70px;
@@ -50,8 +50,13 @@
 
 .list{
   color: #08243B;
+  font-family: "Nunito","游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
 }
 
+
+
+
+// ⭐︎フッター⭐︎
 footer{
   margin-top: 180px;
   background-color: #eaedf3; 
@@ -73,4 +78,26 @@ footer{
 
 .sns{
   padding-top: 10px;
+}
+
+
+
+
+
+// ⭐︎devise⭐︎
+.frame-devise{
+  // padding: 0.5em 1em;
+  // margin: 2em 0;
+  font-weight: bold;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #1E1D6B;/*線*/
+  border-radius: 50px;/*角の丸み*/
+}
+
+.devise-title{
+  margin-top: 30px;
+}
+
+.devise-button{
+  margin-bottom: 0rem;
 }

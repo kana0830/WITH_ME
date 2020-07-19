@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_232814) do
+ActiveRecord::Schema.define(version: 2020_07_19_091013) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 2020_07_17_232814) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "gelandes", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "count"
+    t.integer "slope"
+    t.integer "distance"
+    t.integer "postal", null: false
+    t.string "address", null: false
+    t.integer "tel", null: false
+    t.string "hp"
+    t.string "image_id"
+    t.text "introduction", null: false
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -32,6 +48,14 @@ ActiveRecord::Schema.define(version: 2020_07_17_232814) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "image_id"
+    t.integer "gender"
+    t.integer "address"
+    t.integer "age"
+    t.integer "favorite_id"
+    t.text "introduction"
+    t.boolean "is_active", default: true, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

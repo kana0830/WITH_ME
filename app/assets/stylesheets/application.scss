@@ -20,8 +20,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
   color: #1e1d6b;
-  // font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
   font-family: "Nunito","游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
 }
 
@@ -98,6 +101,10 @@ footer{
   margin-top: 30px;
 }
 
+.devise-text{
+  margin-bottom: 0px
+}
+
 .devise-button{
-  margin-bottom: 0rem;
+  margin-bottom: 30px
 }

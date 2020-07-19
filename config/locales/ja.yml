@@ -6,6 +6,22 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      gelades: ゲレンデ
+    attributes:
+      gelades: 
+        id: ID
+        name: ゲレンデ名
+        count: コース数
+        slope: 最大傾斜
+        distance: 最長滑走距離
+        postal: 郵便番号
+        address: 住所
+        tel: 電話番号
+        hp: ホームページ
+        image: 画像
+        introduction: ゲレンデ紹介
+        is_active: ステータス
   date:
     abbr_day_names:
     - 日

@@ -1,0 +1,32 @@
+// Place all the styles related to the admin::gelandes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .form_group1{
+//   background-color: blue;
+// }
+
+// .form_group2{
+//   background-color: red;
+// }
+
+.gelande-title{
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.gelande-link{
+  color: #1e1d6b;
+}
+
+.img_prev:hover {
+  cursor: pointer; 
+  opacity: 0.7;
+  transform: scale(1.01, 1.01);
+}
+
+.img_field{
+  width: 70%;
+}
+

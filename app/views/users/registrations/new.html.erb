@@ -8,10 +8,10 @@
         <%= render "users/shared/error_messages", resource: resource %>
 
 
-        <%# <div class="field"> %>
-          <%#= f.label :name %>
-          <%#= f.text_field :name, autofocus: true, autocomplete: "name" %>
-        <%# </div><br> %>
+        <div class="field">
+          <%= f.label :name, "名前", class: "col-lg-5 text-left" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-lg-5" %>
+        </div><br>
 
         <div class="field">
           <%= f.label :email, class: "col-lg-5 text-left" %>
@@ -34,8 +34,8 @@
         </div>
       <% end %>
 
-      <p class="devise-button">既に登録済みの方</p>
-      <%= link_to "login", new_user_session_path, class: "btn btn-outline-secondary list btn-sm" %>
+      <p class="devise-text">既に登録済みの方</p>
+      <%= link_to "login", new_user_session_path, class: "devise-button btn btn-outline-secondary list btn-sm" %>
 
     </div>
   </div>

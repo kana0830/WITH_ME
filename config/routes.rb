@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'posts/index'
+  get 'posts/new'
+  get 'posts/edit'
+  get 'posts/show'
   root 'home#top'
   get 'about', to: 'home#about'
 
@@ -21,5 +25,7 @@ Rails.application.routes.draw do
   
   resources :users, except: [:new]
   get 'users/:id/exit' => 'users#exit', as: 'exit'
+  resources :posts
+  resources :comments, only: [:create, :destroy]
 
 end

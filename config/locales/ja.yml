@@ -7,9 +7,10 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     models:
-      gelades: ゲレンデ
+      gelade: ゲレンデ
+      user: ユーザー
     attributes:
-      gelades: 
+      gelade: 
         id: ID
         name: ゲレンデ名
         count: コース数
@@ -22,6 +23,18 @@ ja:
         image: 画像
         introduction: ゲレンデ紹介
         is_active: ステータス
+      user:
+        id: ID
+        name: ユーザーネーム
+        email: メールアドレス
+        encrypted_password: パスワード
+        image: プロフィール画像
+        gender: 性別
+        address: 住所
+        age: 年齢
+        favorite_id: お気に入りゲレンデ
+        introduction: 自己紹介
+        is_active: 有効ステータス
   date:
     abbr_day_names:
     - 日

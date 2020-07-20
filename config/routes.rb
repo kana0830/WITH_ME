@@ -15,11 +15,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  namespace :admin do
+  namespace :admins do
     resources :gelandes, except: [:destroy]
   end
   
   resources :users, except: [:new]
-  get 'exit' => 'customers#exit'
+  get 'users/:id/exit' => 'users#exit', as: 'exit'
 
 end

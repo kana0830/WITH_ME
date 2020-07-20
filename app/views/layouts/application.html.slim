@@ -32,10 +32,10 @@ html
               li.font-weight-bold.btn.btn-light= link_to new_user_registration_path, class: 'list' do
                 i.fas.fa-bell
                 |  通知
-              li.font-weight-bold.btn.btn-light= link_to new_user_session_path, class: 'list' do
+              li.font-weight-bold.btn.btn-light= link_to users_path, class: 'list' do
                 i.fas.fa-users
                 |  仲間を探す
-              li.font-weight-bold.btn.btn-light= link_to new_user_session_path, class: 'list' do
+              li.font-weight-bold.btn.btn-light= link_to users_path, class: 'list' do
                 i.fas.fa-comment-alt
                 |  投稿
               li.font-weight-bold.btn.btn-light= link_to new_user_session_path, class: 'list' do
@@ -66,8 +66,8 @@ html
 
             / ＝＝＝＝＝⭐︎アドミンログイン後⭐︎＝＝＝＝＝
             - if admin_signed_in?
-              li.font-weight-bold.btn.btn-light= link_to "会員一覧"
-              li.font-weight-bold.btn.btn-light= link_to "ゲレンデ一覧", admin_gelandes_path, class: 'list'
+              li.font-weight-bold.btn.btn-light= link_to "会員一覧", admins_gelandes_path, class: 'list'
+              li.font-weight-bold.btn.btn-light= link_to "ゲレンデ一覧", admins_gelandes_path, class: 'list'
               li.btn.btn-light= link_to "logout", destroy_admin_session_path, method: :delete, class: 'list'
 
 

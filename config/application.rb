@@ -12,6 +12,10 @@ module WITHME
     config.load_defaults 5.2
     config.generators.template_engine = :slim #slimに変更
     config.i18n.default_locale = :ja #日本語化の反映
+    # バリデーションエラー時のレイアウト崩れ防止
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance| 
+      html_tag
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

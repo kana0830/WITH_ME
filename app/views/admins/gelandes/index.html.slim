@@ -3,7 +3,7 @@
     .col-lg-2
     .col-lg-8.text-center
       h1.gelande-title ゲレンデ一覧
-      .text-right= link_to "新規登録", new_admin_gelande_path, class: "text-right font-weight-bold btn btn-outline-secondary list btn-sm mb-2"
+      .text-right= link_to "新規登録", new_admins_gelande_path, class: "text-right font-weight-bold btn btn-outline-secondary list btn-sm mb-2"
 
       .row
         .col-lg-12
@@ -17,10 +17,10 @@
 
             tbody
               - @gelandes.each do |gelande|
-                tr= link_to admin_gelande_path(gelande)
+                tr.position-relative
                   td= gelande.id
                   td= attachment_image_tag gelande, :image,format: 'jpeg', fallback: "noimage.png", size: "70x40", class: ""
-                  td.font-weight-bold.table-link= link_to gelande.name, admin_gelande_path(gelande), class: "gelande-link"
+                  td.font-weight-bold.stretched-link= link_to gelande.name, admins_gelande_path(gelande), class: "gelande-link stretched-link"
                   td.font-weight-bold= gelande.is_active ? "有効" : "無効"
 
             

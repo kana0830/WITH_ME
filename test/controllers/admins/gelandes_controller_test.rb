@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::GelandesControllerTest < ActionDispatch::IntegrationTest
+class Admins::GelandesControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get admin_gelandes_new_url
     assert_response :success

@@ -1,2 +1,40 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+.container
+  .row
+    .col-lg-12.text-center
+      h1.user-title 仲間を見つけよう
+
+
+      = @user.image
+      |　
+      = @user.name
+      |　
+      i.fas.fa-user-plus
+      |　
+      i.fas.fa-envelope
+      |　
+      = link_to "編集する", edit_user_path, class: 'btn btn-outline-secondary list btn-sm m-0'
+      <br><br>
+
+      = link_to "フォロー10人"
+      |　
+      = link_to "フォロワー10人"
+      <br><br>
+
+      .row.text-left
+        .col-lg-1
+          p 性別
+          p 年齢
+          p 住所
+
+        .col-lg-1
+          p= @user.gender
+          p.d-inline-block= @user.age
+          | 歳
+          p= @user.address
+
+        .col-lg-6
+          = @user.introduction
+
+        .col-lg-3
+          | お気に入りゲレンデ
+          .col-lg-7= @user.favorite_id

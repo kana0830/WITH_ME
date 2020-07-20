@@ -22,18 +22,21 @@
               <br>
 
               .col-lg-3.float-left コース数
-              .col-lg-12= @gelande.count
-              <br>
+              .d-inline-block= @gelande.count
+              | 本
+              <br><br>
 
               .col-lg-3.float-left 最大傾斜
-              .col-lg-12= @gelande.slope 
-              <br>
+              .d-inline-block= @gelande.slope 
+              | 度
+              <br><br>
 
               .col-lg-3.float-left 最長滑走距離
-              .col-lg-12= @gelande.distance
-              <br>
+              .d-inline-block= @gelande.distance
+              | m
+              <br><br>
               .col-lg-3.float-left 住所
-              .col-lg-8= @gelande.postal.to_s.insert(3, "-")
+              .= @gelande.postal.to_s.insert(3, "-")
               .col-lg-3.float-left
               .col-lg-12= @gelande.address
               <br>
@@ -57,5 +60,5 @@
             .col-lg-10= @gelande.introduction
           <br><br>
           .text-center
-            = link_to "編集する", edit_admin_gelande_path(@gelande), class: "btn btn-outline-secondary list btn-sm"
+            = link_to "編集する", edit_admins_gelande_path(@gelande), class: "btn btn-outline-secondary list btn-sm"
 

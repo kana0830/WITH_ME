@@ -1,0 +1,72 @@
+= form_with model: [:admins, gelande ], local: true do |f|
+  = render 'users/shared/error_messages', resource: f.object  
+  .row
+    .col-lg-1
+    .col-lg-10
+      .row
+        .col-lg-6.text-left
+            = f.label :image, class: "col-lg-2"
+            .gelande-image.text-center.col-lg-12
+              = attachment_image_tag gelande, :image, fallback: 'noimage.png', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev'
+              = f.file_field :image, class: 'img_field', style: 'display:none;'
+
+        .col-lg-6.text-left
+          = f.label :name, class: "col-lg-3 font-weight-bold"
+          = f.text_field :name, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :count, class: "col-lg-3 font-weight-bold"
+          = f.text_field :count, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :slope, class: "col-lg-3 font-weight-bold"
+          = f.text_field :slope, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :distance, class: "col-lg-3 font-weight-bold"
+          = f.text_field :distance, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :postal, class: "col-lg-3 font-weight-bold"
+          = f.text_field :postal, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :address, class: "col-lg-3 font-weight-bold"
+          = f.text_field :address, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :tel, class: "col-lg-3 font-weight-bold"
+          = f.text_field :tel, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :hp, class: "col-lg-3 font-weight-bold"
+          = f.text_field :hp, class: "col-lg-9 font-weight-bold"
+          <br>
+
+
+          = f.label :is_active, class: "col-lg-3 font-weight-bold"
+          = f.radio_button :is_active, true
+          = f.label :is_active, "有効"
+          |　
+          = f.radio_button :is_active, false
+          = f.label :is_active, "無効"
+          <br><br>
+        
+      .row
+        .col-lg-12
+          .form_group.text-left
+            = f.label :introduction, class: "col-lg-2 d-flex align-items-start float-left font-weight-bold"
+            = f.text_area :introduction, :size=>"80x5", class: "font-weight-bold"
+            <br>
+
+      - if gelande.new_record?
+        = f.submit "登録する", class: "btn btn-outline-secondary list btn-sm"
+      - else
+        = f.submit "更新する", class: "btn btn-outline-secondary list btn-sm"

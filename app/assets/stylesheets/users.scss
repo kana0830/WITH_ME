@@ -1,3 +1,49 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-title{
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.img_prev:hover {
+  cursor: pointer; 
+  opacity: 0.7;
+  // transform: scale(1.01, 1.01);
+}
+
+.frame-user{
+  // padding: 0.5em 1em;
+  // margin: 2em 0;
+  font-weight: bold;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #1E1D6B;/*線*/
+  border-radius: 50px;/*角の丸み*/
+}
+
+.flame-user-title{
+  margin-top: 30px;
+}
+
+.frame-user-index{
+  padding: 0 1em;
+  margin: 1em 0;
+  font-weight: bold;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #1E1D6B;/*線*/
+  border-radius: 20px;/*角の丸み*/
+  width: 250px;
+  height: 250px;
+}
+
+.search {
+	margin: 16px auto;
+	text-align: center;
+	display: block;
+  border: solid 2px #1E1D6B;/*線*/
+  padding-left: 1em;
+  border-radius: 20px;/*角の丸み*/
+  background-color: rgba(139, 199, 248, 0.151);
+}

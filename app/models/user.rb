@@ -12,6 +12,10 @@ class User < ApplicationRecord
   validates :encrypted_password, presence: true
   validates :is_active, presence: true
 
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
   enum gender: { 男性: 0, 女性: 1}
   enum address: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -22,5 +26,6 @@ class User < ApplicationRecord
     鳥取県:31,島根県:32,岡山県:33,広島県:34,山口県:35,
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
+    # HOKKAIDO:"北海道",AOMORI:"青森県",IWATE:"岩手県",MIYAGI:"宮城県",AKITA:"秋田県",YAMAGATA:"山形県",FUKUSHIMA:"福島県",IBARAKI:"茨城県",TOCHIGI:"栃木県",GUNMA:"群馬県",SAITAMA:"埼玉県",CHIBA:"千葉"県,TOKYO:"東京都",KANAGAWA:"神奈川県",NIIGATA:"新潟県",TOYAMA:"富山県",ISHIKAWA:"石川県",FUKUI:"福井県",YAMANASHI:"山梨県",NAGANO:"長野県",GIFU:"岐阜県",SHIZUOKA:"静岡県",AICHI:"愛知県",MIE:"三重県",SHIGA:"滋賀県",KYOTO:"京都府",OSAKA:"大阪府",HYOGO:"兵庫県",NARA:"奈良県",WAKAYAMA:"和歌山県",TOTTORI:"鳥取県",SHIMANE:"島根県",OKAYAMA:"岡山県",HIROSHIMA:"広島県",YAMAGUCHI:"山口県",TOKUSHIMA:"徳島県",KAGAWA:"香川県",EHIME:"愛媛県",KOCHI:"高知県",FUKUOKA:"福岡県",SAGA:"佐賀県",NAGASAKI:"長崎県",KUMAMOTO:"熊本県",OITA:"大分県",MIYAZAKI:"宮崎県",KAGOSHIMA:"鹿児島県",OKINAWA:"沖縄県"
   }
 end

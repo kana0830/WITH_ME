@@ -25,8 +25,9 @@ Rails.application.routes.draw do
   
   resources :users, except: [:new]
   get 'users/:id/exit' => 'users#exit', as: 'exit'
-  resources :posts
-  resources :comments, only: [:create, :destroy]
-  resources :likes, only: [:create, :destroy]
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
+  end
 
 end

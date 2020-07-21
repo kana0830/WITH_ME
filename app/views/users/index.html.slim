@@ -16,13 +16,14 @@
           <br>
           = f.select(:age_gteq, options_for_select((18..85).to_a), include_blank: true)
           | 歳以上 〜 
-          = f.select(:age_lt, options_for_select((18..85).to_a), include_blank: true)
-          | 歳未満
+          = f.select(:age_lteq, options_for_select((18..85).to_a), include_blank: true)
+          | 歳以下
           <br><br><br>
 
           = f.label :address
           <br>
-          = f.select(:address_eq, User.addresses.keys, include_blank: true)
+          = f.collection_select(:address_eq, @users, :id, :address, include_blank: true)
+          / = f.select(:address_eq, User.addresses.keys, include_blank: true)
           <br><br><br>
 
           = f.label :gender
@@ -53,6 +54,7 @@
               <br>
               = user.favorite_id
           
+
 
 
 

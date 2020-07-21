@@ -1,2 +1,9 @@
-h1 Posts#new
-p Find me in app/views/posts/new.html.slim
+.container
+  .row
+    .col-lg-3
+    .col-lg-6.text-center
+      h1.user-title 投稿
+
+
+      / 新規投稿フォーム
+      = render 'form', post: @post

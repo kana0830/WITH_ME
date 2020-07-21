@@ -1,0 +1,26 @@
+      / 新規・編集投稿フォーム
+      .text-left= form_with model: post, local: true do |f|
+        = render 'users/shared/error_messages', resource: f.object 
+
+        / タイトル
+        = f.label :title, class: "col-lg-3 text-center"
+        = f.text_field :title, class: "col-lg-8"
+        <br>
+
+        / タグ
+        = f.label :tag_list, "タグ",class: "col-lg-3 text-center"
+        = f.text_field :tag_list, value: post.tag_list.join(','), class: "col-lg-8"
+
+        / 投稿文
+        = f.label :post, class: "col-lg-3 text-center"
+        <br>
+        = f.text_area :post, :size=>"57x5"
+        <br>
+
+        / 新規登録の場合
+        - if post.new_record?
+          .text-center= f.submit "登録する", class: "btn btn-outline-secondary list btn-sm"
+
+        / 編集更新の場合
+        - else
+          .text-center= f.submit "更新する", class: "btn btn-outline-secondary list btn-sm"

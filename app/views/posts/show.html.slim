@@ -1,10 +1,10 @@
 .container
-  
-  / 投稿内容
   .row
     .col-lg-3
     .col-lg-6.text-center
       .frame-post-index.text-left
+
+        / 投稿内容
         = @post.user.image
         .m-0= link_to @post.user.name, user_path(@post.user)
         = @post.title
@@ -19,16 +19,10 @@
         <br>
         = @post.post
 
-        - if @post.liked_by?(current_user)
-          = link_to post_like_path(@post), method: :delete do
-            i.fas.fa-heart
-              = @post.likes.count
-              | いいね
-        - else
-          = link_to post_likes_path(@post), method: :post do
-            i.far.fa-heart
-              = @post.likes.count
-              | いいね
+        / Likeボタン
+        div id='like-button_#{ @post.id }'
+          = render 'like-button', post: @post
+          
       <br>
 
 

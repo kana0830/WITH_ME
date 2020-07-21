@@ -1,5 +1,5 @@
       / 新規・編集投稿フォーム
-      .text-left= form_with model: post, local: true do |f|
+      .text-left= form_with model: post, remote: true do |f|
         = render 'users/shared/error_messages', resource: f.object 
 
         / タイトル

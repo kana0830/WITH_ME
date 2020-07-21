@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  
-  get 'posts/index'
-  get 'posts/new'
-  get 'posts/edit'
-  get 'posts/show'
+
   root 'home#top'
   get 'about', to: 'home#about'
 
@@ -29,5 +25,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]
   end
+  resources :gelandes, only: [:index, :show]
 
 end

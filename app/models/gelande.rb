@@ -1,7 +1,7 @@
 class Gelande < ApplicationRecord
   attachment :image
 
-  validates :postal, presence: true
+  validates :postal, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
   validates :tel, presence: true
   validates :introduction, presence: true

@@ -2,25 +2,32 @@
   .row
     .col-lg-12.text-center
       h1.user-title 仲間を見つけよう
+      .row
+        .col-lg-2
+        .col-lg-4
+          = @user.image
+          |　
+          = @user.name
+          |　
+          i.fas.fa-user-plus
+          |　
+          i.fas.fa-envelope
+          |　
+          = link_to "編集する", edit_user_path, class: 'font-weight-bold btn btn-outline-secondary list btn-sm m-0'
+          <br><br>
 
+          = link_to "フォロー10人"
+          |　
+          = link_to "フォロワー10人"
+          <br><br>
 
-      = @user.image
-      |　
-      = @user.name
-      |　
-      i.fas.fa-user-plus
-      |　
-      i.fas.fa-envelope
-      |　
-      = link_to "編集する", edit_user_path, class: 'btn btn-outline-secondary list btn-sm m-0'
-      <br><br>
-
-      = link_to "フォロー10人"
-      |　
-      = link_to "フォロワー10人"
-      <br><br>
+        .col-lg-6.text-left
+          | お気に入りゲレンデ
+          .col-lg-7= @user.favorite_id
+      <br>
 
       .row.text-left
+        .col-lg-2
         .col-lg-1
           p 性別
           p 年齢
@@ -35,6 +42,24 @@
         .col-lg-6
           = @user.introduction
 
-        .col-lg-3
-          | お気に入りゲレンデ
-          .col-lg-7= @user.favorite_id
+
+  <br>
+
+
+  .row
+    .col-lg-2
+    .col-lg-8.frame-user-show
+      .row
+        .col-lg-10
+          h5.font-weight-bold.d-inline 投稿一覧
+        .col-lg-2
+          .d-inline= link_to "投稿する", new_post_path, class: 'font-weight-bold btn btn-outline-secondary list btn-sm m-0'
+          <br><br><br>
+
+      - @posts.each do |post|
+        .m-1.d-inline= link_to post.title, post_path(post)
+        |　
+        .m-1.d-inline= render 'posts/tag_list', tag_list: post.tag_list
+        .m-1= post.created_at
+        <br>
+

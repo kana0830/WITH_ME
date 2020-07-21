@@ -1,0 +1,33 @@
+.container
+  .row
+    .col-lg-12.text-center
+      h1.user-title みんなの投稿
+
+  / 投稿検索
+  .row
+    .col-lg-3
+      .search.text-center
+        = search_form_for @q do |f|
+          .mt-3= f.label :title_or_post, "検索"
+          = f.search_field :title_or_post_cont
+          <br>
+          = f.submit "検索", class: "btn btn-outline-secondary list btn-sm mb-3"
+
+    / 投稿一覧
+    .col-lg-9.pl-5
+      .row
+        - @posts.each do |post|
+          .text-left
+            .row.frame-post-index
+              = post.user.image
+              .m-0= link_to post.user.name, user_path(@user)
+              |　
+              = link_to post.title, post_path(post)
+              |　
+              = render 'posts/tag_list', tag_list: post.tag_list
+              |　
+              = link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm m-0 p-1"
+              = post.created_at
+              <br>
+              = post.post
+          <br>

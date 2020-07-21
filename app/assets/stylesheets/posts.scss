@@ -1,0 +1,23 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.frame-post-index{
+  padding: 1em;
+  font-weight: bold;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #1E1D6B;/*線*/
+  border-radius: 20px;/*角の丸み*/
+}
+
+.frame-post-comment{
+  padding: 1em;
+  font-weight: bold;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #1E1D6B;/*線*/
+  border-radius: 20px;/*角の丸み*/
+}
+
+.like-color{
+  color: red;
+}

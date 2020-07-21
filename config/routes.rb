@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'home#top'
   get 'about', to: 'home#about'
 
@@ -21,5 +21,10 @@ Rails.application.routes.draw do
   
   resources :users, except: [:new]
   get 'users/:id/exit' => 'users#exit', as: 'exit'
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+    resource :likes, only: [:create, :destroy]
+  end
+  resources :gelandes, only: [:index, :show]
 
 end

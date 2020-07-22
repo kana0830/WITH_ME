@@ -26,5 +26,6 @@ Rails.application.routes.draw do
     resource :likes, only: [:create, :destroy]
   end
   resources :gelandes, only: [:index, :show]
+  resources :reviews, only: [:create, :show, :destroy]
 
 end

@@ -43,7 +43,7 @@
         - @users.each do |user|
           .col-lg-4
             .row.frame-user-index
-              = user.image
+              = attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
               = link_to user.name, user_path(user)
               
               = user.age

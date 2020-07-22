@@ -1,2 +1,125 @@
-h1 Gelandes#show
-p Find me in app/views/gelandes/show.html.slim
+.container
+  .row
+    .col-lg-1
+    .col-lg-10.text-center
+      h1.title= @gelande.name
+      = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "450x300", class: ""
+      <br>
+      .mt-5.mb-5= @gelande.introduction
+      <br>
+
+  .row
+    .col-lg-1
+
+    / 地図表示
+    .col-lg-5
+      #map style='height: 350px; width: 400px;'
+
+      - google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_MAP_API'] }&callback=initMap".html_safe
+      script{ async src=google_api }
+
+      javascript:
+
+        let map;
+
+        function initMap() {
+          geocoder = new google.maps.Geocoder()
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
+            center: {
+              lat: gon.gelande.latitude,
+              lng: gon.gelande.longitude
+            },
+            zoom: 12,
+          });
+
+          marker = new google.maps.Marker({
+            // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
+            position: {
+              lat: gon.gelande.latitude,
+              lng: gon.gelande.longitude
+            },
+            map: map
+          });
+        }
+
+
+      
+    / 天気予報表示
+    .col-lg-5
+      .whether.text-center
+        h5.pt-2 天気予報
+        
+        #weather
+
+      javascript:
+
+        $(function () {
+          var API_KEY = "#{ENV['OPEN_WEATHER_MAP_API']}"; // APIキー(環境変数)を変数に代入
+          var city = "#{@gelande.address.match(/^.{2,3}[都道府県]/).to_s}"; // 該当ユーザーの都道府県名を変数に代入
+          // APIを読み込み変数に代入
+          var url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + ',jp&units=metric&APPID=' + API_KEY;
+
+          $.ajax({
+              url: url,
+              dataType: 'json',
+              type: 'GET',
+            })
+            .done(function (data) {
+              var insertHTML = '';
+              var cityName = data.city.name;
+              $('#city-name').html(cityName);
+
+              // デフォルトでは3時間ごとの天気を取得するため、
+              // 8の倍数でデータを取得することにより、24時間ごとの天気を取得する
+              for (var i = 0; i <= 32; i = i + 8) {
+                insertHTML += buildHTML(data, i);
+              }
+              $('#weather').html(insertHTML);
+            })
+            .fail(function (data) {
+              alert('天気予報取得に失敗しました');
+            });
+        });
+
+        // 日本語化
+        function buildHTML(data, i) {
+          var Week = new Array('(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)');
+          var date = new Date(data.list[i].dt_txt);
+          date.setHours(date.getHours() + 9);
+          var month = date.getMonth() + 1;
+          var day = month + '/' + date.getDate() + Week[date.getDay()];
+          var icon = data.list[i].weather[0].icon;
+          var html =
+            '<div class="weather-report float-left p-2">' +
+              '<img src="https://openweathermap.org/img/w/' + icon + '.png">' +
+              '<span class="weather-date">' + day + "</span>" +
+              '<div class="weather-main">'+ data.list[i].weather[0].main + '</div>' +
+              '<div class="weather-temp-max">' + '最高：' + Math.round(data.list[i].main.temp_max) + "℃</div>" +
+              '<span class="weather-temp-min">' + '最低：' + Math.floor(data.list[i].main.temp_min) + "℃</span>" +
+            '</div>';
+          return html
+        }
+
+
+  .row
+    .col-lg-1
+    .col-lg-5
+      | コース数
+      = @gelande.count
+      <br>
+      | 最大傾斜
+      = @gelande.slope
+      <br>
+      | 最長滑走距離
+      = @gelande.distance
+      <br>
+      | 住所
+      = @gelande.postal
+      <br>
+      | TEL
+      = @gelande.address
+      <br>
+      | ホームページ
+      = auto_link(simple_format(h(@gelande.hp), {}, sanitize: false, wrapper_tag: "div"))

@@ -6,8 +6,9 @@ html
     = favicon_link_tag('favicon.ico')
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = include_gon
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"
     link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet"
 
@@ -83,8 +84,8 @@ html
     main
       .container
         / フラッシュメッセージ
-        p.text-center.notice= notice
-        p.text-center.alert= alert
+        p.mt-3.text-center.notice= notice
+        p.mt-3.text-center.alert= alert
 
         = yield
     

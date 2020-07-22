@@ -19,14 +19,15 @@
         - @posts.each do |post|
           .text-left
             .row.frame-post-index
+              = attachment_image_tag @user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x40", class: ""
               = post.user.image
-              .m-0= link_to post.user.name, user_path(@user)
+              = link_to post.user.name, user_path(@user), class: "d-block"
               |　
-              = link_to post.title, post_path(post)
+              .d-block= link_to post.title, post_path(post), class: "d-block"
               |　
-              = render 'posts/tag_list', tag_list: post.tag_list
+              .d-inline= render 'posts/tag_list', tag_list: post.tag_list
               |　
-              = link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm m-0 p-1"
+              = link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm"
               = post.created_at
               <br>
               = post.post

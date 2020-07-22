@@ -4,8 +4,8 @@
       h1.user-title 仲間を見つけよう
       .row
         .col-lg-2
-        .col-lg-4
-          = @user.image
+        .col-lg-5
+          = attachment_image_tag @user, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
           |　
           = @user.name
           |　
@@ -21,7 +21,7 @@
           = link_to "フォロワー10人"
           <br><br>
 
-        .col-lg-6.text-left
+        .col-lg-5.text-left
           | お気に入りゲレンデ
           .col-lg-7= @user.favorite_id
       <br>

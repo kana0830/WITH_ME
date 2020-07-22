@@ -7,4 +7,7 @@ class Gelande < ApplicationRecord
   validates :introduction, presence: true
   validates :name, presence: true, uniqueness: true
   validates :is_active, presence: true
+
+  geocoded_by :address
+  after_validation :geocode
 end

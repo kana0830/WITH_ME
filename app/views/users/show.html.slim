@@ -11,16 +11,27 @@
           |　
           = @user.name
           |　
-          i.fas.fa-user-plus
+
+          - unless @user == current_user
+            - if current_user.following?(@user)
+              = link_to unfollow_path(@user), method: :post,  class: 'btn btn-info' do
+                i.fas.fa-user フォローを外す
+            - else
+              = link_to follow_path(@user), method: :post, class: 'btn btn-primary' do
+                i.far.fa-user フォローをする
+
+          
           |　
           i.fas.fa-envelope
           |　
           = link_to "編集する", edit_user_path, class: 'font-weight-bold btn btn-outline-secondary list btn-sm m-0'
           <br><br>
 
-          = link_to "フォロー10人"
+          = link_to users_following_path(@user) do
+            i.fas.fa-user フォロー#{ @user.follower.count }人
           |　
-          = link_to "フォロワー10人"
+          = link_to users_follower_path(@user) do
+            i.fas.fa-user フォロワー#{ @user.followed.count }人
           <br><br>
 
         .col-lg-5.text-left

@@ -25,6 +25,13 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]
   end
-  resources :gelandes, only: [:index, :show]
+  resources :gelandes, only: [:index, :show] do
+    resources :reviews, only: [:create, :index, :destroy]
+  end
+
+  post 'follow/:id', to: 'relationships#follow', as: 'follow'
+  post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
+  get 'users/following/:user_id', to: 'users#following', as:'users_following'
+  get 'users/follower/:user_id', to: 'users#follower', as:'users_follower'
 
 end

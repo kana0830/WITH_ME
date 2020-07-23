@@ -45,6 +45,7 @@
   // color: #ED553B;/*文字色*/
   border: solid 2px #1E1D6B;/*線*/
   border-radius: 20px;/*角の丸み*/
+  background-color: rgba(250, 250, 250, 0.911);
 }
 
 .search {
@@ -55,4 +56,38 @@
   padding-left: 1em;
   border-radius: 20px;/*角の丸み*/
   background-color: rgba(139, 199, 248, 0.151);
+}
+
+// 背景画像
+.user-visual-show{
+  z-index:0;
+  overflow: hidden;
+}
+
+.user-visual-show::before{
+  background-size: contain;
+  // background-position: 40% 150%;
+  // width: 100%;
+  height: 1300px;
+  content: '';
+  // background-image: url(user21.jpg);/*背景画像のURL*/
+  filter: blur(2px);/*ぼかし度*/
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+}
+
+.user-visual-show-content{
+  // width: 100%;
+  height: 1300px;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+  background-color: rgba(250, 247, 210, 0.253);
 }

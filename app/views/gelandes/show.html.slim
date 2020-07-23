@@ -123,3 +123,10 @@
       <br>
       | ホームページ
       = auto_link(simple_format(h(@gelande.hp), {}, sanitize: false, wrapper_tag: "div"))
+
+    .col-lg-5
+      - @reviews.each do |review|
+        = review.title
+        = review.star
+        = review.review
+      = link_to "もっと見る", gelande_reviews_path(@gelande)

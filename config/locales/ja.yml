@@ -11,6 +11,7 @@ ja:
       user: ユーザー
       post: 投稿
       comment: コメント
+      review: レビュー
     attributes:
       gelade: 
         id: ID
@@ -43,6 +44,10 @@ ja:
         post: 投稿内容
       comment:
         comment: コメント
+      review:
+        title: タイトル
+        star: 点数
+        review: 口コミ
   date:
     abbr_day_names:
     - 日

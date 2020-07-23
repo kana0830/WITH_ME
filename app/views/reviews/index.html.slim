@@ -1,0 +1,60 @@
+.container
+  .row
+    .col-lg-3
+    .col-lg-6.text-center
+      h1.user-title = @gelande.name
+      = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "450x300", class: ""
+
+  .row
+    .col-lg-6 
+      | 口コミ
+      = form_with(model: [@gelande, @review ], local: true) do |f|
+        = render 'users/shared/error_messages', resource: f.object 
+        = f.label :title
+        = f.text_field :title
+
+        
+        #star
+          = f.label :star
+          = f.hidden_field :star, id: :review_star
+
+        = f.label :review
+        = f.text_area :review
+
+        =f.submit "投稿する"
+
+
+        // 評価javascript
+        javascript:
+          $('#star').raty({
+            size: 36,
+            starOff: "#{asset_path('star-off.png')}",
+            starOn: "#{asset_path('star-on.png')}",
+            starHalf: "#{asset_path('star-half.png')}",
+            scoreName: 'review[rate]', //reviewカラムに保存するので忘れないように
+            half: true, // ★の半分の入力を行う
+          });
+
+
+
+  .row
+    .col-lg-6 
+      | 口コミ一覧
+
+      - @reviews.each do |review| 
+        = review.title
+
+        <!--星評価-->
+        div id='star-rate-#{review.id}'
+          javascript:
+            $("#star-rate-#{review.id}").raty({
+              size: 36,
+              starOff: "#{asset_path('star-off.png')}",
+              starOn: "#{asset_path('star-on.png')}",
+              starHalf: "#{asset_path('star-half.png')}",
+              half: true,
+              readOnly: true,
+              score: "review[rate]",
+            });
+
+

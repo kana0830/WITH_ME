@@ -59,7 +59,7 @@ html
               li.btn.btn-light= link_to new_user_session_path, class: 'list' do
                 i.fas.fa-sign-in-alt
                 |  login
-              li.btn.btn-light= link_to new_user_session_path, class: 'list' do
+              li.btn.btn-light= link_to users_guest_sign_in_path, method: :post, class: 'list' do
                 i.fas.fa-key
                 |  guest
 
@@ -76,6 +76,8 @@ html
             / ＝＝＝＝＝⭐︎アドミンログイン前⭐︎＝＝＝＝＝
             - else
               li.btn.btn-light= link_to "login", new_admin_session_path, class: 'list'
+              li.btn.btn-light= link_to "guest", admins_guest_sign_in_path, method: :post, class: 'list'
+
 
 
 

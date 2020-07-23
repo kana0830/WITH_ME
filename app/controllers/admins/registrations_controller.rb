@@ -3,6 +3,13 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :check_guest, only: %i[edit update destroy]
+
+  def check_guest
+    if @admin.email.downcase == 'test@example.com'
+      redirect_to root_path, alert: 'ゲスト管理者の変更・削除はできません。'
+    end
+  end
 
   # GET /resource/sign_up
   # def new

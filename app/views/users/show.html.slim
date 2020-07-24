@@ -12,6 +12,8 @@
           = @user.name
           |　
 
+
+          / フォロー
           - unless @user == current_user
             - if current_user.following?(@user)
               = link_to unfollow_path(@user), method: :post,  class: 'btn btn-info' do
@@ -20,27 +22,51 @@
               = link_to follow_path(@user), method: :post, class: 'btn btn-primary' do
                 i.far.fa-user フォローをする
 
-          
-          |　
-          i.fas.fa-envelope
-          |　
+
+          / DM
+          - unless @user.id == current_user.id
+            - if (current_user.following? @user) && (@user.following? current_user)
+              - if @isRoom == true
+                p.user-show-room
+                  =link_to room_path(@roomId), class: "btn.btn-primary.btn-lg" do
+                    i.fas.fa-envelope
+              - else
+                = form_for @room do |f|
+                  = fields_for @entry do |e|
+                    = e.hidden_field :user_id, value: @user.id
+                  = button_tag type: 'submit', class: "btn btn-primary btn-lg user-show-chat" do
+                    i.fas.fa-envelope
+
+
+
+          / 編集ページ
           = link_to "編集する", edit_user_path, class: 'font-weight-bold btn btn-outline-secondary list btn-sm m-0'
           <br><br>
 
+
+          / フォローページ
           = link_to users_following_path(@user) do
             i.fas.fa-user フォロー#{ @user.follower.count }人
           |　
+
+
+          / フォロワーページ
           = link_to users_follower_path(@user) do
             i.fas.fa-user フォロワー#{ @user.followed.count }人
           <br><br>
 
+
+        / お気に入りゲレンデ
         .col-lg-5.text-left
           | お気に入りゲレンデ
           .col-lg-7= @user.favorite_id
-      <br>
+          <br>
+
 
       .row.text-left
         .col-lg-2
+
+        / プロフィール一覧
         .col-lg-1
           p 性別
           p 年齢
@@ -52,13 +78,14 @@
           | 歳
           p= @user.address
 
+
+        / 自己紹介
         .col-lg-6
           = @user.introduction
-
-
   <br>
 
 
+  / 投稿一覧
   .row
     .col-lg-2
     .col-lg-8.frame-user-show

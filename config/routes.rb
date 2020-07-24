@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   resources :gelandes, only: [:index, :show] do
     resources :reviews, only: [:create, :index, :destroy]
   end
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show]
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'

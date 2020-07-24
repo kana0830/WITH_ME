@@ -15,7 +15,7 @@
           - unless @user == current_user
             - if current_user.following?(@user)
               = link_to unfollow_path(@user), method: :post,  class: 'btn btn-info' do
-                i.fas.fa-user フォローを外す
+                i.fas.fa-user フォロー中
             - else
               = link_to follow_path(@user), method: :post, class: 'btn btn-primary' do
                 i.far.fa-user フォローをする
@@ -73,6 +73,6 @@
         .m-1.d-inline= link_to post.title, post_path(post)
         |　
         .m-1.d-inline= render 'posts/tag_list', tag_list: post.tag_list
-        .m-1= post.created_at
+        .m-1= post.created_at.to_s(:datetime_jp)
         <br>
 

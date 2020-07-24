@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  acts_as_taggable #タグ
+  acts_as_taggable # タグ
 
   validates :title, presence: true
   validates :post, presence: true

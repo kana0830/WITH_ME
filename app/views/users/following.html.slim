@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-lg-4
+    .col-lg-4.text-center
+      p フォロー
+
+      - @followings.each do |following|
+        = attachment_image_tag following, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
+        = link_to following.name user_path(following)

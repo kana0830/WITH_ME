@@ -28,7 +28,7 @@
               .d-inline= render 'posts/tag_list', tag_list: post.tag_list
               |　
               = link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm"
-              = post.created_at
+              = post.created_at.to_s(:datetime_jp)
               <br>
               = post.post
           <br>

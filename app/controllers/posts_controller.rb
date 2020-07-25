@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @q = current_user.posts.ransack(params[:q])
+    @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
     @user = current_user
     if params[:tag_name]
@@ -29,11 +29,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
     if @post.update(task_params)
       flash[:notice] = '投稿しました'
       redirect_to post_path(@post)
@@ -43,8 +43,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
     @post.destroy
+    redirect_to posts_path
   end
 
 

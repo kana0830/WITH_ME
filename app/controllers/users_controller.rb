@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_guest, only: %i[update destroy]
 
   def index
     @q = User.ransack(params[:q])
@@ -63,9 +64,16 @@ class UsersController < ApplicationController
     @followers = @user.follower_user.where.not(id: current_user.id)
   end
 
+  def check_guest
+    user = User.find(params[:id])
+    if user.email == 'test@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :encrypted_password, :image_id, :gender, :address, :age, :favorite_id, :introduction, :is_active)
     end
-    
+
 end

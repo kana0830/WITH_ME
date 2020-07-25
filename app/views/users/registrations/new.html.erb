@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6 text-center frame-devise">
-      <h3 class="devise-title font-weight-bold">新規登録</h3><br>
+      <h3 class="mt-5 font-weight-bold">新規登録</h3><br>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "users/shared/error_messages", resource: resource %>
@@ -34,8 +34,8 @@
         </div>
       <% end %>
 
-      <p class="devise-text">既に登録済みの方</p>
-      <%= link_to "login", new_user_session_path, class: "devise-button btn btn-outline-secondary list btn-sm" %>
+      <p class="mb-0">既に登録済みの方</p>
+      <%= link_to "login", new_user_session_path, class: "mb-4 btn btn-outline-secondary list btn-sm" %>
 
     </div>
   </div>

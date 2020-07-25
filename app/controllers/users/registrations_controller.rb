@@ -6,10 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :check_guest, only: %i[update destroy]
 
   def check_guest
-    if @user.email.downcase == 'test@example.com'
+    if resource.email == 'guest@example.com'
       redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end
   end
+
 
   # GET /resource/sign_up
   # def new

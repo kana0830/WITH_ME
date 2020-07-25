@@ -34,12 +34,24 @@
   right: -8px;
   bottom: -8px;
   z-index: -1;
-  background-color: rgba(247, 250, 255, 0.4);
+  background-color: rgba(252, 252, 252, 0.4);
 }
 
+// トップメインテキスト
 .main-text h1{
   padding-top: 40px;
   padding-bottom: 20px;
+  color: #4a1b889a;
+  font-weight: 600;
+	text-align:center;
+	line-height:0.95em;
+	color: #FFF;
+	text-shadow: 
+		0 0 0.05em #ad82ff,
+		0 0 0.10em #7459ecab,
+		0 0 0.15em #6557df88,
+		0 0 0.30em #7d63f0;
+  filter: saturate(60%);
 }
 
 // 中央タイトル
@@ -50,12 +62,9 @@
   line-height: 0.6em;
 }
 
-.theme p,b{
+.theme p{
   color: #ffffff;
   font-family: "Nunito","游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
-}
-.theme b{
-  font-weight: 900;
 }
 
 .btn{

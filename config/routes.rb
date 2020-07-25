@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :show]
+  resources :notifications, only: :index
+  delete 'notifications/destroy_all', to: 'notifications#destroy_all', as: 'notifications_destroy_all'
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'

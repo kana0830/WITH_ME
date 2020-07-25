@@ -11,7 +11,7 @@
         |　
         = render 'posts/tag_list', tag_list: @post.tag_list
         |　
-        =link_to '編集', edit_post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-secondary list btn-sm m-0"
+        =link_to '編集', edit_post_path(@post), class: "font-weight-bold btn btn-outline-secondary list btn-sm m-0"
         |　
         = link_to '削除', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm m-0"
         <br>
@@ -34,7 +34,7 @@
         .frame-post-comment
           =comment.user.image
           = link_to comment.user.name, user_path(comment.user)
-          =link_to '削除', post_comment_path(comment), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm m-0"
+          = link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm m-0"
           <br>
           =comment.comment
         <br>

@@ -1,0 +1,60 @@
+.container
+  .row
+    .col-lg-3
+    .col-lg-6.text-center
+      h1.user-title プロフィール編集
+
+      / プロフィール編集フォーム
+      = form_with model: @user, local: true do |f|
+        = render 'users/shared/error_messages', resource: f.object 
+        .text-left
+          .text-left= f.label :image, class: "col-lg-4 float-left"
+          = attachment_image_tag @user, :image, fallback: 'noimage.png', size:'200x200', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev'
+          = f.file_field :image, class: 'img_field', style: 'display:none;'
+          <br>
+
+          / 名前
+          = f.label :name, class: "col-lg-4"
+          = f.text_field :name, class: "col-lg-8"
+          <br>
+          
+          / メールアドレス
+          = f.label :email, class: "col-lg-4"
+          = f.text_field :email, class: "col-lg-8"
+          <br>
+
+          / 性別ラジオボタン
+          = f.label :gender, class: "col-lg-4"
+          = f.radio_button :gender, :男性
+          = f.label :男性
+          |　
+          = f.radio_button :gender, :女性
+          = f.label :女性
+          <br>
+
+          / 都道府県セレクトボタン
+          = f.label :address, class: "col-lg-4"
+          = f.select :address, User.addresses.keys,  include_blank: true
+          <br>
+
+          / 年齢セレクトボタン
+          = f.label :age, class: "col-lg-4"
+          = f.select :age, options_for_select((18..85).to_a), include_blank: true
+          <br>
+
+          / お気に入りゲレンデ
+          = f.label :favorite_id, class: "col-lg-4"
+          = f.text_field :favorite_id, class: "col-lg-8"
+          <br>
+
+          / 自己紹介
+          = f.label :introduction, class: "col-lg-4 d-flex align-items-center float-left"
+          = f.text_area :introduction, :size=>"80x5", class: "col-lg-8"
+          <br>
+
+          / 新規登録の場合
+          .text-center= f.submit "更新する", class: "btn btn-outline-secondary list btn-sm"
+
+          / 編集更新の場合
+          .float-right= link_to "退会する", exit_path, class: "text-secondary"
+

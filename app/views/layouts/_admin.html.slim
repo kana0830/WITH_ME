@@ -1,0 +1,39 @@
+/ ＝＝＝＝＝⭐︎ロゴ⭐︎＝＝＝＝＝
+body
+  header.sticky-top
+    .navbar.clearfix
+      .nav.navbar-nav.mr-auto.bar-left
+        = link_to root_path do
+          = image_tag 'logo.jpg', :size => '300x150'
+
+
+
+      / ＝＝＝＝＝⭐︎ナビバー⭐︎＝＝＝＝＝
+      .nav.navbar-nav.bar-right
+        ul.box-1
+
+
+
+          / ＝＝＝＝＝⭐︎アドミンログイン後⭐︎＝＝＝＝＝
+          - if admin_signed_in?
+            li.font-weight-bold.btn.btn-light= link_to "会員一覧"
+            li.font-weight-bold.btn.btn-light= link_to "ゲレンデ一覧", admin_gelandes_path, class: 'list'
+            li.btn.btn-light= link_to "logout", destroy_admin_session_path, method: :delete, class: 'list'
+
+
+
+          / ＝＝＝＝＝⭐︎アドミンログイン前⭐︎＝＝＝＝＝
+          - else
+            li.btn.btn-light= link_to "login", new_admin_session_path, class: 'list'
+
+
+
+
+  / ＝＝＝＝＝⭐︎メイン⭐︎＝＝＝＝＝
+  main
+    .container
+      / フラッシュメッセージ
+      p.text-center.notice= notice
+      p.text-center.alert= alert
+
+      = yield

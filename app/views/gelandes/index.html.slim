@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-lg-12.text-center
+      h1.title お気に入りゲレンデを見つけよう
+
+  / ゲレンデ検索
+  .row
+    .col-lg-3
+      .search.text-center
+        = search_form_for @q do |f|
+
+          / フリーワード
+          .mt-3= f.label :name, "検索"
+          = f.search_field :name_cont
+          <br>
+
+          / 住所
+          / = f.label :address, "住所"
+          <br>
+          / = f.collection_select(:address_eq, @gelandes, :id, :address, include_blank: true)
+          <br>
+
+          = f.submit "検索", class: "btn btn-outline-secondary list btn-sm mb-3"
+
+
+    .col-lg-9.text-center.a1
+      .row
+        - @gelandes.each do |gelande|
+          .col-lg-4.text-center
+            .row.frame-gelande-index
+              = attachment_image_tag gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "210x150", class: ""
+              = link_to gelande.name, gelande_path(gelande)

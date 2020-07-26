@@ -1,0 +1,2 @@
+module GelandesHelper
+end

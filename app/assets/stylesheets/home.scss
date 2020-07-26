@@ -1,0 +1,141 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// 背景画像
+.main-visual{
+  z-index:0;
+  overflow: hidden;
+}
+
+.main-visual::before{
+  background-size: cover;
+  background-position: 40% 150%;
+  width: 100%;
+  height: 900px;
+  content: '';
+  background-image: url(main53.jpg);/*背景画像のURL*/
+  filter: blur(6px);/*ぼかし度*/
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+}
+
+.main-visual-content{
+  width: 100%;
+  height: 900px;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+  background-color: rgba(252, 252, 252, 0.4);
+}
+
+// トップメインテキスト
+.main-text h1{
+  padding-top: 40px;
+  padding-bottom: 20px;
+  color: #4a1b889a;
+  font-weight: 600;
+	text-align:center;
+	line-height:0.95em;
+	color: #FFF;
+	text-shadow: 
+		0 0 0.05em #ad82ff,
+		0 0 0.10em #7459ecab,
+		0 0 0.15em #6557df88,
+		0 0 0.30em #7d63f0;
+  filter: saturate(60%);
+}
+
+// 中央タイトル
+.theme{
+  margin-top: 50px;
+  margin-bottom: 40px;
+  font-size: 40px;
+  line-height: 0.6em;
+}
+
+.theme p{
+  color: #ffffff;
+  font-family: "Nunito","游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
+}
+
+.btn{
+  margin: 10px;
+  margin-bottom: 50px;
+}
+
+.frame-top{
+  text-align: center;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  border: solid 10px #ffffff;/*線*/
+  border-radius: 5px;/*角の丸み*/
+  background-color: rgba(115, 135, 250, 0.4);
+}
+
+
+
+
+
+
+
+// ⭐︎about page⭐︎
+
+.frame-about{
+  text-align: center;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #ED553B;/*文字色*/
+  border: solid 3px #ED553B;/*線*/
+  border-radius: 50px;/*角の丸み*/
+  background-color: rgba(253, 253, 253, 0.534);
+}
+
+.about-title{
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.about-btn{
+  margin-bottom: 20px;
+}
+
+// 背景画像
+.about-visual::before{
+  background-size: cover;
+  background-position: 40% 250%;
+  width: 100%;
+  height: 900px;
+  content: '';
+  background-image: url(about.jpg);/*背景画像のURL*/
+  filter: blur(6px);/*ぼかし度*/
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+}
+
+.about-visual-content{
+  width: 100%;
+  height: 900px;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.658);
+}
+

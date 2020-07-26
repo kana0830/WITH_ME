@@ -1,0 +1,21 @@
+// Place all the styles related to the gelandes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.frame-gelande-index{
+  padding: 1em;
+  margin: 1em 0;
+  font-weight: bold;
+  border: solid 2px #1E1D6B;/*線*/
+  border-radius: 20px;/*角の丸み*/
+  width: 250px;
+  height: 250px;
+}
+
+.whether{
+  padding: 1em;
+  font-weight: bold;
+  border: solid 2px #1E1D6B;/*線*/
+  border-radius: 20px;/*角の丸み*/
+  height: 350px;
+}

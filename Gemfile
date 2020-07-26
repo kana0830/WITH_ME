@@ -81,3 +81,6 @@ gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'rails_autolink'
 gem 'enum_help', '~> 0.0.15'
+group :production do
+  gem 'mysql2'
+end

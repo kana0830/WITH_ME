@@ -2,6 +2,8 @@ class Gelande < ApplicationRecord
   attachment :image
 
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :users, through: :favorites
 
   validates :postal, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true

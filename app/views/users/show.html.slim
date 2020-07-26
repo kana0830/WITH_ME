@@ -59,7 +59,8 @@
         / お気に入りゲレンデ
         .col-lg-5.text-left
           | お気に入りゲレンデ
-          .col-lg-7= @user.favorite_id
+          - @user.favorites.each do |favorite|
+            li= favorite.gelande.name
           <br>
 
 

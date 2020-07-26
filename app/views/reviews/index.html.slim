@@ -31,7 +31,7 @@
             starOff: "#{asset_path('star-off.png')}",
             starOn: "#{asset_path('star-on.png')}",
             starHalf: "#{asset_path('star-half.png')}",
-            scoreName: 'review[rate]', //reviewカラムに保存するので忘れないように
+            scoreName: 'review[star]', //reviewカラムに保存するので忘れないように
             half: true, // ★の半分の入力を行う
           });
 
@@ -42,10 +42,11 @@
       | 口コミ一覧
 
       - @reviews.each do |review| 
+        div id='star-rate-#{review.id}'
         = review.title
+        = review.review
 
         <!--星評価-->
-        div id='star-rate-#{review.id}'
           javascript:
             $("#star-rate-#{review.id}").raty({
               size: 36,
@@ -54,7 +55,7 @@
               starHalf: "#{asset_path('star-half.png')}",
               half: true,
               readOnly: true,
-              score: "review[rate]",
+              score: "#{review.star}",
             });
 
 

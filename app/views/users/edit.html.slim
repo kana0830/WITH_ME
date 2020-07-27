@@ -39,17 +39,12 @@
 
           / 年齢セレクトボタン
           = f.label :age, class: "col-lg-4"
-          = f.select :age, options_for_select((18..85).to_a), include_blank: true
+          = f.select :age, options_for_select((18..85).to_a,selected: @user.age), include_blank: true
           <br>
 
           / お気に入りゲレンデ
           = f.label :gelande_ids, "お気に入りゲレンデ", class: "col-lg-4"
-          = f.collection_select(:gelande_ids, Gelande.all, :id, :name)
-          <br>
-          = f.collection_select(:gelande_ids, Gelande.all, :id, :name)
-          <br>
-          = f.collection_select(:gelande_ids, Gelande.all, :id, :name)
-          <br>
+          = f.collection_select(:gelande_ids, Gelande.all, :id, :name, {:prompt => "3つまで選択できます"}, {:multiple => true})
 
           / 自己紹介
           = f.label :introduction, class: "col-lg-4 d-flex align-items-center float-left"

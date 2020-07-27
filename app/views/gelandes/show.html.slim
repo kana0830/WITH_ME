@@ -2,10 +2,11 @@
   .row
     .col-lg-1
     .col-lg-10.text-center
-      h1.title= @gelande.name
-      = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "450x300", class: ""
+      h1.title.en= @gelande.name
+
+      = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: ""
       <br>
-      .mt-5.mb-5= @gelande.introduction
+      .mt-5.mb-5.text-left= @gelande.introduction
       <br>
 
   .row

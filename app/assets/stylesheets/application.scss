@@ -49,6 +49,9 @@ a:link, a:visited, a:hover, a:active {
   color: #494949;
 }
 
+hr{
+  color: black;
+}
 
 
 
@@ -90,10 +93,11 @@ footer{
 
 // フッター左側
 .footer-content{
-  line-height: 0.6em;
-  padding-top: 20px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
+  a:link, a:visited, a:hover, a:active {
+    color: white;
+  }
 }
 
 .white{

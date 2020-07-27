@@ -7,13 +7,13 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     models:
-      gelade: ゲレンデ
+      gelande: ゲレンデ
       user: ユーザー
       post: 投稿
       comment: コメント
       review: レビュー
     attributes:
-      gelade: 
+      gelande: 
         id: ID
         name: ゲレンデ名
         count: コース数

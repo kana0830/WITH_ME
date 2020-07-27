@@ -20,8 +20,8 @@
                 tr.position-relative
                   td= gelande.id
                   td= attachment_image_tag gelande, :image,format: 'jpeg', fallback: "noimage.png", size: "70x40", class: ""
-                  td.font-weight-bold.stretched-link= link_to gelande.name, admins_gelande_path(gelande), class: "gelande-link stretched-link"
-                  td.font-weight-bold= gelande.is_active ? "有効" : "無効"
+                  td.stretched-link= link_to gelande.name, admins_gelande_path(gelande), class: "gelande-link stretched-link"
+                  td= gelande.is_active ? "有効" : "無効"
 
             
 

@@ -107,11 +107,9 @@ html
     footer
       .container
         .row
-          .col-lg-5.footer-content
-            p トップページ
-            p プライバシーポリシー
-            p 利用規約
-            p お問い合わせ
+          .col-lg-5.footer-content.mt-3
+            p= link_to "トップページ", root_path
+            p= link_to "お問い合わせ", root_path
           .col-lg-5
             .mt-3= link_to new_admin_session_path do
               p.en.white WITH ME

@@ -45,6 +45,7 @@
           / お気に入りゲレンデ
           = f.label :gelande_ids, "お気に入りゲレンデ", class: "col-lg-4"
           = f.collection_select(:gelande_ids, Gelande.all, :id, :name, {:prompt => "3つまで選択できます"}, {:multiple => true})
+          / = f.collection_select(:genlande_ids, Gelande.all, :id, :name, {multiple: true, name: 'article[tags]', class: 'form-control js-searchable'})
 
           / 自己紹介
           = f.label :introduction, class: "col-lg-4 d-flex align-items-center float-left"

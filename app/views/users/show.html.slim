@@ -29,13 +29,13 @@
             - if (current_user.following? @user) && (@user.following? current_user)
               - if @isRoom == true
                 p.user-show-room
-                  =link_to room_path(@roomId), class: "btn.btn-primary.btn-lg" do
+                  =link_to room_path(@roomId), class: "btn.btn-primary.btn-sm" do
                     i.fas.fa-envelope
               - else
                 = form_for @room do |f|
                   = fields_for @entry do |e|
                     = e.hidden_field :user_id, value: @user.id
-                  = button_tag type: 'submit', class: "btn btn-primary btn-lg user-show-chat" do
+                  = button_tag type: 'submit', class: "btn btn-primary btn-sm user-show-chat" do
                     i.fas.fa-envelope
 
 

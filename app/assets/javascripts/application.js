@@ -15,6 +15,7 @@
 //= require activestorage
 // require turbolinks
 //= require bootstrap-sprockets
+// = require select2
 //= require_tree .
 
 
@@ -35,3 +36,9 @@ signs.forEach(el => {
     mixupInterval(el)
   })
 })
+
+
+$('.js-searchable').select2({
+  width: 200,
+  allowClear: true
+});

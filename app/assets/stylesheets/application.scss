@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require select2
  */
 
 @import "bootstrap";
@@ -82,6 +83,8 @@ footer{
   background-color: #09012eea; 
   color: #FFF;
   font-family: "游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
+
+  bottom: 0; /*下に固定*/
 }
 
 // snsアイコン
@@ -118,3 +121,14 @@ footer{
   border-radius: 50px;/*角の丸み*/
 }
 
+
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}

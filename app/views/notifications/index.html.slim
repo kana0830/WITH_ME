@@ -2,7 +2,7 @@
   .row
     .col-lg-3
     .col-lg-6
-      h3.text-center 通知
+      h3.title.text-center 通知
       = link_to notifications_destroy_all_path, method: :delete do
         i.fas.fa-trash style="color: black;"
             h7 style="color: black;" 全削除
@@ -11,6 +11,5 @@
       - if notifications.exists?
         = render notifications
       - else
-        p
-          | 通知はありません
-
+        p 通知はありません
+.mb-5

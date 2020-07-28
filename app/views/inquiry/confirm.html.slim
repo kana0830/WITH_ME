@@ -2,7 +2,7 @@
   .row
     .col-lg-3
     .col-lg-6.text-center
-      h3 お問い合わせ
+      hh3.title お問い合わせ
       .text-left
         = form_for @inquiry, url: inquiry_thanks_path do |f|
           <hr>
@@ -22,5 +22,6 @@
           <br>
           <hr>
           .text-center
-            .d-inline.text-center=link_to "戻る", inquiry_index_path, class: "btn btn-outline-secondary list btn-sm m-0 mr-4"
-            .d-inline.text-center= f.submit '送信', class: "btn btn-outline-secondary list btn-sm m-0"
+            .d-inline.text-center=link_to "戻る", inquiry_index_path, class: "btn btn-outline-secondary btn-sm m-0 mr-4"
+            .d-inline.text-center= f.submit '送信', class: "btn btn-outline-secondary btn-sm m-0"
+.mb-5

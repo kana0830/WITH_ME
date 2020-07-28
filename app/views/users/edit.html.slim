@@ -2,7 +2,7 @@
   .row
     .col-lg-3
     .col-lg-6.text-center
-      h1.user-title プロフィール編集
+      h3.title プロフィール編集
 
       / プロフィール編集フォーム
       = form_with model: @user, local: true do |f|
@@ -39,7 +39,7 @@
 
           / 年齢セレクトボタン
           = f.label :age, class: "col-lg-4"
-          = f.select :age, options_for_select((18..85).to_a,selected: @user.age), include_blank: true
+          = f.select :age, options_for_select((18..60).to_a,selected: @user.age), include_blank: true
           <br>
 
           / お気に入りゲレンデ
@@ -52,7 +52,7 @@
           = f.text_area :introduction, :size=>"80x5", class: "col-lg-8"
           <br>
 
-          .text-center= f.submit "更新する", class: "btn btn-outline-secondary list btn-sm"
+          .text-center= f.submit "更新する", class: "btn btn-outline-secondary btn-sm"
 
           .float-right= link_to "退会する", exit_path, class: "text-secondary"
-
+.mb-5

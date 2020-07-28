@@ -37,6 +37,7 @@
   background-color: rgba(252, 252, 252, 0.4);
 }
 
+
 // トップメインテキスト
 .main-text h1{
   padding-top: 40px;
@@ -54,6 +55,7 @@
   filter: saturate(60%);
 }
 
+
 // 中央タイトル
 .theme{
   margin-top: 50px;
@@ -62,16 +64,15 @@
   line-height: 0.6em;
 }
 
+
+// 中央タイトルフォント
 .theme p{
   color: #ffffff;
   font-family: "Nunito","游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
 }
 
-.btn{
-  margin: 10px;
-  margin-bottom: 50px;
-}
 
+// 中央タイトル囲み枠
 .frame-top{
   text-align: center;
   padding: 0.5em 1em;
@@ -82,6 +83,12 @@
   background-color: rgba(115, 135, 250, 0.4);
 }
 
+
+// ホーム・ヘッダーボタン
+.home-btn{
+  margin: 10px;
+  margin-bottom: 50px;
+}
 
 
 

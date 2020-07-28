@@ -2,22 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+// 投稿一覧・詳細囲み枠
 .frame-post-index{
-  padding: 1em;
-  font-weight: bold;
-  // color: #ED553B;/*文字色*/
-  border: solid 2px #1E1D6B;/*線*/
+  margin: 1em 0;
+  padding: 2em;
+  border: solid 2px #E5E5E5;/*線*/
   border-radius: 20px;/*角の丸み*/
+  width: 100%;
+  background-color: rgba(250, 250, 250, 0.911);
 }
 
+
+// コメント一覧囲み枠
 .frame-post-comment{
   padding: 1em;
-  font-weight: bold;
   // color: #ED553B;/*文字色*/
-  border: solid 2px #1E1D6B;/*線*/
+  border: solid 1px #E5E5E5;/*線*/
   border-radius: 20px;/*角の丸み*/
+  background-color: rgba(250, 250, 250, 0.911);
 }
 
+
+// いいねハートの色
 .like-color{
   color: red;
 }

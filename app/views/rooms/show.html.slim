@@ -1,31 +1,41 @@
 .container
   .row
-    .col-lg-3
-    .col-lg-6
-      = link_to "ユーザー一覧に戻る", users_path,class:"edit-link"
-      h4 メッセージ
-
-      / ユーザー情報
-      / = @entries.each do |entry|
-      /   = attachment_image_tag entry.user, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
-      /   = link_to user_path(entry.user) do
-      /     entry.user.name さん
-      / hr
+    .col-lg-2
+    .col-lg-8
+      h3.title.mb-4.text-center メッセージ
+      <hr>
 
 
       / DM一覧
       .chats
         - if @messages.present?
           - @messages.each do |message|
-            = attachment_image_tag message.user, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
-            = message.user.name
-            = message.content
-            = message.created_at.to_s(:datetime_jp)
+            .row
+              - if current_user.name == message.user.name
+                .col-lg-12.text-right
+                  = message.content
+                  <br>
+                  small= message.created_at.to_s(:datetime_jp)
+              - else
+                .col-lg-2
+                  = attachment_image_tag message.user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: ""
+                .col-lg-10
+                  small= link_to message.user.name, user_path(message.user)
+                  <br>
+                  = message.content
+                  <br>
+                  small= message.created_at.to_s(:datetime_jp)
+            <hr>
+        - else
+          p= メッセージはありません。
 
 
-        / DM送信フォーム
-        .posts
-          = form_for @message do |f|
-            = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field"
-            = f.hidden_field :room_id, value: @room.id
-            = f.submit "投稿",class: 'form-submit'
+  / DM送信フォーム
+  .row
+    .col-lg-2
+    .col-lg-8.text-center
+      = form_for @message do |f|
+        = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 60
+        = f.hidden_field :room_id, value: @room.id
+        = f.submit "投稿", class: 'mt-5 btn btn-outline-secondary btn-sm ml-2'
+.mb-5

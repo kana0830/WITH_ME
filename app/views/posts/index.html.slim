@@ -1,34 +1,36 @@
 .container
   .row
     .col-lg-12.text-center
-      h1.user-title みんなの投稿
+      h3.title みんなの投稿
 
   / 投稿検索
   .row
     .col-lg-3
       .search.text-center
         = search_form_for @q do |f|
-          .mt-3= f.label :title_or_post, "検索"
+          p= f.label :title_or_post, "キーワード検索"
           = f.search_field :title_or_post_cont
-          <br>
-          = f.submit "検索", class: "btn btn-outline-secondary list btn-sm mb-3"
+          <br><br>
+          = f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0"
 
     / 投稿一覧
     .col-lg-9.pl-5
       .row
         - @posts.each do |post|
-          .text-left
-            .row.frame-post-index
+          .text-left.col-lg-11
+            .frame-post-index
               = attachment_image_tag @user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x40", class: ""
               = post.user.image
-              = link_to post.user.name, user_path(@user), class: "d-block"
-              |　
-              .d-block= link_to post.title, post_path(post), class: "d-block"
+              = link_to post.user.name, user_path(@user)
+              <br>
+              = link_to post.title, post_path(post), class: "font-weight-bold"
               |　
               .d-inline= render 'posts/tag_list', tag_list: post.tag_list
               |　
-              = link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "font-weight-bold btn btn-outline-danger list btn-sm"
-              = post.created_at.to_s(:datetime_jp)
+              .d-inline= link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
               <br>
-              = post.post
+              small.m-0= post.created_at.to_s(:datetime_jp)
+              <br>
+              .mt-4= post.post
           <br>
+  .mb-5

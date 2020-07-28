@@ -57,7 +57,7 @@
           <br>
 
           / ステータス
-          = f.label :is_active, class: "col-lg-4"
+          span.col-lg-4 有効ステータス
           = f.radio_button :is_active, true
           = f.label :is_active, "有効"
           |　
@@ -75,8 +75,9 @@
 
       / 新規登録の場合
       - if gelande.new_record?
-        = f.submit "登録する", class: "btn btn-outline-secondary list btn-sm"
+        = f.submit "登録する", class: "btn btn-outline-secondary btn-sm"
 
       / 編集更新の場合
       - else
-        = f.submit "更新する", class: "btn btn-outline-secondary list btn-sm"
+        = f.submit "更新する", class: "btn btn-outline-secondary btn-sm"
+.mb-5

@@ -2,8 +2,9 @@
   .row
     .col-lg-4
     .col-lg-4.text-center
-      p フォロワー
+      h3.title フォロワー
 
       - @followers.each do |follower|
         = attachment_image_tag follower, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
         = link_to follower.name user_path(follower)
+.mb-5

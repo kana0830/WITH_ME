@@ -2,92 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user-title{
-  margin-bottom: 30px;
-  font-size: 30px;
-  font-weight: bold;
-}
 
+// 画像選択
 .img_prev:hover {
   cursor: pointer; 
   opacity: 0.7;
-  // transform: scale(1.01, 1.01);
 }
 
+
+// 退会フレーム
 .frame-user{
-  // padding: 0.5em 1em;
-  // margin: 2em 0;
-  font-weight: bold;
-  // color: #ED553B;/*文字色*/
-  border: solid 2px #1E1D6B;/*線*/
+  border: solid 2px #E5E5E5;/*線*/
   border-radius: 50px;/*角の丸み*/
 }
 
-.flame-user-title{
-  margin-top: 30px;
-}
 
+// ユーザー一覧囲み枠
 .frame-user-index{
-  padding: 0 1em;
+  padding: 2em;
   margin: 1em 0;
-  font-weight: bold;
   // color: #ED553B;/*文字色*/
-  border: solid 2px #1E1D6B;/*線*/
+  border: solid 2px #E5E5E5;/*線*/
   border-radius: 20px;/*角の丸み*/
   width: 250px;
   height: 250px;
+  background-color: rgba(250, 250, 250, 0.911);
 }
 
+
+// ユーザー詳細・ユーザー詳細投稿囲み枠
 .frame-user-show{
   padding: 2em;
   margin: 1em 0;
-  font-weight: bold;
   // color: #ED553B;/*文字色*/
-  border: solid 2px #1E1D6B;/*線*/
+  border: solid 2px #E5E5E5;/*線*/
   border-radius: 20px;/*角の丸み*/
   background-color: rgba(250, 250, 250, 0.911);
 }
 
-.search {
-	margin: 16px auto;
+
+// ゲレンデ・投稿・ユーザー検索枠
+.search{
+  margin: 1em 0;
 	text-align: center;
 	display: block;
-  border: solid 2px #1E1D6B;/*線*/
-  padding-left: 1em;
+  border: solid 2px #E5E5E5;/*線*/
+  padding: 1em;
   border-radius: 20px;/*角の丸み*/
-  background-color: rgba(139, 199, 248, 0.151);
+  background-color: rgba(214, 209, 253, 0.151);
 }
-
-// 背景画像
-// .user-visual-show{
-//   z-index:0;
-//   overflow: hidden;
-// }
-
-// .user-visual-show::before{
-//   background-size: contain;
-//   // background-position: 40% 150%;
-//   // width: 100%;
-//   height: 1300px;
-//   content: '';
-//   // background-image: image-url("user21.jpg");/*背景画像のURL*/
-//   filter: blur(2px);/*ぼかし度*/
-//   position: absolute;
-//   top: -8px;
-//   left: -8px;
-//   right: -8px;
-//   bottom: -8px;
-//   z-index: -1;
-// }
-
-// .user-visual-show-content{
-//   // width: 100%;
-//   height: 1300px;
-//   position: absolute;
-//   top: -8px;
-//   left: -8px;
-//   right: -8px;
-//   bottom: -8px;
-//   z-index: -1;
-//   background-color: rgba(250, 247, 210, 0.253);
-// }

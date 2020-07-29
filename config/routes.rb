@@ -1,19 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admins do
-    get 'home/top'
-  end
-  namespace :admins do
-    get 'reviews/index'
-  end
-  namespace :admins do
-    get 'posts/index'
-  end
-  namespace :admins do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
   root 'home#top'
   get 'about', to: 'home#about'
 
@@ -39,6 +25,10 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :gelandes, except: [:destroy]
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy]
+    resources :reviews, only: [:index, :destroy]
+    get 'home' => 'home#top'
   end
   
   resources :users, except: [:new]

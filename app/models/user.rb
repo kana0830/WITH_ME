@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
-  validates :is_active, presence: true
+  validates :is_active, inclusion: { in: [true, false] }
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy

@@ -74,19 +74,19 @@
       table.table.table-striped.table-bordered
         tr
           th コース数
-          td= @gelande.count
+          td= "#{@gelande.count}本"
         tr
           th 最大傾斜
-          td= @gelande.slope
+          td= "#{@gelande.slope}度"
         tr
           th 最長滑走距離
-          td= @gelande.distance
+          td= "#{@gelande.distance}m"
         tr
           th 住所
-          td= @gelande.postal
+          td= "〒#{@gelande.postal.to_s.insert(3, '-')}""　#{@gelande.address}"
         tr
           th TEL
-          td= @gelande.address
+          td= @gelande.tel
         tr
           th ホームページ
           td= auto_link(simple_format(h(@gelande.hp), {}, sanitize: false, wrapper_tag: "div"))

@@ -1,2 +1,24 @@
-h1 Admins::Users#index
-p Find me in app/views/admins/users/index.html.slim
+.container
+  .row
+    .col-lg-2
+    .col-lg-8.text-center
+      h3.title 会員一覧
+
+      .row
+        .col-lg-12
+          table.table
+            thead.thead-light
+              tr
+                th= sort_link(@q, :id, "ID")
+                th= sort_link(@q, :name, "名前") 
+                th= sort_link(@q, :email, "メールアドレス")
+                th= sort_link(@q, :is_active, "ステータス")
+
+            tbody
+              - @users.each do |user|
+                tr.position-relative
+                  td= user.id
+                  td.stretched-link= link_to user.name, admins_user_path(user), class: "stretched-link"
+                  td= user.email
+                  td= user.is_active ? "有効" : "退会済み"
+.mb-5

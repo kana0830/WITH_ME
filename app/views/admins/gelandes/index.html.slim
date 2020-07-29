@@ -10,16 +10,16 @@
           table.table
             thead.thead-light
               tr
-                th ゲレンデID
-                th 画像
-                th ゲレンデ名
-                th ステータス
+                th= sort_link(@q, :id, "ID")
+                th= sort_link(@q, :image, "画像")
+                th= sort_link(@q, :name, "ゲレンデ名")
+                th= sort_link(@q, :is_active, "ステータス")
 
             tbody
               - @gelandes.each do |gelande|
                 tr.position-relative
                   td= gelande.id
-                  td= attachment_image_tag gelande, :image,format: 'jpeg', fallback: "noimage.png", size: "70x40", class: ""
+                  td= attachment_image_tag gelande, :image, fallback: 'noimage.png', size: "70x40"
                   td.stretched-link= link_to gelande.name, admins_gelande_path(gelande), class: "gelande-link stretched-link"
                   td= gelande.is_active ? "有効" : "無効"
 .mb-5

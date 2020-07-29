@@ -15,7 +15,9 @@
 //= require activestorage
 // require turbolinks
 //= require bootstrap-sprockets
-// = require select2
+//= require select2
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
 //= require_tree .
 
 

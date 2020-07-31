@@ -27,7 +27,7 @@
                   small= message.created_at.to_s(:datetime_jp)
             <hr>
         - else
-          p= メッセージはありません。
+          p メッセージはありません。
 
 
   / DM送信フォーム
@@ -37,5 +37,5 @@
       = form_for @message do |f|
         = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 60
         = f.hidden_field :room_id, value: @room.id
-        = f.submit "投稿", class: 'mt-5 btn btn-outline-secondary btn-sm ml-2'
+        = f.submit "投稿", class: 'btn btn-outline-secondary btn-sm ml-2'
 .mb-5

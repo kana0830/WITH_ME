@@ -22,7 +22,7 @@ html
         .navbar.clearfix
           .nav.navbar-nav.mr-auto.bar-left
             = link_to root_path do
-              = image_tag 'logo.jpg', :size => '300x150'
+              = image_tag 'logo.jpg', :size => '200x100'
 
 
           / ＝＝＝＝＝⭐︎ナビバー⭐︎＝＝＝＝＝
@@ -74,7 +74,6 @@ html
                   |  guest
 
 
-            div
               / ＝＝＝＝＝⭐︎アドミンログイン後⭐︎＝＝＝＝＝
               - if admin_signed_in?
                 li.btn.btn-light.home-btn= link_to "home", admins_home_path, class: 'list'

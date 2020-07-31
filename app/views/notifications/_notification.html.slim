@@ -4,9 +4,9 @@
 .form-inline
   span
     = link_to user_path(visiter) do
-      = attachment_image_tag visiter, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: ""
+      = attachment_image_tag visiter, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: "mr-2"
       = visiter.name
-    = 'さんが'
+    = ' さんが'
 
     - case notification.action
     - when 'follow' then
@@ -20,7 +20,7 @@
       - else
         span
           = link_to post_path(notification.post) do
-            = image_tag avatar_url(notification.post.user).to_s, class: "icon_mini" 
+            = image_tag user_url(notification.post.user).to_s, class: "icon_mini" 
             strong
               = notification.post.user.name + 'さんの投稿'
       = "にコメントしました"

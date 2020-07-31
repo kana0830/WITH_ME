@@ -6,7 +6,7 @@
 
       .row
         .col-lg-12
-          table.table
+          table.table.table-clickable.table-hover
             thead.thead-light
               tr
                 th= sort_link(@q, :id, "ID")
@@ -16,9 +16,9 @@
 
             tbody
               - @users.each do |user|
-                tr.position-relative
+                tr.position-relative data-href= "#{admins_user_path(user)}"
                   td= user.id
-                  td.stretched-link= link_to user.name, admins_user_path(user), class: "stretched-link"
+                  td= user.name
                   td= user.email
                   td= user.is_active ? "有効" : "退会済み"
 .mb-5

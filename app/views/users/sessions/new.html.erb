@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6 text-center frame-devise">
-      <h2 class="mt-5 en">Log in</h2><br>
+      <h3 class="title mt-5 en">Log in</h3><br>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
@@ -23,14 +23,14 @@
         <% end %>
 
         <div class="actions">
-          <%= f.submit "Log in", class: "btn btn-outline-secondary list btn-sm" %>
+          <%= f.submit "Log in", class: "btn btn-outline-secondary list btn-sm mb-4" %>
         </div>
       <% end %>
 
 
-      <p class="mb-0">まだ登録がお済みでない方</p>
-      <%= link_to "新規登録", new_user_registration_path, class: "mb-4 font-weight-bold btn btn-outline-secondary list btn-sm" %>
-
+      <p class="m-2">まだ登録がお済みでない方</p>
+      <%= link_to "新規登録", new_user_registration_path, class: "mb-4 btn btn-outline-secondary list btn-sm " %>
     </div>
+    <div class="mb-5"></div>
   </div>
 </div>

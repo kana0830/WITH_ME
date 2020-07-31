@@ -2,12 +2,33 @@
   .row
     .col-lg-1
     .col-lg-10.text-center
-      h3.title.en= @gelande.name
 
+      / 上部ゲレンデ紹介
+      .row
+        .col-lg-4
+        .col-lg-4
+          h3.title.en.d-inline= @gelande.name
+        .col-lg-4.text-left
+          - if @reviews.present?
+            .d-inline id="star-average"
+            .d-inline.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
+      <br><br>
       = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: ""
       <br>
       .mt-5.mb-5.text-left= @gelande.introduction
       <br>
+
+        / 星評価
+        javascript:
+          $("#star-average").raty({
+            size: 36,
+            starOff: "#{asset_path('star-off.png')}",
+            starOn: "#{asset_path('star-on.png')}",
+            starHalf: "#{asset_path('star-half.png')}",
+            half: true,
+            readOnly: true,
+            score: "#{@gelande.reviews.average(:star).to_f.round(1)}",
+          });
 
 
   .row
@@ -99,47 +120,25 @@
       - google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_MAP_API'] }&callback=initMap".html_safe
       script{ async src=google_api }
 
-      javascript:
-
-        let map;
-
-        function initMap() {
-          geocoder = new google.maps.Geocoder()
-
-          map = new google.maps.Map(document.getElementById('map'), {
-            // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
-            center: {
-              lat: gon.gelande.latitude,
-              lng: gon.gelande.longitude
-            },
-            zoom: 12,
-          });
-
-          marker = new google.maps.Marker({
-            // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
-            position: {
-              lat: gon.gelande.latitude,
-              lng: gon.gelande.longitude
-            },
-            map: map
-          });
-        }
-
 
       / 口コミ
       .row
-        .col-lg-8
-          h5.text-center.m-3.pl-5.font-weight-bold 口コミ
+        .col-lg-4
+        .col-lg-4
+          h5.text-center.m-3.font-weight-bold 口コミ
         .col-lg-4.text-right.mt-3= link_to "口コミを投稿する", gelande_reviews_path(@gelande)
-      - @reviews.shuffle.first(3).each do |review|
-        .frame-review-index.float-left.mr-2
-          .m-0= review.title
-          .d-inline-block id='star-rate-#{review.id}'
-          = review.star
-          p.mt-2= review.review
+
+      - if @reviews.present?
+        / 口コミランダム表示
+        - @reviews.shuffle.first(3).each do |review|
+          .frame-review-index.float-left.mr-2
+            .m-0= review.title
+            .d-inline-block id='star-rate-#{review.id}'
+            = review.star
+            p.mt-2= review.review
 
 
-          <!--星評価-->
+            / 星評価
             javascript:
               $("#star-rate-#{review.id}").raty({
                 size: 36,
@@ -151,8 +150,14 @@
                 score: "#{review.star}",
               });
 
-      small
-        - if @reviews.present?
-          .more= link_to "もっと見る", gelande_reviews_path(@gelande)
+        / 口コミ詳細ページリンク
+        small
+          - if @reviews.present?
+            .more= link_to "もっと見る", gelande_reviews_path(@gelande)
+      
+      - else
+        .row
+          .col-lg-12
+            p.text-center.mt-5 口コミはまだありません。
         
 .mb-5

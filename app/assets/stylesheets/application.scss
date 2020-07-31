@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require select2
  */
 
 @import "bootstrap";
@@ -30,11 +31,11 @@
 
 body{
   color: #494949;
-  font-weight: bold;
   font-family: "游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
   font-weight: 500;
 }
 
+// エラーメッセージ
 .error{
   color: red;
 }
@@ -50,9 +51,27 @@ a:link, a:visited, a:hover, a:active {
 }
 
 
+// タイトル
+.title{
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+// 文字色白
+.white{
+  color: #ffffff;
+}
+
+// フォームテキストの文字色
+input, select, textarea{
+  color: #494949;
+  }
 
 
-// ⭐︎ヘッダー⭐︎
+
+
+// ヘッダー
 .navbar{
   background-color: #eaedf3;  
   height: 70px;
@@ -60,8 +79,8 @@ a:link, a:visited, a:hover, a:active {
 
 .bar-right li{
   display: inline-block;
-  margin-right: 10px;
-  margin-top: -2em;
+  margin-right: 1px;
+  // margin-top: -2em;
 }
 
 .list{
@@ -73,12 +92,14 @@ a:link, a:visited, a:hover, a:active {
 
 
 
-// ⭐︎フッター⭐︎
+// フッター
 footer{
   margin-top: 180px;
   background-color: #09012eea; 
   color: #FFF;
   font-family: "游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
+
+  bottom: 0; /*下に固定*/
 }
 
 // snsアイコン
@@ -90,27 +111,36 @@ footer{
 
 // フッター左側
 .footer-content{
-  line-height: 0.6em;
-  padding-top: 20px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
+  a:link, a:visited, a:hover, a:active {
+    color: white;
+  }
 }
 
-.white{
-  color: #ffffff;
-}
 
 
 
 
-
-// ⭐︎devise⭐︎
+// devise⭐
 .frame-devise{
-  // padding: 0.5em 1em;
-  // margin: 2em 0;
-  font-weight: bold;
-  // color: #ED553B;/*文字色*/
-  border: solid 2px #1E1D6B;/*線*/
+  margin-bottom: 50px;
+  border: solid 2px #E5E5E5;/*線*/
   border-radius: 50px;/*角の丸み*/
+  background-color: rgba(250, 250, 250, 0.911);
 }
 
+
+
+
+// フッター固定
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}

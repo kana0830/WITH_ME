@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :gelandes, except: [:destroy]
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy]
+    resources :reviews, only: [:index, :destroy]
+    get 'home' => 'home#top'
   end
   
   resources :users, except: [:new]
@@ -45,5 +49,7 @@ Rails.application.routes.draw do
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'users/following/:user_id', to: 'users#following', as: 'users_following'
   get 'users/follower/:user_id', to: 'users#follower', as: 'users_follower'
-
+  get 'inquiry/index'
+  post 'inquiry/confirm'
+  post 'inquiry/thanks'
 end

@@ -1,17 +1,17 @@
 .container
   .row
     .col-lg-12.text-center
-      h1.gelande-title ゲレンデ詳細
+      h3.title ゲレンデ詳細
 
       .row
-        .col-lg-1.form_group1
-        .col-lg-10.form_group2
+        .col-lg-1
+        .col-lg-10
           .row
             .col-lg-5.text-left
               .col-lg-4.float-left ゲレンデID
               .col-lg-2.float-left= @gelande.id
               .col-lg-2.float-left
-                .font-weight-bold.btn.btn-outline-dark.list.btn-sm.disabled.m-0= @gelande.is_active ? "有効" : "無効"
+                .btn.btn-outline-dark.btn-sm.disabled.m-0= @gelande.is_active ? "有効" : "無効"
               <br><br><br>
 
               = attachment_image_tag @gelande, :image, fallback: 'noimage.png', size: "350x250"
@@ -60,5 +60,6 @@
             .col-lg-10= @gelande.introduction
           <br><br>
           .text-center
-            = link_to "編集する", edit_admins_gelande_path(@gelande), class: "btn btn-outline-secondary list btn-sm"
+            = link_to "編集する", edit_admins_gelande_path(@gelande), class: "btn btn-outline-secondary btn-sm"
 
+.mb-5

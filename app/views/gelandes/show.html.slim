@@ -2,55 +2,42 @@
   .row
     .col-lg-1
     .col-lg-10.text-center
-      h1.title= @gelande.name
-      = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "450x300", class: ""
+
+      / 上部ゲレンデ紹介
+      .row
+        .col-lg-4
+        .col-lg-4
+          h3.title.en.d-inline= @gelande.name
+        .col-lg-4.text-left
+          - if @reviews.present?
+            .d-inline id="star-average"
+            .d-inline.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
+      <br><br>
+      = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: ""
       <br>
-      .mt-5.mb-5= @gelande.introduction
+      .mt-5.mb-5.text-left= @gelande.introduction
       <br>
+
+        / 星評価
+        javascript:
+          $("#star-average").raty({
+            size: 36,
+            starOff: "#{asset_path('star-off.png')}",
+            starOn: "#{asset_path('star-on.png')}",
+            starHalf: "#{asset_path('star-half.png')}",
+            half: true,
+            readOnly: true,
+            score: "#{@gelande.reviews.average(:star).to_f.round(1)}",
+          });
+
 
   .row
     .col-lg-1
-
-    / 地図表示
-    .col-lg-5
-      #map style='height: 350px; width: 400px;'
-
-      - google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_MAP_API'] }&callback=initMap".html_safe
-      script{ async src=google_api }
-
-      javascript:
-
-        let map;
-
-        function initMap() {
-          geocoder = new google.maps.Geocoder()
-
-          map = new google.maps.Map(document.getElementById('map'), {
-            // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
-            center: {
-              lat: gon.gelande.latitude,
-              lng: gon.gelande.longitude
-            },
-            zoom: 12,
-          });
-
-          marker = new google.maps.Marker({
-            // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
-            position: {
-              lat: gon.gelande.latitude,
-              lng: gon.gelande.longitude
-            },
-            map: map
-          });
-        }
-
-
-      
-    / 天気予報表示
-    .col-lg-5
-      .whether.text-center
-        h5.pt-2 天気予報
-        
+    .col-lg-2
+    
+      / 天気予報表示
+      .whether.text-center.mb-5
+        h5.pt-2.font-weight-bold 天気予報
         #weather
 
       javascript:
@@ -92,7 +79,7 @@
           var day = month + '/' + date.getDate() + Week[date.getDay()];
           var icon = data.list[i].weather[0].icon;
           var html =
-            '<div class="weather-report float-left p-2">' +
+            '<hr><div class="weather-report">' +
               '<img src="https://openweathermap.org/img/w/' + icon + '.png">' +
               '<span class="weather-date">' + day + "</span>" +
               '<div class="weather-main">'+ data.list[i].weather[0].main + '</div>' +
@@ -103,30 +90,74 @@
         }
 
 
-  .row
-    .col-lg-1
-    .col-lg-5
-      | コース数
-      = @gelande.count
-      <br>
-      | 最大傾斜
-      = @gelande.slope
-      <br>
-      | 最長滑走距離
-      = @gelande.distance
-      <br>
-      | 住所
-      = @gelande.postal
-      <br>
-      | TEL
-      = @gelande.address
-      <br>
-      | ホームページ
-      = auto_link(simple_format(h(@gelande.hp), {}, sanitize: false, wrapper_tag: "div"))
+    / ゲレンデ情報
+    .col-lg-8
+      table.table.table-striped.table-bordered
+        tr
+          th コース数
+          td= "#{@gelande.count}本"
+        tr
+          th 最大傾斜
+          td= "#{@gelande.slope}度"
+        tr
+          th 最長滑走距離
+          td= "#{@gelande.distance}m"
+        tr
+          th 住所
+          td= "〒#{@gelande.postal.to_s.insert(3, '-')}""　#{@gelande.address}"
+        tr
+          th TEL
+          td= @gelande.tel
+        tr
+          th ホームページ
+          td= auto_link(simple_format(h(@gelande.hp), {}, sanitize: false, wrapper_tag: "div"))
 
-    .col-lg-5
-      - @reviews.each do |review|
-        = review.title
-        = review.star
-        = review.review
-      = link_to "もっと見る", gelande_reviews_path(@gelande)
+          
+      
+      / 地図表示
+      #map style='height: 300px; width: auto;'
+
+      - google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_MAP_API'] }&callback=initMap".html_safe
+      script{ async src=google_api }
+
+
+      / 口コミ
+      .row
+        .col-lg-4
+        .col-lg-4
+          h5.text-center.m-3.font-weight-bold 口コミ
+        .col-lg-4.text-right.mt-3= link_to "口コミを投稿する", gelande_reviews_path(@gelande)
+
+      - if @reviews.present?
+        / 口コミランダム表示
+        - @reviews.shuffle.first(3).each do |review|
+          .frame-review-index.float-left.mr-2
+            .m-0= review.title
+            .d-inline-block id='star-rate-#{review.id}'
+            = review.star
+            p.mt-2= review.review
+
+
+            / 星評価
+            javascript:
+              $("#star-rate-#{review.id}").raty({
+                size: 36,
+                starOff: "#{asset_path('star-off.png')}",
+                starOn: "#{asset_path('star-on.png')}",
+                starHalf: "#{asset_path('star-half.png')}",
+                half: true,
+                readOnly: true,
+                score: "#{review.star}",
+              });
+
+        / 口コミ詳細ページリンク
+        small
+          - if @reviews.present?
+            .more= link_to "もっと見る", gelande_reviews_path(@gelande)
+      
+      - else
+        .row
+          .col-lg-12
+            p.text-center.mt-5 口コミはまだありません。
+        
+.mb-5

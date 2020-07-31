@@ -1,6 +1,6 @@
 class GelandesController < ApplicationController
   def index
-    @q = Gelande.ransack(params[:q])
+    @q = Gelande.where(is_active: "true").ransack(params[:q])
     @gelandes = @q.result(distinct: true)
   end
 

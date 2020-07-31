@@ -1,32 +1,40 @@
-.container
-  .row
-    .col-lg-12.text-center
-      h1.title お気に入りゲレンデを見つけよう
-
-  / ゲレンデ検索
-  .row
-    .col-lg-3
-      .search.text-center
-        = search_form_for @q do |f|
-
-          / フリーワード
-          .mt-3= f.label :name, "検索"
-          = f.search_field :name_cont
-          <br>
-
-          / 住所
-          / = f.label :address, "住所"
-          <br>
-          / = f.collection_select(:address_eq, @gelandes, :id, :address, include_blank: true)
-          <br>
-
-          = f.submit "検索", class: "btn btn-outline-secondary list btn-sm mb-3"
+.gelande-visual
+  .container
+    .row
+      .col-lg-12.text-center
+        h3.title お気に入りゲレンデを見つけよう
 
 
-    .col-lg-9.text-center.a1
-      .row
-        - @gelandes.each do |gelande|
-          .col-lg-4.text-center
-            .row.frame-gelande-index
-              = attachment_image_tag gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "210x150", class: ""
-              = link_to gelande.name, gelande_path(gelande)
+    / ゲレンデ検索
+    .row
+      .col-lg-3
+        .search.text-left
+          = search_form_for @q do |f|
+
+            p.text-center ゲレンデを探す
+
+            / フリーワード
+            = f.label :name, "キーワード検索"
+            = f.search_field :name_or_count_or_slope_or_distance_or_postal_or_address_or_tel_or_hp_or_introduction_cont
+            <br><br>
+
+            / 住所
+            = f.label :address, "住所"
+            / = f.collection_select(:address_eq, @gelandes, :id, :address, include_blank: true)
+            <br>
+            = f.select :address_cont, User::PREFECTURE,  include_blank: true
+            <br>
+
+            .text-center= f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0 mt-4"
+
+      / ゲレンデ一覧
+      .col-lg-9.text-center
+        .row
+          - @gelandes.each do |gelande|
+            .col-lg-4.text-center
+              .row.frame-gelande-index.ml-3
+                = link_to gelande_path(gelande), class:"link" do
+                .text-center
+                  = attachment_image_tag gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "180x120", class: "text-center"
+                  .pt-4.en.text-center= gelande.name
+  .mb-5

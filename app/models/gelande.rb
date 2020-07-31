@@ -7,10 +7,9 @@ class Gelande < ApplicationRecord
 
   validates :postal, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
-  validates :tel, presence: true
+  validates :tel, presence: true, format: { with: /\A[0-9]+\z/ }
   validates :introduction, presence: true
   validates :name, presence: true, uniqueness: true
-  validates :is_active, presence: true
 
   geocoded_by :address
   after_validation :geocode

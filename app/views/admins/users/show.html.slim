@@ -1,0 +1,65 @@
+.container
+  .row
+    .col-lg-12.text-center
+      h3.title 会員詳細
+
+      .row
+        .col-lg-1
+        .col-lg-11.text-left
+            .row
+              .col-lg-5.text-left
+                .col-lg-3.float-left 会員ID
+                .col-lg-2.float-left= @user.id
+                .col-lg-2.btn.btn-outline-dark.btn-sm.disabled.m-0.float-left= @user.is_active ? "有効" : "退会済み"
+                <br><br>
+
+                .col-lg-4.float-left 名前
+                .col-lg-8= @user.name
+                <br>
+
+                .col-lg-3.float-left 画像
+                .col-lg-9.float-left= attachment_image_tag @user, :image, fallback: 'noimage.png', size: "150x100"
+                <br><br><br><br><br>
+
+                .col-lg-3.float-left 自己紹介
+                .col-lg-9.float-left= @user.introduction
+                <br><br><br>
+                
+
+
+              .col-lg-7.text-left
+
+                .col-lg-4.float-left メールアドレス
+                .col-lg-8= @user.email
+                <br>
+
+                .col-lg-4.float-left 性別
+                .col-lg-8= @user.gender
+                <br>
+
+                .col-lg-4.float-left 住所
+                .col-lg-8= @user.address
+                <br>
+
+                .col-lg-4.float-left 年齢
+                .col-lg-8= @user.age
+                <br>
+
+                .col-lg-4.float-left お気に入りゲレンデ
+                .col-lg-8.float-left
+                  table
+                    tbody
+                      - @user.favorites.each do |favorite|
+                        tr
+                          td <hr>
+                          td
+                            li= link_to favorite.gelande.name, gelande_url
+                  <br>
+
+          
+      .row
+        .col-lg-12
+          .text-center
+            = link_to "編集する", edit_admins_user_path(@user), class: "btn btn-outline-secondary btn-sm"
+
+.mb-5

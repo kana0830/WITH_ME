@@ -15,7 +15,8 @@ class Admins::GelandesController < ApplicationController
   end
 
   def index
-    @gelandes = Gelande.all
+    @q = Gelande.ransack(params[:q])
+    @gelandes = @q.result(distinct: true)
   end
 
   def show

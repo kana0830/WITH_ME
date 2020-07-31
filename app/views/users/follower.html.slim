@@ -4,7 +4,8 @@
     .col-lg-4.text-center
       h3.title フォロワー
 
-      - @followers.each do |follower|
-        = attachment_image_tag follower, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
-        = link_to follower.name user_path(follower)
+      - @followers.each do |user|
+        = attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "80x80", class: ""
+        |　
+        = link_to user.name, user_path(user)
 .mb-5

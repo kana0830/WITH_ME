@@ -1,0 +1,39 @@
+.container
+  .row
+    .col-lg-12.text-center
+      h3.title 口コミ一覧
+
+      .row
+        .col-lg-12
+          table.table
+            thead.thead-light
+              tr
+                th= sort_link(@q, :id, "ID")
+                th= sort_link(@q, :name, "ゲレンデ")
+                th= sort_link(@q, :title, "タイトル")
+                th= sort_link(@q, :star, "星")
+                th= sort_link(@q, :review, "内容")
+                th
+
+            tbody.text-left
+              - @reviews.each do |review|
+                tr.position-relative
+                  td.text-center style="width:50px;"= review.id
+                  td= review.gelande.name
+                  td= review.title
+                  td.text-center id='star-rate-#{review.id}'
+                  td style="width:480px;"= review.review
+                  td= link_to '削除', admins_review_path(review), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
+
+                  / 星評価
+                  javascript:
+                    $("#star-rate-#{review.id}").raty({
+                      size: 36,
+                      starOff: "#{asset_path('star-off.png')}",
+                      starOn: "#{asset_path('star-on.png')}",
+                      starHalf: "#{asset_path('star-half.png')}",
+                      half: true,
+                      readOnly: true,
+                      score: "#{review.star}",
+                    });
+.mb-5

@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :gelandes, except: [:destroy]
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy]
+    resources :reviews, only: [:index, :destroy]
+    get 'home' => 'home#top'
   end
   
   resources :users, except: [:new]

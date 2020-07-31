@@ -1,0 +1,25 @@
+.container
+  .row
+    .col-lg-12.text-center
+      h3.title 投稿一覧
+
+      .row
+        .col-lg-12
+          table.table.table-clickable.table-hover
+            thead.thead-light
+              tr
+                th= sort_link(@q, :id, "ID")
+                th= sort_link(@q, :title, "タイトル")
+                th= sort_link(@q, :tag_name, "タグ")
+                th= sort_link(@q, :post, "内容")
+                th
+
+            tbody.text-left
+              - @posts.each do |post|
+                tr.position-relative data-href= "#{post_path(post)}"
+                  td.text-center= post.id
+                  td= post.title
+                  td.text-center= render 'posts/tag_list', tag_list: post.tag_list
+                  td= post.post
+                  td= link_to '削除', admins_post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
+.mb-5

@@ -22,12 +22,12 @@ html
         .navbar.clearfix
           .nav.navbar-nav.mr-auto.bar-left
             = link_to root_path do
-              = image_tag 'logo.jpg', :size => '300x150'
+              = image_tag 'logo.jpg', :size => '200x100'
 
 
           / ＝＝＝＝＝⭐︎ナビバー⭐︎＝＝＝＝＝
           .nav.navbar-nav.bar-right
-            ul.box-1
+            ul
 
               / ＝＝＝＝＝⭐︎ユーザーログイン後⭐︎＝＝＝＝＝
               - if user_signed_in?
@@ -74,11 +74,13 @@ html
                   |  guest
 
 
-
               / ＝＝＝＝＝⭐︎アドミンログイン後⭐︎＝＝＝＝＝
               - if admin_signed_in?
-                li.btn.btn-light.home-btn= link_to "会員一覧", admins_gelandes_path, class: 'list'
-                li.btn.btn-light.home-btn= link_to "ゲレンデ一覧", admins_gelandes_path, class: 'list'
+                li.btn.btn-light.home-btn= link_to "home", admins_home_path, class: 'list'
+                li.btn.btn-light.home-btn= link_to "会員", admins_users_path, class: 'list'
+                li.btn.btn-light.home-btn= link_to "投稿", admins_posts_path, class: 'list'
+                li.btn.btn-light.home-btn= link_to "ゲレンデ", admins_gelandes_path, class: 'list'
+                li.btn.btn-light.home-btn= link_to "口コミ", admins_reviews_path, class: 'list'
                 li.btn.btn-light.home-btn= link_to "logout", destroy_admin_session_path, method: :delete, class: 'list'
 
 

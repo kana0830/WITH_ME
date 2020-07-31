@@ -15,7 +15,9 @@
 //= require activestorage
 // require turbolinks
 //= require bootstrap-sprockets
-// = require select2
+//= require select2
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
 //= require_tree .
 
 
@@ -38,7 +40,47 @@ signs.forEach(el => {
 })
 
 
+
+// お気に入りゲレンデの選択
 $('.js-searchable').select2({
   width: 200,
   allowClear: true
 });
+
+
+
+// テーブル行全体をリンクにする
+$(function(){
+  $('tr[data-href]', 'table.table-clickable').on('click', function(){
+    location.href = $(this).data('href');
+  });
+});
+
+
+
+// 地図表示
+let map;
+function initMap() {
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
+    center: {
+      lat: gon.gelande.latitude,
+      lng: gon.gelande.longitude
+    },
+    zoom: 12,
+  });
+
+  marker = new google.maps.Marker({
+    // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
+    position: {
+      lat: gon.gelande.latitude,
+      lng: gon.gelande.longitude
+    },
+    map: map
+  });
+}
+
+
+

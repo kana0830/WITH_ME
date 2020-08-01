@@ -6,7 +6,15 @@ class Admins::SessionsController < Devise::SessionsController
   def new_guest
     admin = Admin.guest
     sign_in admin
-    redirect_to root_path, notice: 'ゲスト管理者としてログインしました。'
+    redirect_to admins_home_path, notice: 'ゲスト管理者としてログインしました。'
+  end
+
+  def after_sign_in_path_for(resource)
+    admins_home_path
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
   end
 
   # GET /resource/sign_in

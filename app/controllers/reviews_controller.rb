@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @gelande = Gelande.find_by(id: params[:gelande_id])

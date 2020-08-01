@@ -1,11 +1,12 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
-    @post = Post.find_by(id: params[:post_id])
+    @post = Post.find(params[:post_id])
     unless @post.liked_by?(current_user)
       @like = current_user.likes.new(post_id: @post.id)
       @like.save
-      @post.create_notification_like!(current_user)
+      @post.create_notification_like(current_user)
     end
   end
 

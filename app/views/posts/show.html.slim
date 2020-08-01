@@ -1,62 +1,65 @@
-.container
-  .row
-    .col-lg-3
-    .col-lg-6.text-center
+.post-visual
+  .container
+    .row
+      .col-lg-3
+      .col-lg-6.text-center
 
 
-      / 投稿内容
-      .frame-post-show.text-left
-        = @post.user.image
-        .m-0= link_to @post.user.name, user_path(@post.user)
-        = @post.title
-        |　
-        = render 'posts/tag_list', tag_list: @post.tag_list
-        |　
-        =link_to '編集', edit_post_path(@post), class: "btn btn-outline-secondary btn-sm m-0"
-        |　
-        = link_to '削除', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
-        <br>
-        small.m-0= @post.created_at.to_s(:datetime_jp)
-        <br>
-        .mt-4.mb-4= @post.post
-
-        / Likeボタン
-        div id='like-button_#{ @post.id }'
-          = render 'like-button', post: @post
-          
-      <br>
-
-
-  / コメント一覧表示
-  .row
-    .col-lg-4
-    .col-lg-4
-      - @comments.each do |comment|
-        .frame-post-comment
-          =comment.user.image
-          = link_to comment.user.name, user_path(comment.user)
-          = link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0 ml-3"
+        / 投稿内容
+        .frame-post-show.text-left.mt-5
+          = attachment_image_tag @post.user, :image, fallback: 'noimage.png', size: "70x60", class: "mb-3"
+          .m-3.d-inline= link_to @post.user.name, user_path(@post.user)
           <br>
-          small.m-0= comment.created_at.to_s(:datetime_jp)
-          .mt-4.mb-2= comment.comment
-        <br>
-  .mb-5
-  
-  / コメントフォーム
-  .row
-    .col-lg-2
-    .col-lg-8.text-center
-      = form_with(model: [@post, @comment], local: true) do |f|
+          = @post.title
+          |　
+          = render 'posts/tag_list', tag_list: @post.tag_list
+          |　
+          =link_to '編集', edit_post_path(@post), class: "btn btn-outline-secondary btn-sm m-0"
+          |　
+          = link_to '削除', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
+          <br>
+          small.m-0= @post.created_at.to_s(:datetime_jp)
+          <br>
+          .mt-4.mb-4= @post.post
 
-        / エラーメッセージ
-        = render 'users/shared/error_messages', resource: f.object 
-
-        / コメント文
-        = f.label :comment, class: "font-weight-bold col-lg-3 text-center"
-        <br>
-        = f.text_area :comment, :size=>"57x5"
+          / Likeボタン
+          div id='like-button_#{ @post.id }'
+            = render 'like-button', post: @post
+            
         <br>
 
-        .text-center= f.submit "コメントする", class: "btn btn-outline-secondary btn-sm"
-      
-  .mb-5
+
+    / コメント一覧表示
+    .row
+      .col-lg-4
+      .col-lg-4
+        - @comments.each do |comment|
+          .frame-post-comment
+            =comment.user.image
+            = link_to comment.user.name, user_path(comment.user)
+            = link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0 ml-3"
+            <br>
+            small.m-0= comment.created_at.to_s(:datetime_jp)
+            .mt-4.mb-2= comment.comment
+          <br>
+    .mb-5
+    
+    / コメントフォーム
+    .row
+      .col-lg-3
+      .col-lg-6.text-center
+        .frame-post-show
+          = form_with(model: [@post, @comment], local: true) do |f|
+
+            / エラーメッセージ
+            = render 'users/shared/error_messages', resource: f.object 
+
+            / コメント文
+            = f.label :comment, class: "font-weight-bold col-lg-3 text-center"
+            <br>
+            = f.text_area :comment, :size=>"57x5"
+            <br>
+
+            .text-center= f.submit "コメントする", class: "btn btn-outline-secondary btn-sm"
+        
+  .pb-5

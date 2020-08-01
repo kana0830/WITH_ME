@@ -15,7 +15,7 @@ class Post < ApplicationRecord
   end
 
   # いいね通知
-  def create_notification_like!(current_user)
+  def create_notification_like(current_user)
     # すでに「いいね」されているか検索
     temp = Notification.where(["visiter_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
     # いいねされていない場合のみ、通知レコードを作成
@@ -26,7 +26,7 @@ class Post < ApplicationRecord
         action: 'like'
       )
       # 自分の投稿に対するいいねの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
+      if notification.visiter_id == notification.visited_id
         notification.checked = true
       end
       notification.save if notification.valid?

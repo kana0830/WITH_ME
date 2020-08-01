@@ -1,8 +1,9 @@
 .gelande-visual
   .container
     .row
-      .col-lg-12.text-center
-        h3.title お気に入りゲレンデを見つけよう
+      .col-lg-2
+      .col-lg-8.text-center
+        h3.title.gelande-caption お気に入りゲレンデを見つけよう
 
 
     / ゲレンデ検索
@@ -37,4 +38,4 @@
                 .text-center
                   = attachment_image_tag gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "180x120", class: "text-center"
                   .pt-4.en.text-center= gelande.name
-  .mb-5
+  .pb-5

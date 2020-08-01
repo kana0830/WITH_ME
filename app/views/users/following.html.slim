@@ -1,11 +1,16 @@
-.container
-  .row
-    .col-lg-4
-    .col-lg-4.text-center
-      h3.title フォロー
+.user-visual
+  .container
+    .row
+      .col-lg-5
+      .col-lg-2.text-center
+        h4.mt-5.mb-4.font-weight-bold.user-caption フォロー
 
-      - @followings.each do |user|
-        = attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: ""
-        |　
-        = link_to user.name, user_path(user)
-.mb-5
+    .row
+      .col-lg-4
+      .col-lg-4.text-center
+        .frame-follow
+          - @followings.each do |user|
+            ul
+              li.d-inline.col-lg-4= attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60"
+              .d-inline.text-left.col-lg-8= link_to user.name, user_path(user)
+  .pb-5

@@ -1,122 +1,129 @@
-.container
-  .user-visual-show
-    .user-visual-show-content
-  .row
-    .col-lg-12.text-center
-      h3.title マイページ
-      .row
-        .col-lg-2
-        .col-lg-8.frame-user-show
-          .row
-            .col-lg-6
+.user-visual
+  .container
+    .user-visual-show
+      .user-visual-show-content
+    .row
+      .col-lg-4
+      .col-lg-4.text-center
+        - if @user == current_user
+          h4.mt-5.mb-4.font-weight-bold.user-caption マイページ
+        - else
+          h4.mt-5.mb-4.font-weight-bold.user-caption= "#{@user.name} さん"
+        
+    .row
+      .col-lg-2
+      .col-lg-8.frame-user-show
+        .row
+          .col-lg-6.text-center
 
-              / 画像・名前
-              = attachment_image_tag @user, :image, fallback: 'noimage.png', size: "100x80"
-              |　
-              = @user.name
-              |　
-
-              / 編集ページ
+            / 画像・名前
+            = attachment_image_tag @user, :image, fallback: 'noimage.png', size: "100x80"
+            |　
+            = @user.name
+            |　
+            
+            / 編集ページ
+            - if @user == current_user
               = link_to "編集する", edit_user_path, class: 'btn btn-outline-secondary btn-sm m-0'
-              <br><br>
+            <br><br>
 
 
-              .row
-                .col-lg-2
-                .col-lg-4
-                  / フォローボタン
-                  - unless @user == current_user
-                    - if current_user.following?(@user)
-                      = link_to unfollow_path(@user), method: :post, class: 'btn btn-outline-info m-0 btn-sm' do
-                        i.fas.fa-user フォロー中
+            .row
+              .col-lg-2
+              .col-lg-4
+                / フォローボタン
+                - unless @user == current_user
+                  - if current_user.following?(@user)
+                    = link_to unfollow_path(@user), method: :post, class: 'btn btn-outline-info m-0 btn-sm' do
+                      i.fas.fa-user フォロー中
+                  - else
+                    = link_to follow_path(@user), method: :post, class: 'btn btn-outline-success m-0 btn-sm' do
+                      i.far.fa-user フォローする
+                  <br><br>
+
+              .col-lg-3
+                / DMボタン
+                - unless @user == current_user
+                  - if (current_user.following? @user) && (@user.following? current_user)
+                    - if @isRoom == true
+                      p.user-show-room
+                        = link_to room_path(@roomId), class: "btn btn-outline-warning btn-sm m-0" do
+                          i.fas.fa-envelope
                     - else
-                      = link_to follow_path(@user), method: :post, class: 'btn btn-outline-success m-0 btn-sm' do
-                        i.far.fa-user フォローする
-                    <br><br>
-
-                .col-lg-3
-                  / DMボタン
-                  - unless @user.id == current_user.id
-                    - if (current_user.following? @user) && (@user.following? current_user)
-                      - if @isRoom == true
-                        p.user-show-room
-                          = link_to room_path(@roomId), class: "btn btn-outline-warning btn-sm m-0" do
-                            i.fas.fa-envelope
-                      - else
-                        = form_for @room do |f|
-                          = fields_for @entry do |e|
-                            = e.hidden_field :user_id, value: @user.id
-                          = button_tag type: 'submit', class: "btn btn-outline-warning btn-sm user-show-chat m-0" do
-                            i.fas.fa-envelope
+                      = form_for @room do |f|
+                        = fields_for @entry do |e|
+                          = e.hidden_field :user_id, value: @user.id
+                        = button_tag type: 'submit', class: "btn btn-outline-warning btn-sm user-show-chat m-0" do
+                          i.fas.fa-envelope
 
 
-              / フォローページ
-              = link_to users_following_path(@user) do
-                i.fas.fa-user
-                | フォロー#{ @user.follower.count }人
-              |　
+            / フォローページ
+            = link_to users_following_path(@user) do
+              i.fas.fa-user
+              | フォロー#{ @user.follower.count }人
+            |　
 
 
-              / フォロワーページ
-              = link_to users_follower_path(@user) do
-                i.fas.fa-user
-                | フォロワー#{ @user.followed.count }人
+            / フォロワーページ
+            = link_to users_follower_path(@user) do
+              i.fas.fa-user
+              | フォロワー#{ @user.followed.count }人
 
 
-            / お気に入りゲレンデ
-            .col-lg-6.text-left
-              | お気に入りゲレンデ
-              <br><br>
-              table
-                tbody
-                  - @user.favorites.each do |favorite|
-                    tr
-                      td <hr>
-                      td
-                        li.font-weight-normal= link_to favorite.gelande.name, gelande_url
-          <hr><br>
+          / お気に入りゲレンデ
+          .col-lg-6.text-left
+            | お気に入りゲレンデ
+            <br><br>
+            table
+              tbody
+                - @user.favorites.each do |favorite|
+                  tr
+                    td <hr>
+                    td
+                      li.font-weight-normal= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
+        <hr><br>
 
 
-          .row.text-left
-            .col-lg-1
-            .col-lg-4
+        .row.text-left
+          .col-lg-1
+          .col-lg-4
 
-              / プロフィール一覧
-              table.table.table-bordered.table-sm
-                tr.thead-light
-                  th 性別
-                  td= @user.gender
-                tr.thead-light
-                  th 年齢
-                  td= "#{@user.age}歳"
-                tr.thead-light
-                  th 住所
-                  td= @user.address
-
-
-            .col-lg-1
-            / 自己紹介
-            .col-lg-6
-              = @user.introduction
-      <br>
+            / プロフィール一覧
+            table.table.table-bordered.table-sm
+              tr.thead-light
+                th 性別
+                td= @user.gender
+              tr.thead-light
+                th 年齢
+                td= "#{@user.age}歳"
+              tr.thead-light
+                th 住所
+                td= @user.address
 
 
-  / 投稿一覧
-  .row
-    .col-lg-2
-    .col-lg-8.frame-user-show
-      .row
-        .col-lg-10
-          h5.font-weight-bold.d-inline 投稿一覧
-        .col-lg-2
-          .d-inline= link_to "投稿する", new_post_path, class: 'btn btn-outline-secondary btn-sm m-0'
-          <br><br><br>
+          .col-lg-1
+          / 自己紹介
+          .col-lg-6
+            = @user.introduction
+    <br>
 
-      - @posts.each do |post|
-        .m-1.d-inline= link_to post.title, post_path(post)
-        |　
-        .m-1.d-inline= render 'posts/tag_list', tag_list: post.tag_list
-        <br>
-        small.m-1= post.created_at.to_s(:datetime_jp)
-        <br><br>
-.mb-5
+
+    / 投稿一覧
+    .row
+      .col-lg-2
+      .col-lg-8.frame-user-show
+        .row
+          .col-lg-10
+            h5.font-weight-bold.d-inline 投稿一覧
+          .col-lg-2
+            .d-inline= link_to "投稿する", new_post_path, class: 'btn btn-outline-secondary btn-sm m-0'
+            <br><br><br>
+
+        - @posts.each do |post|
+          .m-1.d-inline= link_to post.title, post_path(post)
+          |　
+          .m-1.d-inline= render 'posts/tag_list', tag_list: post.tag_list
+          <br>
+          small.m-1= post.created_at.to_s(:datetime_jp)
+          <br><br>
+  .pb-5

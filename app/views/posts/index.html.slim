@@ -1,37 +1,38 @@
-.container
-  .row
-    .col-lg-12.text-center
-      h3.title みんなの投稿
+.post-visual
+  .container
+    .row
+      .col-lg-4
+      .col-lg-4.text-center
+        h3.title.post-caption みんなの投稿
 
-  / 投稿検索
-  .row
-    .col-lg-3
-      .search.text-center
-        = search_form_for @q do |f|
-          p= f.label :title_or_post, "キーワード検索"
-          = f.search_field :title_or_post_cont
-          <br><br>
-          = f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0"
+    / 投稿検索
+    .row
+      .col-lg-3
+        .search.text-center
+          = search_form_for @q do |f|
+            p= f.label :title_or_post, "キーワード検索"
+            = f.search_field :title_or_post_cont
+            <br><br>
+            = f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0"
 
-    / 投稿一覧
-    .col-lg-9.pl-5
-      .row
-        - @posts.each do |post|
-          .text-left.col-lg-11
-            .frame-post-index
-              = link_to post_path(post), class:"link" do
-              = attachment_image_tag @user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x40", class: ""
-              = post.user.image
-              = link_to post.user.name, user_path(@user)
-              <br>
-              = post.title
-              |　
-              .d-inline= render 'posts/tag_list', tag_list: post.tag_list
-              |　
-              .d-inline= link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
-              <br>
-              small.m-0= post.created_at.to_s(:datetime_jp)
-              <br>
-              .mt-4= post.post
-          <br>
-  .mb-5
+      / 投稿一覧
+      .col-lg-9.pl-5
+        .row
+          - @posts.each do |post|
+            .text-left.col-lg-11
+              .frame-post-index
+                = link_to post_path(post), class:"link" do
+                = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x40", class: ""
+                = link_to post.user.name, user_path(@user)
+                <br>
+                = post.title
+                |　
+                .d-inline= render 'posts/tag_list', tag_list: post.tag_list
+                |　
+                .d-inline= link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
+                <br>
+                small.m-0= post.created_at.to_s(:datetime_jp)
+                <br>
+                .mt-4= post.post
+            <br>
+  .pb-5

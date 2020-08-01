@@ -5,12 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   attachment :image
-  acts_as_paranoid # パラノイアの論理削除
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
-  validates :is_active, inclusion: { in: [true, false] }
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy

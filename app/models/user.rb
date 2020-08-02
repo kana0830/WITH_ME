@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
+  validate :favorite_select
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -68,4 +69,12 @@ class User < ApplicationRecord
     "徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県",
     "熊本県","大分県","宮崎県","鹿児島県","沖縄県"
   ];
+
+  # お気に入りゲレンデの選択3つまでのバリデーション
+  def favorite_select
+    if gelande_ids.count >= 4
+      errors.add(:base, "お気に入りゲレンデを選択できるのは3つまでです。")
+    end
+  end
+
 end

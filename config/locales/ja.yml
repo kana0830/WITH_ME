@@ -8,7 +8,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       gelande: ゲレンデ
-      user: ユーザー
+      user: ユーザー情報
       post: 投稿
       comment: コメント
       review: レビュー

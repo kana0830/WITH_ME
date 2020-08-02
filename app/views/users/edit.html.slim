@@ -49,7 +49,7 @@
 
               / お気に入りゲレンデセレクトボタン
               = f.label :gelande_ids, "お気に入りゲレンデ", class: "col-lg-4"
-              = f.select :gelande_ids, Gelande.all.map { |gelande| [gelande.name, gelande.id] } , { include_blank: '3つまで選択できます', selected: @user.gelandes.name }, { :multiple => true, class: 'form-control js-searchable' }
+              = f.select :gelande_ids, Gelande.all.map { |gelande| [gelande.name, gelande.id] } , { include_blank: '3つまで選択できます', selected: @user.try(:gelande_ids) }, { :multiple => true, class: 'form-control js-searchable' }
 
               <br><br>
 

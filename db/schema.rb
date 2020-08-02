@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_071025) do
+ActiveRecord::Schema.define(version: 2020_08_02_081027) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 2020_07_28_071025) do
     t.integer "count"
     t.integer "slope"
     t.integer "distance"
-    t.integer "postal", null: false
+    t.string "postal", null: false
     t.string "address", null: false
-    t.integer "tel", null: false
+    t.string "tel", null: false
     t.string "hp"
     t.string "image_id"
     t.text "introduction", null: false
@@ -164,7 +164,6 @@ ActiveRecord::Schema.define(version: 2020_07_28_071025) do
     t.integer "gender"
     t.string "address"
     t.integer "age"
-    t.integer "favorite_id"
     t.text "introduction"
     t.boolean "is_active", default: true, null: false
     t.datetime "deleted_at"

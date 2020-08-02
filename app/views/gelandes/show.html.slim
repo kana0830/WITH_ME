@@ -11,8 +11,9 @@
             h3.en.d-inline.gelande-caption= @gelande.name
           .col-lg-4.text-left.mt-5.mb-5
             - if @reviews.present?
-              .d-inline id="star-average"
-              .d-inline.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
+              .back-star
+                small id="star-average"
+                small.font-weight-bold.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
         = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: "image-frame"
         <br>
         .mt-5.mb-5.text-left.frame-gelande-introduction= @gelande.introduction
@@ -125,7 +126,7 @@
         .row
           .col-lg-4
           .col-lg-4
-            h5.text-center.m-3.font-weight-bold.white 口コミ
+            h5.text-center.m-3.font-weight-bold.white.subtitle 口コミ
           .col-lg-4.text-right.mt-3.link-white= link_to "口コミを投稿する", gelande_reviews_path(@gelande)
 
         - if @reviews.present?
@@ -158,6 +159,6 @@
         - else
           .row
             .col-lg-12
-              p.text-center.mt-5.link-white 口コミはまだありません。
+              p.text-center.mt-5.white 口コミはまだありません。
           
   .pb-5

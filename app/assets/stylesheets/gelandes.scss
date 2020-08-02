@@ -104,3 +104,31 @@ table.table-clickable tr[data-href]{
   border-left: solid 5px #7db4e6;/*左線*/
   border-bottom: solid 3px #d7d7d7;/*下線*/
 }
+
+// 小見出し
+.subtitle {
+  border-bottom: double 5px #fdff78e3;
+  width: 120px;
+}
+
+
+.back-star {
+  position: relative;
+  display: inline-block;
+  padding: 5px 12px 12px 35px;
+  color: #fff;
+  border-radius: 100vh 0 0 100vh;
+  background: #0044ffcc;
+  margin-top: -10px;
+}
+
+.back-star:before {
+  position: absolute;
+  top: calc(50% - 7px);
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  content: '';
+  border-radius: 50%;
+  background: #fff;
+}

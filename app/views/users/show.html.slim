@@ -95,7 +95,10 @@
                 td= @user.gender
               tr.thead-light
                 th 年齢
-                td= "#{@user.age}歳"
+                - if @user.age != nil
+                  td= "#{@user.age}歳"
+                - else
+                  td=
               tr.thead-light
                 th 住所
                 td= @user.address

@@ -1,10 +1,16 @@
-.container
-  .row
-    .col-lg-4
-    .col-lg-4.text-center.frame-user
-      h5.title.font-weight-bold 退会
+.user-visual
+  .container
+    .row
+      .col-lg-5
+      .col-lg-2.text-center
+        h4.mt-5.mb-4.font-weight-bold.user-caption 退会
 
-      p.text-left 現在までの投稿やダイレクトメッセージ等のデータは退会すると全て消えてしまい、再登録してもデータは戻りません。<br>本当に退会してもよろしいですか。
 
-      = link_to "マイページへ戻る", user_path(current_user), class: "btn btn-outline-secondary btn-sm m-3"
-      = link_to "退会する", user_path(current_user), data: { confirm: "退会されますか？" }, method: :delete, class: "btn btn-outline-danger btn-sm m-3"
+    .row
+      .col-lg-4
+      .col-lg-4.text-center
+        .frame-user.mt-3
+          p.text-left 現在までの投稿やダイレクトメッセージ等のデータは退会すると全て消えてしまい、再登録してもデータは戻りません。<br>本当に退会してもよろしいですか。
+
+          = link_to "マイページへ戻る", user_path(current_user), class: "btn btn-outline-secondary btn-sm m-3"
+          = link_to "退会する", user_path(current_user), data: { confirm: "退会されますか？" }, method: :delete, class: "btn btn-outline-danger btn-sm m-3"

@@ -1,11 +1,15 @@
-.container
-  .row
-    .col-lg-3
-    .col-lg-6.text-center
-      h3.title 投稿
+.post-visual
+  .container
+    .row
+      .col-lg-5
+      .col-lg-2.text-center
+        h4.mt-5.mb-4.font-weight-bold.post-caption 投稿
 
+    .row
+      .col-lg-3
+      .col-lg-6.text-center
+        .frame-user-show
+          / 新規投稿フォーム
+          .p-4= render 'form', post: @post
 
-      / 新規投稿フォーム
-      = render 'form', post: @post
-
-.mb-5
+  .pb-5

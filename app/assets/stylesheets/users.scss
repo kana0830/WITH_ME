@@ -14,6 +14,8 @@
 .frame-user{
   border: solid 2px #E5E5E5;/*線*/
   border-radius: 50px;/*角の丸み*/
+  padding: 2em;
+  background-color: rgba(250, 250, 250, 0.911);
 }
 
 
@@ -50,7 +52,6 @@
 .frame-user-show{
   padding: 2em;
   margin: 1em 0;
-  // color: #ED553B;/*文字色*/
   border: solid 2px #E5E5E5;/*線*/
   border-radius: 20px;/*角の丸み*/
   background-color: rgba(250, 250, 250, 0.911);
@@ -66,4 +67,142 @@
   padding: 1em;
   border-radius: 20px;/*角の丸み*/
   background-color: rgba(250, 250, 250, 0.911);
+}
+
+
+// ユーザー一覧ページ背景
+.user-visual{
+  background-size: cover;
+  content: '';
+  background-image: image-url("back1.jpg");/*背景画像のURL*/
+  background-repeat: repeat;
+  // background-position:100% 0%;
+  min-height: 520px;
+  height: auto !important;
+  height: 520px;
+}
+
+
+// 見出しステッチ枠
+.user-caption{
+  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 5px #e6927d;/*左線*/
+  border-bottom: solid 3px #d7d7d7;/*下線*/
+}
+
+
+// フォローフォロワー囲み枠
+.frame-follow{
+  padding: 2em;
+  margin: 1em 0;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #E5E5E5;/*線*/
+  border-radius: 20px;/*角の丸み*/
+  background-color: rgba(250, 250, 250, 0.911);
+}
+
+
+// 通知ー囲み枠
+.frame-notification{
+  padding: 2em;
+  margin: 1em 0;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #E5E5E5;/*線*/
+  border-radius: 20px;/*角の丸み*/
+  background-color: rgba(250, 250, 250, 0.911);
+}
+
+
+// 通知ページ背景
+.notification-visual{
+  background-size: cover;
+  content: '';
+  background-image: image-url("back12.jpg");/*背景画像のURL*/
+  background-repeat: repeat;
+  background-position:100% 0%;
+  min-height: 520px;
+  height: auto !important;
+  height: 520px;
+}
+
+
+// 見出しステッチ枠
+.notification-caption{
+  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 5px #9559f7a4;/*左線*/
+  border-bottom: solid 3px #d7d7d7;/*下線*/
+  background-position: 40% 100%;
+}
+
+// 通知ー囲み枠
+.frame-notification{
+  padding: 2em;
+  margin: 1em 0;
+  // color: #ED553B;/*文字色*/
+  border: solid 2px #E5E5E5;/*線*/
+  border-radius: 20px;/*角の丸み*/
+  background-color: rgba(250, 250, 250, 0.911);
+}
+
+
+// DM吹き出し左
+.balloon5 {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.balloon5 .chatting {
+  width: 100%;
+}
+
+.says {
+  display: inline-block;
+  position: relative; 
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #d7ebfe;
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px; 
+  left: -24px;
+  border: 12px solid transparent;
+  border-right: 12px solid #d7ebfe;
+}
+
+.says p {
+  margin: 0;
+  padding: 0;
+}
+
+// DM吹き出し右
+.say {
+  display: inline-block;
+  position: relative; 
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #d7ebfe;
+}
+
+.say:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px; 
+  right: -24px;
+  border: 12px solid transparent;
+  border-left: 12px solid #d7ebfe;
+}
+
+.say p {
+  margin: 0;
+  padding: 0;
 }

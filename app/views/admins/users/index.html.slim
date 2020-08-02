@@ -12,7 +12,6 @@
                 th= sort_link(@q, :id, "ID")
                 th= sort_link(@q, :name, "名前") 
                 th= sort_link(@q, :email, "メールアドレス")
-                th= sort_link(@q, :is_active, "ステータス")
 
             tbody
               - @users.each do |user|
@@ -20,5 +19,4 @@
                   td= user.id
                   td= user.name
                   td= user.email
-                  td= user.is_active ? "有効" : "退会済み"
 .mb-5

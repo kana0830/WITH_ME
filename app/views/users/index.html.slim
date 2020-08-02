@@ -1,75 +1,79 @@
-.container
-  .row
-    .col-lg-12.text-center
-      h3.title 仲間を見つけよう
+.user-visual
+  .container
+    .row
+      .col-lg-3
+      .col-lg-6.text-center
+        h3.title.user-caption 仲間を見つけよう
 
-  .row
-    .col-lg-3
-      .text-left.search
+    .row
+      .col-lg-3
+        .text-left.search
 
-        / 検索フォーム
-        p.text-center 仲間を探す
+          / 検索フォーム
+          p.text-center 仲間を探す
 
-        / ゲレンデ名検索
-        = search_form_for @q do |f|
-          = f.label :name_or_gender_or_address_or_age_or_introduction, "キーワード"
-          = f.search_field :name_or_gender_or_address_or_age_or_introduction_cont
-          <br><br>
+          / ゲレンデ名検索
+          = search_form_for @q do |f|
+            = f.label :name_or_gender_or_address_or_age_or_introduction, "キーワード"
+            = f.search_field :name_or_gender_or_address_or_age_or_introduction_cont
+            <br><br>
 
-          / 年齢検索
-          = f.label :age
-          <br>
-          = f.select(:age_gteq, options_for_select((18..85).to_a), include_blank: true)
-          | 歳以上 〜 
-          = f.select(:age_lteq, options_for_select((18..85).to_a), include_blank: true)
-          | 歳以下
-          <br><br>
+            / 年齢検索
+            = f.label :age
+            <br>
+            = f.select(:age_gteq, options_for_select((18..85).to_a), include_blank: true)
+            | 歳以上 〜 
+            = f.select(:age_lteq, options_for_select((18..85).to_a), include_blank: true)
+            | 歳以下
+            <br><br>
 
-          / ゲレンデ
-          = f.label :name, "お気に入りゲレンデ"
-          = f.collection_select(:name_eq, Gelande.all, :id, :name, include_blank: true)
-          <br><br>
+            / ゲレンデ検索
+            = f.label :gelandes_id, "お気に入りゲレンデ"
+            / = f.collection_select(:name_eq, Gelande.all, :id, :name, include_blank: true)
+            = f.select(:gelandes_id_eq, Gelande.all.map { |gelande| [gelande.name, gelande.id] }, { include_blank: true})
+            <br><br>
 
-          / 住所検索
-          = f.label :address
-          <br>
-          = f.select :address_cont, User::PREFECTURE,  include_blank: true
-          <br><br>
+            / 住所検索
+            = f.label :address
+            <br>
+            = f.select :address_cont, User::PREFECTURE,  include_blank: true
+            <br><br>
 
-          / 性別検索
-          = f.label :gender
-          <br>
-          = f.radio_button :gender_eq, '', {:checked => true} 
-          | 指定なし　
-          = f.radio_button :gender_eq, 0
-          |男性　
-          = f.radio_button :gender_eq, 11
-          |女性
-          <br><br>
+            / 性別検索
+            = f.label :gender
+            <br>
+            = f.radio_button :gender_eq, '', {:checked => true} 
+            | 指定なし　
+            = f.radio_button :gender_eq, 0
+            |男性　
+            = f.radio_button :gender_eq, 11
+            |女性
+            <br><br>
 
-          .text-center= f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0"
+            .text-center= f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0"
 
 
-    / ユーザー一覧
-    .col-lg-9.text-center
-      .row.
-        - @users.each do |user|
-          .col-lg-4
-            .row.frame-user-index.ml-3
-              = link_to user_path(user), class:"link" do
-              .mb-3= attachment_image_tag user, :image, fallback: 'noimage.png', size: "70x60"
-              .mt-3.ml-2= user.name
-              small.text-center
-                = user.gender
-                | 　
-                = "#{user.age}歳"
-                | 　
-                = user.address
-                <br>
-              - user.favorites.each do |favorite|
-                small
-                  li.text-left.mt-2= link_to favorite.gelande.name
+      / ユーザー一覧
+      .col-lg-9.text-center
+        .row.
+          - @users.each do |user|
+            .col-lg-4
+              .row.frame-user-index.ml-3
+                = link_to user_path(user), class:"link" do
+                .mb-3= attachment_image_tag user, :image, fallback: 'noimage.png', size: "70x60"
+                .mt-3.ml-2= user.name
+                small.text-center
+                  = user.gender
+                  | 　
+                  - if user.age != nil
+                    = "#{user.age}歳"
+                    | 　
+                  = user.address
+                  <br>
+                - user.favorites.each do |favorite|
+                  small
+                    li.text-left.mt-2= favorite.gelande.name
 
-.mb-5
+  .pb-5
 
 

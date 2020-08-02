@@ -1,41 +1,49 @@
-.container
-  .row
-    .col-lg-2
-    .col-lg-8
-      h3.title.mb-4.text-center メッセージ
-      <hr>
+.user-visual
+  .container
+    .row
+      .col-lg-5
+      .col-lg-2
+        h4.mt-5.mb-4.font-weight-bold.user-caption メッセージ
+
+    .row
+      .col-lg-2
+      .col-lg-8.frame-notification
+        / DM一覧
+        <hr>
+        .chats
+          - if @messages.present?
+            - @messages.each do |message|
+              .row.balloon5
+                - if current_user.name == message.user.name
+                  .col-lg-12.text-right
+                    .chatting
+                      .say
+                        = message.content
+                      <br>
+                      small= message.created_at.to_s(:datetime_jp)
+                - else
+                  .col-lg-2.text-center
+                    = attachment_image_tag message.user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: ""
+                    small= link_to message.user.name, user_path(message.user), class: "d-block"
+                    <br>
+                  .col-lg-10.text-left
+                    .chatting
+                      .says
+                        p= message.content
+                      <br>
+                      small= message.created_at.to_s(:datetime_jp)
+              <hr>
+          - else
+            p メッセージはありません。
+          <br>
 
 
-      / DM一覧
-      .chats
-        - if @messages.present?
-          - @messages.each do |message|
-            .row
-              - if current_user.name == message.user.name
-                .col-lg-12.text-right
-                  = message.content
-                  <br>
-                  small= message.created_at.to_s(:datetime_jp)
-              - else
-                .col-lg-2
-                  = attachment_image_tag message.user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: ""
-                .col-lg-10
-                  small= link_to message.user.name, user_path(message.user)
-                  <br>
-                  = message.content
-                  <br>
-                  small= message.created_at.to_s(:datetime_jp)
-            <hr>
-        - else
-          p メッセージはありません。
-
-
-  / DM送信フォーム
-  .row
-    .col-lg-2
-    .col-lg-8.text-center
-      = form_for @message do |f|
-        = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 60
-        = f.hidden_field :room_id, value: @room.id
-        = f.submit "投稿", class: 'btn btn-outline-secondary btn-sm ml-2'
-.mb-5
+        / DM送信フォーム
+        .row
+          .col-lg-2
+          .col-lg-8.text-center
+            = form_for @message do |f|
+              = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 50
+              = f.hidden_field :room_id, value: @room.id
+              = f.submit "投稿", class: 'btn btn-outline-secondary btn-sm ml-2'
+  .pb-5

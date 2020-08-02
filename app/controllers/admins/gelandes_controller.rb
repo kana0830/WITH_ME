@@ -1,5 +1,6 @@
 class Admins::GelandesController < ApplicationController
-
+  before_action :authenticate_admin!
+  
   def new
     @gelande = Gelande.new
   end

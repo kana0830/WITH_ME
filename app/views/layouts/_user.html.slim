@@ -1,89 +1,35 @@
-  / ＝＝＝＝＝⭐︎ロゴ⭐︎＝＝＝＝＝
-  body
-    header.sticky-top
-      .navbar.clearfix
-        .nav.navbar-nav.mr-auto.bar-left
-          = link_to root_path do
-            = image_tag 'logo.jpg', :size => '300x150'
+/ ＝＝＝＝＝⭐︎ロゴ⭐︎＝＝＝＝＝
+.navbar.clearfix
+  .nav.navbar-nav.mr-auto.bar-left
+    = link_to root_path do
+      = image_tag 'withme.png', :size => '200x100'
 
+  / ＝＝＝＝＝⭐︎ナビバー⭐︎＝＝＝＝＝
+  .nav.navbar-nav.bar-right
+    ul.box-1
 
-
-        / ＝＝＝＝＝⭐︎ナビバー⭐︎＝＝＝＝＝
-        .nav.navbar-nav.bar-right
-          ul.box-1
-
-
-
-            / ＝＝＝＝＝⭐︎ユーザーログイン後⭐︎＝＝＝＝＝
-            - if user_signed_in?
-              li.btn.btn-light= link_to user_path(current_user), class: 'list' do
-                i.fas.fa-home
-                |  mypage
-              li.font-weight-bold.btn.btn-light= link_to new_user_registration_path, class: 'list' do
-                i.fas.fa-bell
-                |  通知
-              li.font-weight-bold.btn.btn-light= link_to new_user_session_path, class: 'list' do
-                i.fas.fa-users
-                |  仲間を探す
-              li.font-weight-bold.btn.btn-light= link_to new_user_session_path, class: 'list' do
-                i.fas.fa-comment-alt
-                |  投稿
-              li.font-weight-bold.btn.btn-light= link_to new_user_session_path, class: 'list' do
-                i.fas.fa-mountain
-                |  ゲレンデ
-              li.btn.btn-light= link_to destroy_user_session_path, method: :delete, class: 'list' do
-                i.fas.fa-sign-out-alt
-                |  logout
-
-
-
-            / ＝＝＝＝＝⭐︎ユーザーログイン前⭐︎＝＝＝＝＝
-            - else
-              li.btn.btn-light= link_to about_path, class: 'list' do
-                i.fas.fa-address-card
-                |  about
-              li.btn.btn-light= link_to new_user_registration_path, class: 'list' do
-                i.fas.fa-user-plus
-                |  sign up
-              li.btn.btn-light= link_to new_user_session_path, class: 'list' do
-                i.fas.fa-sign-in-alt
-                |  login
-              li.btn.btn-light= link_to new_user_session_path, class: 'list' do
-                i.fas.fa-key
-                |  guest
-
-
-
-    / ＝＝＝＝＝⭐︎メイン⭐︎＝＝＝＝＝
-    main
-      .container
-        / フラッシュメッセージ
-        p.text-center.notice= notice
-        p.text-center.alert= alert
-
-        = yield
-
-
-
-    / ＝＝＝＝＝⭐︎フッター⭐︎＝＝＝＝＝
-    footer
-      .container
-        .row
-          .col-lg-5.footer-content.font-weight-bold
-            p トップページ
-            p プライバシーポリシー
-            p 利用規約
-            p お問い合わせ
-          .col-lg-5.footer-title
-            = link_to new_admin_session_path do
-              p WITH ME
-            p 2020. All Rights Reserved.
-          .col-lg-2
-            p.sns SNS
-            ul
-              li.float-left.icon
-                i.fab.fa-twitter
-              li.float-left.icon
-                i.fab.fa-facebook-square
-              li.float-left.icon
-                i.fab.fa-instagram
+      / ＝＝＝＝＝⭐︎ユーザーログイン後⭐︎＝＝＝＝＝
+      li.btn.btn-light.home-btn= link_to user_path(current_user), class: 'list' do
+        i.fas.fa-home
+        |  mypage
+      -if unchecked_notifications.any?
+        li.btn.btn-light.home-btn= link_to notifications_path, class: 'list' do
+          i.fas.fa-circle.n-circle
+          i.fas.fa-bell 
+          |  通知 
+      -else
+        li.btn.btn-light.home-btn= link_to notifications_path, class: 'list' do
+          i.fas.fa-bell
+          |  通知 
+      li.btn.btn-light.home-btn= link_to users_path, class: 'list' do
+        i.fas.fa-users
+        |  仲間を探す
+      li.btn.btn-light.home-btn= link_to posts_path, class: 'list' do
+        i.fas.fa-comment-alt
+        |  投稿
+      li.btn.btn-light.home-btn= link_to gelandes_path, class: 'list' do
+        i.fas.fa-mountain
+        |  ゲレンデ
+      li.btn.btn-light.home-btn= link_to destroy_user_session_path, method: :delete, class: 'list' do
+        i.fas.fa-sign-out-alt
+        |  logout

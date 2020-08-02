@@ -42,9 +42,12 @@ signs.forEach(el => {
 
 
 // お気に入りゲレンデの選択
-$('.js-searchable').select2({
-  width: 200,
-  allowClear: true
+$(document).ready(function() {
+  console.log($('.js-searchable'));
+  $('.js-searchable').select2({
+    width: 200,
+    allowClear: true
+  });
 });
 
 

@@ -1,0 +1,24 @@
+/ ＝＝＝＝＝⭐︎ロゴ⭐︎＝＝＝＝＝
+.navbar.clearfix
+  .nav.navbar-nav.mr-auto.bar-left
+    = link_to root_path do
+      = image_tag 'logo.jpg', :size => '200x100'
+
+  / ＝＝＝＝＝⭐︎ナビバー⭐︎＝＝＝＝＝
+  .nav.navbar-nav.bar-right
+    ul.box-1
+
+      / ＝＝＝＝＝⭐︎ログイン前⭐︎＝＝＝＝＝
+      li.btn.btn-light.home-btn= link_to about_path, class: 'list' do
+        i.fas.fa-address-card
+        |  about
+      li.btn.btn-light.home-btn= link_to new_user_registration_path, class: 'list' do
+        i.fas.fa-user-plus
+        |  sign up
+      li.btn.btn-light.home-btn= link_to new_user_session_path, class: 'list' do
+        i.fas.fa-sign-in-alt
+        |  login
+      li.btn.btn-light.home-btn= link_to users_guest_sign_in_path, method: :post, class: 'list' do
+        i.fas.fa-key
+        |  user guest
+      li.btn.btn-light.home-btn= link_to "admin guest", admins_guest_sign_in_path, method: :post, class: 'list'

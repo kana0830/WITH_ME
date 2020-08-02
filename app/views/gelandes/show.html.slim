@@ -1,163 +1,164 @@
-.container
-  .row
-    .col-lg-1
-    .col-lg-10.text-center
+.gelande-visual
+  .container
+    .row
+      .col-lg-1
+      .col-lg-10.text-center
 
-      / 上部ゲレンデ紹介
-      .row
-        .col-lg-4
-        .col-lg-4
-          h3.title.en.d-inline= @gelande.name
-        .col-lg-4.text-left
-          - if @reviews.present?
-            .d-inline id="star-average"
-            .d-inline.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
-      <br><br>
-      = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: ""
-      <br>
-      .mt-5.mb-5.text-left= @gelande.introduction
-      <br>
+        / 上部ゲレンデ紹介
+        .row
+          .col-lg-4
+          .col-lg-4.mt-5.mb-5
+            h3.en.d-inline.gelande-caption= @gelande.name
+          .col-lg-4.text-left.mt-5.mb-5
+            - if @reviews.present?
+              .back-star
+                small id="star-average"
+                small.font-weight-bold.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
+        = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: "image-frame"
+        <br>
+        .mt-5.mb-5.text-left.frame-gelande-introduction= @gelande.introduction
+        <br>
 
-        / 星評価
+          / 星評価
+          javascript:
+            $("#star-average").raty({
+              size: 36,
+              starOff: "#{asset_path('star-off.png')}",
+              starOn: "#{asset_path('star-on.png')}",
+              starHalf: "#{asset_path('star-half.png')}",
+              half: true,
+              readOnly: true,
+              score: "#{@gelande.reviews.average(:star).to_f.round(1)}",
+            });
+
+
+    .row
+      .col-lg-1
+      .col-lg-2
+      
+        / 天気予報表示
+        .whether.text-center.mb-5
+          h5.pt-2.font-weight-bold 天気予報
+          #weather
+
         javascript:
-          $("#star-average").raty({
-            size: 36,
-            starOff: "#{asset_path('star-off.png')}",
-            starOn: "#{asset_path('star-on.png')}",
-            starHalf: "#{asset_path('star-half.png')}",
-            half: true,
-            readOnly: true,
-            score: "#{@gelande.reviews.average(:star).to_f.round(1)}",
+
+          $(function () {
+            var API_KEY = "#{ENV['OPEN_WEATHER_MAP_API']}"; // APIキー(環境変数)を変数に代入
+            var city = "#{@gelande.address.match(/^.{2,3}[都道府県]/).to_s}"; // 該当ユーザーの都道府県名を変数に代入
+            // APIを読み込み変数に代入
+            var url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + ',jp&units=metric&APPID=' + API_KEY;
+
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'GET',
+              })
+              .done(function (data) {
+                var insertHTML = '';
+                var cityName = data.city.name;
+                $('#city-name').html(cityName);
+
+                // デフォルトでは3時間ごとの天気を取得するため、
+                // 8の倍数でデータを取得することにより、24時間ごとの天気を取得する
+                for (var i = 0; i <= 32; i = i + 8) {
+                  insertHTML += buildHTML(data, i);
+                }
+                $('#weather').html(insertHTML);
+              })
+              .fail(function (data) {
+                alert('天気予報取得に失敗しました');
+              });
           });
 
-
-  .row
-    .col-lg-1
-    .col-lg-2
-    
-      / 天気予報表示
-      .whether.text-center.mb-5
-        h5.pt-2.font-weight-bold 天気予報
-        #weather
-
-      javascript:
-
-        $(function () {
-          var API_KEY = "#{ENV['OPEN_WEATHER_MAP_API']}"; // APIキー(環境変数)を変数に代入
-          var city = "#{@gelande.address.match(/^.{2,3}[都道府県]/).to_s}"; // 該当ユーザーの都道府県名を変数に代入
-          // APIを読み込み変数に代入
-          var url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + ',jp&units=metric&APPID=' + API_KEY;
-
-          $.ajax({
-              url: url,
-              dataType: 'json',
-              type: 'GET',
-            })
-            .done(function (data) {
-              var insertHTML = '';
-              var cityName = data.city.name;
-              $('#city-name').html(cityName);
-
-              // デフォルトでは3時間ごとの天気を取得するため、
-              // 8の倍数でデータを取得することにより、24時間ごとの天気を取得する
-              for (var i = 0; i <= 32; i = i + 8) {
-                insertHTML += buildHTML(data, i);
-              }
-              $('#weather').html(insertHTML);
-            })
-            .fail(function (data) {
-              alert('天気予報取得に失敗しました');
-            });
-        });
-
-        // 日本語化
-        function buildHTML(data, i) {
-          var Week = new Array('(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)');
-          var date = new Date(data.list[i].dt_txt);
-          date.setHours(date.getHours() + 9);
-          var month = date.getMonth() + 1;
-          var day = month + '/' + date.getDate() + Week[date.getDay()];
-          var icon = data.list[i].weather[0].icon;
-          var html =
-            '<hr><div class="weather-report">' +
-              '<img src="https://openweathermap.org/img/w/' + icon + '.png">' +
-              '<span class="weather-date">' + day + "</span>" +
-              '<div class="weather-main">'+ data.list[i].weather[0].main + '</div>' +
-              '<div class="weather-temp-max">' + '最高：' + Math.round(data.list[i].main.temp_max) + "℃</div>" +
-              '<span class="weather-temp-min">' + '最低：' + Math.floor(data.list[i].main.temp_min) + "℃</span>" +
-            '</div>';
-          return html
-        }
+          // 日本語化
+          function buildHTML(data, i) {
+            var Week = new Array('(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)');
+            var date = new Date(data.list[i].dt_txt);
+            date.setHours(date.getHours() + 9);
+            var month = date.getMonth() + 1;
+            var day = month + '/' + date.getDate() + Week[date.getDay()];
+            var icon = data.list[i].weather[0].icon;
+            var html =
+              '<hr><div class="weather-report">' +
+                '<img src="https://openweathermap.org/img/w/' + icon + '.png">' +
+                '<span class="weather-date">' + day + "</span>" +
+                '<div class="weather-main">'+ data.list[i].weather[0].main + '</div>' +
+                '<div class="weather-temp-max">' + '最高：' + Math.round(data.list[i].main.temp_max) + "℃</div>" +
+                '<span class="weather-temp-min">' + '最低：' + Math.floor(data.list[i].main.temp_min) + "℃</span>" +
+              '</div>';
+            return html
+          }
 
 
-    / ゲレンデ情報
-    .col-lg-8
-      table.table.table-striped.table-bordered
-        tr
-          th コース数
-          td= "#{@gelande.count}本"
-        tr
-          th 最大傾斜
-          td= "#{@gelande.slope}度"
-        tr
-          th 最長滑走距離
-          td= "#{@gelande.distance}m"
-        tr
-          th 住所
-          td= "〒#{@gelande.postal.to_s.insert(3, '-')}""　#{@gelande.address}"
-        tr
-          th TEL
-          td= @gelande.tel
-        tr
-          th ホームページ
-          td= auto_link(simple_format(h(@gelande.hp), {}, sanitize: false, wrapper_tag: "div"))
+      / ゲレンデ情報
+      .col-lg-8
+        table.table.table-striped.table-bordered style="background-color: rgba(250, 250, 250, 0.911);"
+          tr
+            th コース数
+            td= "#{@gelande.count}本"
+          tr
+            th 最大傾斜
+            td= "#{@gelande.slope}度"
+          tr
+            th 最長滑走距離
+            td= "#{@gelande.distance}m"
+          tr
+            th 住所
+            td= "〒#{@gelande.postal.to_s.insert(3, '-')}""　#{@gelande.address}"
+          tr
+            th TEL
+            td= @gelande.tel
+          tr
+            th ホームページ
+            td= auto_link(simple_format(h(@gelande.hp), {}, sanitize: false, wrapper_tag: "div"))
 
-          
-      
-      / 地図表示
-      #map style='height: 300px; width: auto;'
-
-      - google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_MAP_API'] }&callback=initMap".html_safe
-      script{ async src=google_api }
-
-
-      / 口コミ
-      .row
-        .col-lg-4
-        .col-lg-4
-          h5.text-center.m-3.font-weight-bold 口コミ
-        .col-lg-4.text-right.mt-3= link_to "口コミを投稿する", gelande_reviews_path(@gelande)
-
-      - if @reviews.present?
-        / 口コミランダム表示
-        - @reviews.shuffle.first(3).each do |review|
-          .frame-review-index.float-left.mr-2
-            .m-0= review.title
-            .d-inline-block id='star-rate-#{review.id}'
-            = review.star
-            p.mt-2= review.review
-
-
-            / 星評価
-            javascript:
-              $("#star-rate-#{review.id}").raty({
-                size: 36,
-                starOff: "#{asset_path('star-off.png')}",
-                starOn: "#{asset_path('star-on.png')}",
-                starHalf: "#{asset_path('star-half.png')}",
-                half: true,
-                readOnly: true,
-                score: "#{review.star}",
-              });
-
-        / 口コミ詳細ページリンク
-        small
-          - if @reviews.present?
-            .more= link_to "もっと見る", gelande_reviews_path(@gelande)
-      
-      - else
-        .row
-          .col-lg-12
-            p.text-center.mt-5 口コミはまだありません。
+            
         
-.mb-5
+        / 地図表示
+        #map style='height: 300px; width: auto; border: solid 5px #FFF;'
+
+        - google_api = "https://maps.googleapis.com/maps/api/js?key=#{ ENV['GOOGLE_MAP_API'] }&callback=initMap".html_safe
+        script{ async src=google_api }
+
+
+        / 口コミ
+        .row
+          .col-lg-4
+          .col-lg-4
+            h5.text-center.m-3.font-weight-bold.white.subtitle 口コミ
+          .col-lg-4.text-right.mt-3.link-white= link_to "口コミを投稿する", gelande_reviews_path(@gelande)
+
+        - if @reviews.present?
+          / 口コミランダム表示
+          - @reviews.shuffle.first(3).each do |review|
+            .frame-review-index.float-left.mr-2
+              .m-0= review.title
+              .d-inline-block id='star-rate-#{review.id}'
+              = review.star
+              p.mt-2= review.review
+
+
+              / 星評価
+              javascript:
+                $("#star-rate-#{review.id}").raty({
+                  size: 36,
+                  starOff: "#{asset_path('star-off.png')}",
+                  starOn: "#{asset_path('star-on.png')}",
+                  starHalf: "#{asset_path('star-half.png')}",
+                  half: true,
+                  readOnly: true,
+                  score: "#{review.star}",
+                });
+
+          / 口コミ詳細ページリンク
+          small
+            - if @reviews.count >= 4
+              .more.link-white= link_to "もっと見る", gelande_reviews_path(@gelande)
+        
+        - else
+          .row
+            .col-lg-12
+              p.text-center.mt-5.white 口コミはまだありません。
+          
+  .pb-5

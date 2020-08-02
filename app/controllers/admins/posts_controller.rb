@@ -1,12 +1,12 @@
 class Admins::PostsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
   end
 
   def show
-    
-    
   end
 
   def destroy

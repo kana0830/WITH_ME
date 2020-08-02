@@ -50,17 +50,34 @@ a:link, a:visited, a:hover, a:active {
   color: #494949;
 }
 
+.link-border{
+  text-decoration: underline;
+}
+
 
 // タイトル
 .title{
-  margin-bottom: 30px;
+  margin: 50px;
   font-size: 30px;
   font-weight: bold;
+}
+
+// リンク文字色白
+.link-white{
+  a{
+    color: #ffffff;
+  }
 }
 
 // 文字色白
 .white{
   color: #ffffff;
+}
+
+// 画像白枠
+.image-frame{
+  border: solid 5px #ffffff;/*線*/
+  border-radius: 10px;/*角の丸み*/
 }
 
 // フォームテキストの文字色
@@ -90,23 +107,45 @@ input, select, textarea{
 }
 
 
+// フラッシュメッセージ
+.notifications {
+  color: $white;
+  text-align: center;  
+  .notice {
+    background-color: rgba(89, 100, 250, 0.527);
+  }
+  .alert {
+    background-color: rgba(250, 89, 89, 0.527);
+  }
+}
 
+
+
+
+
+
+
+
+
+// フッター固定
+#wrapper{
+  height: 100%;
+  min-height: 100vh;
+  position: relative;/*←相対位置*/
+  padding-bottom: 120px;/*←footerの高さ*/
+  box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
 
 // フッター
 footer{
-  margin-top: 180px;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
   background-color: #09012eea; 
   color: #FFF;
   font-family: "游ゴシック","YuGothic","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ","Meiryo",sans-serif;
-
+  position: absolute;/*←絶対位置*/
   bottom: 0; /*下に固定*/
-}
-
-// snsアイコン
-.icon{
-  list-style: none;
-  margin: 12px;
-  margin-top: 0px;
 }
 
 // フッター左側
@@ -117,6 +156,14 @@ footer{
     color: white;
   }
 }
+
+// snsアイコン
+.icon{
+  list-style: none;
+  margin: 12px;
+  margin-top: 0px;
+}
+
 
 
 
@@ -131,16 +178,3 @@ footer{
 }
 
 
-
-
-// フッター固定
-body,
-#wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-footer {
-  margin-top: auto;
-}

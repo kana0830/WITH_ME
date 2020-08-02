@@ -10,7 +10,6 @@
               .col-lg-5.text-left
                 .col-lg-3.float-left 会員ID
                 .col-lg-2.float-left= @user.id
-                .col-lg-2.btn.btn-outline-dark.btn-sm.disabled.m-0.float-left= @user.is_active ? "有効" : "退会済み"
                 <br><br>
 
                 .col-lg-4.float-left 名前
@@ -53,7 +52,7 @@
                         tr
                           td <hr>
                           td
-                            li= link_to favorite.gelande.name, gelande_url
+                            li.link-border= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
                   <br>
 
           

@@ -1,4 +1,6 @@
 class Admins::HomeController < ApplicationController
+  before_action :authenticate_admin!
+
   def top
     days = (Date.today.beginning_of_month..Date.today).to_a
     #後々、usersとtransposeする予定なので、rangeではなく、arrayに変更

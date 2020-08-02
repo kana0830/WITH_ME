@@ -11,98 +11,31 @@ html
     = javascript_include_tag 'application'
     link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"
     link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet"
-    script src="/js/jquery.min.js"
-    script src="jquery.raty.js"
 
 
-  / ＝＝＝＝＝⭐︎ロゴ⭐︎＝＝＝＝＝
   body
     #wrapper
       header.sticky-top
-        .navbar.clearfix
-          .nav.navbar-nav.mr-auto.bar-left
-            = link_to root_path do
-              = image_tag 'logo.jpg', :size => '200x100'
+        - if user_signed_in?
+          = render 'layouts/user'
 
+        - elsif admin_signed_in?
+          = render 'layouts/admin'
 
-          / ＝＝＝＝＝⭐︎ナビバー⭐︎＝＝＝＝＝
-          .nav.navbar-nav.bar-right
-            ul
-
-              / ＝＝＝＝＝⭐︎ユーザーログイン後⭐︎＝＝＝＝＝
-              - if user_signed_in?
-                li.btn.btn-light.home-btn= link_to user_path(current_user), class: 'list' do
-                  i.fas.fa-home
-                  |  mypage
-                -if unchecked_notifications.any?
-                  li.btn.btn-light.home-btn= link_to notifications_path, class: 'list' do
-                    i.fas.fa-circle.n-circle
-                    i.fas.fa-bell 
-                    |  通知 
-                -else
-                  li.btn.btn-light.home-btn= link_to notifications_path, class: 'list' do
-                    i.fas.fa-bell
-                    |  通知 
-                li.btn.btn-light.home-btn= link_to users_path, class: 'list' do
-                  i.fas.fa-users
-                  |  仲間を探す
-                li.btn.btn-light.home-btn= link_to posts_path, class: 'list' do
-                  i.fas.fa-comment-alt
-                  |  投稿
-                li.btn.btn-light.home-btn= link_to gelandes_path, class: 'list' do
-                  i.fas.fa-mountain
-                  |  ゲレンデ
-                li.btn.btn-light.home-btn= link_to destroy_user_session_path, method: :delete, class: 'list' do
-                  i.fas.fa-sign-out-alt
-                  |  logout
-
-
-
-              / ＝＝＝＝＝⭐︎ユーザーログイン前⭐︎＝＝＝＝＝
-              - else
-                li.btn.btn-light.home-btn= link_to about_path, class: 'list' do
-                  i.fas.fa-address-card
-                  |  about
-                li.btn.btn-light.home-btn= link_to new_user_registration_path, class: 'list' do
-                  i.fas.fa-user-plus
-                  |  sign up
-                li.btn.btn-light.home-btn= link_to new_user_session_path, class: 'list' do
-                  i.fas.fa-sign-in-alt
-                  |  login
-                li.btn.btn-light.home-btn= link_to users_guest_sign_in_path, method: :post, class: 'list' do
-                  i.fas.fa-key
-                  |  guest
-
-
-              / ＝＝＝＝＝⭐︎アドミンログイン後⭐︎＝＝＝＝＝
-              - if admin_signed_in?
-                li.btn.btn-light.home-btn= link_to "home", admins_home_path, class: 'list'
-                li.btn.btn-light.home-btn= link_to "会員", admins_users_path, class: 'list'
-                li.btn.btn-light.home-btn= link_to "投稿", admins_posts_path, class: 'list'
-                li.btn.btn-light.home-btn= link_to "ゲレンデ", admins_gelandes_path, class: 'list'
-                li.btn.btn-light.home-btn= link_to "口コミ", admins_reviews_path, class: 'list'
-                li.btn.btn-light.home-btn= link_to "logout", destroy_admin_session_path, method: :delete, class: 'list'
-
-
-
-              / ＝＝＝＝＝⭐︎アドミンログイン前⭐︎＝＝＝＝＝
-              - else
-                li.btn.btn-light.home-btn= link_to "login", new_admin_session_path, class: 'list'
-                li.btn.btn-light.home-btn= link_to "guest", admins_guest_sign_in_path, method: :post, class: 'list'
-
-
+        - else
+          = render 'layouts/no_login'
 
 
 
       / ＝＝＝＝＝⭐︎メイン⭐︎＝＝＝＝＝
       main
-        .container
-          / フラッシュメッセージ
-          p.mt-3.text-center.notice= notice
-          p.mt-3.text-center.alert= alert
+        / フラッシュメッセージ
+        .text-center.notifications
+          - flash.each do |key, value|
+            = content_tag(:div, value, class: key)
 
-          = yield
-      
+        = yield
+    
 
 
 
@@ -110,15 +43,15 @@ html
       footer
         .container
           .row
-            .col-lg-5.footer-content.mt-3
+            .col-lg-5.footer-content.text-left
               p= link_to "トップページ", root_path
               p= link_to "お問い合わせ", inquiry_index_path
-            .col-lg-5
-              .mt-3= link_to new_admin_session_path do
+            .col-lg-5.text-left.footer-content
+              = link_to new_admin_session_path do
                 p.en.white WITH ME
               p.en 2020. All Rights Reserved.
-            .col-lg-2
-              p.en.mt-3 SNS
+            .col-lg-2.text-left
+              p.en SNS
               ul
                 li.float-left.icon
                   i.fab.fa-twitter

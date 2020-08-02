@@ -5,9 +5,9 @@ class Gelande < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
 
-  validates :postal, presence: true, format: { with: /\A\d{7}\z/ }
+  validates :postal, presence: true
   validates :address, presence: true
-  validates :tel, presence: true, format: { with: /\A[0-9]+\z/ }
+  validates :tel, presence: true
   validates :introduction, presence: true
   validates :name, presence: true, uniqueness: true
 

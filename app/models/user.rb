@@ -14,12 +14,19 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :messages, dependent: :destroy
-  has_many :entries, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :gelandes, through: :favorites
+
+  # DM
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
+
+  # 通知
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
+  # フォロー
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
@@ -60,6 +67,14 @@ class User < ApplicationRecord
     end
   end
 
+  # お気に入りゲレンデの選択3つまでのバリデーション
+  def favorite_select
+    if gelande_ids.count >= 4
+      errors.add(:base, "お気に入りゲレンデを選択できるのは3つまでです。")
+    end
+  end
+
+
   enum gender: { 男性: 0, 女性: 1 }
   PREFECTURE = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
     "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
@@ -69,12 +84,5 @@ class User < ApplicationRecord
     "徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県",
     "熊本県","大分県","宮崎県","鹿児島県","沖縄県"
   ];
-
-  # お気に入りゲレンデの選択3つまでのバリデーション
-  def favorite_select
-    if gelande_ids.count >= 4
-      errors.add(:base, "お気に入りゲレンデを選択できるのは3つまでです。")
-    end
-  end
 
 end

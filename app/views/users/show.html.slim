@@ -32,29 +32,26 @@
               .col-lg-2
               .col-lg-4
                 / フォローボタン
-                - unless @user == current_user
-                  - if current_user.following?(@user)
-                    = link_to unfollow_path(@user), method: :post, class: 'btn btn-outline-info m-0 btn-sm' do
-                      i.fas.fa-user フォロー中
-                  - else
-                    = link_to follow_path(@user), method: :post, class: 'btn btn-outline-success m-0 btn-sm' do
-                      i.far.fa-user フォローする
-                  <br><br>
+                #follow_form
+                  = render 'relationships/follow', user: @user
+
 
               .col-lg-3
                 / DMボタン
-                - unless @user == current_user
+                - if @user != current_user
                   - if (current_user.following? @user) && (@user.following? current_user)
                     - if @isRoom == true
-                      p.user-show-room
-                        = link_to room_path(@roomId), class: "btn btn-outline-warning btn-sm m-0" do
-                          i.fas.fa-envelope
+                      = link_to room_path(@roomId), class: "btn btn-outline-warning btn-sm m-0" do
+                        i.fas.fa-envelope
                     - else
-                      = form_for @room do |f|
+                      = form_with model: @room, local: true do |f|
                         = fields_for @entry do |e|
                           = e.hidden_field :user_id, value: @user.id
                         = button_tag type: 'submit', class: "btn btn-outline-warning btn-sm user-show-chat m-0" do
                           i.fas.fa-envelope
+                - else
+                  = link_to rooms_path, class: "btn btn-outline-warning btn-sm m-0" do
+                    i.fas.fa-envelope
 
 
             / フォローページ

@@ -22,14 +22,12 @@
             .text-left.col-lg-11
               .frame-post-index
                 = link_to post_path(post), class:"link" do
-                = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x40", class: ""
-                = link_to post.user.name, user_path(@user)
+                = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x30", class: ""
+                = post.user.name
                 <br>
                 = post.title
                 |　
                 .d-inline= render 'posts/tag_list', tag_list: post.tag_list
-                |　
-                .d-inline= link_to '削除', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
                 <br>
                 small.m-0= post.created_at.to_s(:datetime_jp)
                 <br>

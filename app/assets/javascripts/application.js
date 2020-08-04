@@ -18,6 +18,7 @@
 //= require select2
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
+//= require jquery-ui/widgets/autocomplete
 //= require_tree .
 
 
@@ -113,9 +114,9 @@ $(function () {
       }
       $('#weather').html(insertHTML);
     })
-    .fail(function (data) {
-      alert('天気予報取得に失敗しました');
-    });
+    // .fail(function (data) {
+    //   alert('天気予報取得に失敗しました');
+    // });
 });
 // 日本語化
 function buildHTML(data, i) {

@@ -44,6 +44,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -87,6 +88,7 @@ gem 'rails_autolink'
 gem 'enum_help', '~> 0.0.15'
 gem 'select2-rails'
 gem 'lazy_high_charts'
+gem 'jquery-ui-rails'
 group :production do
   gem 'mysql2'
 end

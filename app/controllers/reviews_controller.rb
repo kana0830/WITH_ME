@@ -10,18 +10,21 @@ class ReviewsController < ApplicationController
   def create
     @gelande = Gelande.find_by(id: params[:gelande_id])
     @review = @gelande.reviews.new(review_params)
-    @review.save
+    @reviews = @gelande.reviews.all
+    if @review.save
       flash[:notice] = '口コミを投稿しました'
-      redirect_to gelande_reviews_path(@gelande)
-    # else
-    #   @gelande = Gelande.find_by(id: params[:gelande_id])
-    #   @reviews = @gelande.reviews.all
-    #   render 'index'
-    # end
+      render :create
+    else
+      @gelande = Gelande.find_by(id: params[:gelande_id])
+      @reviews = @gelande.reviews.all
+      render 'index'
+    end
   end
 
   def destroy
-
+    @review = Review.find_by(id: params[:id], gelande_id: params[:gelande_id])
+    @review.destroy
+    render :destroy
   end
 
   private

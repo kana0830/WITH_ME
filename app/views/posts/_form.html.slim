@@ -9,7 +9,7 @@
 
         / タグ
         = f.label :tag_list, "タグ",class: "col-lg-3 text-center"
-        = f.text_field :tag_list, value: post.tag_list.join(','), class: "col-lg-8"
+        = f.text_field :tag_list, value: post.tag_list.join(','), :placeholder => "カンマ(,)区切りで複数入力可能" , class: "col-lg-8"
 
         / 投稿文
         = f.label :post, class: "col-lg-3 text-center "

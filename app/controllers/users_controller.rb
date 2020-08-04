@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all
-    @currentUserEntry=Entry.where(user_id: current_user.id)
-    @userEntry=Entry.where(user_id: @user.id)
-    unless @user.id == current_user.id
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    if @user.id != current_user.id
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
           if cu.room_id == u.room_id then
@@ -21,8 +21,7 @@ class UsersController < ApplicationController
           end
         end
       end
-      if @isRoom
-      else
+      unless @isRoom
         @room = Room.new
         @entry = Entry.new
       end
@@ -56,13 +55,13 @@ class UsersController < ApplicationController
   # 自分がフォローしているユーザー一覧
   def following
     @user = User.find(params[:user_id])
-    @followings = @user.following_user.where.not(id: current_user.id)
+    @followings = @user.following_user
   end
 
   # 自分をフォローしているユーザー一覧
   def follower
     @user = User.find(params[:user_id])
-    @followers = @user.follower_user.where.not(id: current_user.id)
+    @followers = @user.follower_user
   end
 
   def check_guest
@@ -73,8 +72,8 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :encrypted_password, :image, :gender, :address, :age, :introduction, :is_active, { :gelande_ids=> [] })
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :encrypted_password, :image, :gender, :address, :age, :introduction, :is_active, { :gelande_ids=> [] })
+  end
 
 end

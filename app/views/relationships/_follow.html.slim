@@ -1,0 +1,8 @@
+- unless user == current_user
+  - if current_user.following?(user)
+    = link_to unfollow_path(user), method: :post, remote: true, class: 'btn btn-outline-info m-0 btn-sm' do
+      i.fas.fa-user フォロー中
+  - else
+    = link_to follow_path(user), method: :post, remote: true, class: 'btn btn-outline-success m-0 btn-sm' do
+      i.far.fa-user フォローする
+  <br><br>

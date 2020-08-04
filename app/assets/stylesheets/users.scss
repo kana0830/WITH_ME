@@ -138,7 +138,8 @@
   background-position: 40% 100%;
 }
 
-// 通知ー囲み枠
+
+// 通知囲み枠
 .frame-notification{
   padding: 2em;
   margin: 1em 0;
@@ -149,7 +150,7 @@
 }
 
 
-// DM吹き出し左
+// DM吹き出し
 .balloon5 {
   width: 100%;
   margin: 1.5em 0;
@@ -160,6 +161,8 @@
   width: 100%;
 }
 
+
+// DM吹き出し左
 .says {
   display: inline-block;
   position: relative; 
@@ -189,7 +192,7 @@
   position: relative; 
   padding: 17px 13px;
   border-radius: 12px;
-  background: #d7ebfe;
+  background: #f3d4fc;
 }
 
 .say:after {
@@ -199,7 +202,7 @@
   top: 18px; 
   right: -24px;
   border: 12px solid transparent;
-  border-left: 12px solid #d7ebfe;
+  border-left: 12px solid #f3d4fc;
 }
 
 .say p {

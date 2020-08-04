@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :viewer
 
   def index
     @q = Post.ransack(params[:q])

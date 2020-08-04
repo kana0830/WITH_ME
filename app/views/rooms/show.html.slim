@@ -10,39 +10,37 @@
       .col-lg-8.frame-notification
         / DM一覧
         <hr>
-        .chats
-          - if @messages.present?
-            - @messages.each do |message|
-              .row.balloon5
-                - if current_user.name == message.user.name
-                  .col-lg-12.text-right
-                    .chatting
-                      .say
-                        = message.content
-                      <br>
-                      small= message.created_at.to_s(:datetime_jp)
-                - else
-                  .col-lg-2.text-center
-                    = attachment_image_tag message.user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: ""
-                    small= link_to message.user.name, user_path(message.user), class: "d-block"
+        - if @messages.present?
+          - @messages.each do |message|
+            .row.balloon5
+              - if current_user.name == message.user.name
+                .col-lg-12.text-right
+                  .chatting
+                    .say
+                      = message.content
                     <br>
-                  .col-lg-10.text-left
-                    .chatting
-                      .says
-                        p= message.content
-                      <br>
-                      small= message.created_at.to_s(:datetime_jp)
-              <hr>
-          - else
-            p メッセージはありません。
-          <br>
-
+                    small= message.created_at.to_s(:datetime_jp)
+              - else
+                .col-lg-2.text-center
+                  = attachment_image_tag message.user, :image, format: 'jpeg', fallback: "noimage.png", size: "50x40"
+                  small= link_to message.user.name, user_path(message.user), class: "d-block mt-1"
+                  <br>
+                .col-lg-10.text-left
+                  .chatting
+                    .says
+                      p= message.content
+                    <br>
+                    small= message.created_at.to_s(:datetime_jp)
+            <hr>
+        - else
+          p メッセージはありません。
+        <br>
 
         / DM送信フォーム
         .row
           .col-lg-2
           .col-lg-8.text-center
-            = form_for @message do |f|
+            = form_with model: @message, local: true do |f|
               = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 50
               = f.hidden_field :room_id, value: @room.id
               = f.submit "投稿", class: 'btn btn-outline-secondary btn-sm ml-2'

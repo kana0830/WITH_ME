@@ -6,13 +6,17 @@ class RelationshipsController < ApplicationController
       @user = User.find(params[:id])
       current_user.follow(params[:id])
       @user.create_notification_follow!(current_user)
-      redirect_back(fallback_location: root_path)
+      @posts = @user.posts.all
+      render :create
     end
   
     # アンフォローする
     def unfollow
+      @user = User.find(params[:id])
+      @posts = @user.posts.all
       current_user.unfollow(params[:id])
-      redirect_back(fallback_location: root_path)
+      render :destroy
     end
+
 end
 

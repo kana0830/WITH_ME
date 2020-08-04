@@ -13,29 +13,14 @@
       .col-lg-2
         text-center
           h5.text-center.m-4.font-weight-bold.white.subtitle 口コミ一覧
+
     .row
       .col-lg-2
       .col-lg-8.ml-3
         - if @reviews.present?
-          - @reviews.each do |review| 
-            .frame-review-show.float-left.m-2
-              .m-0= review.title
-              .d-inline-block id='star-rate-#{review.id}'
-              |　
-              = review.star
-              p.mt-2= review.review
-
-              / 星評価
-              javascript:
-                $("#star-rate-#{review.id}").raty({
-                  size: 36,
-                  starOff: "#{asset_path('star-off.png')}",
-                  starOn: "#{asset_path('star-on.png')}",
-                  starHalf: "#{asset_path('star-half.png')}",
-                  half: true,
-                  readOnly: true,
-                  score: "#{review.star}",
-                });
+          #review-text
+            = render 'reviews/review', reviews: @reviews
+          
         - else
           p.text-center.mt-5 口コミはまだありません。
 
@@ -44,10 +29,12 @@
       .col-lg-3
       .col-lg-6.frame-post-show
         h5.text-center.font-weight-bold.pb-4 口コミ投稿
-        = form_with(model: [@gelande, @review ], local: true) do |f|
+        = form_with(model: [@gelande, @review ]) do |f|
 
           / エラーメッセージ
           = render 'users/shared/error_messages', resource: f.object 
+
+          / タイトル
           = f.label :title, class: "col-lg-3 ml-5"
           = f.text_field :title, class: "col-lg-6"
           

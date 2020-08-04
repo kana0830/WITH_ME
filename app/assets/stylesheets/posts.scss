@@ -63,6 +63,9 @@
   content: '';
   background-image: image-url("back2.jpg");/*背景画像のURL*/
   background-repeat: repeat;
+  min-height: 520px;
+  height: auto !important;
+  height: 520px;
 }
 
 

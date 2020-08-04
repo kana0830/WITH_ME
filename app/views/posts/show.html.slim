@@ -14,9 +14,10 @@
           |　
           = render 'posts/tag_list', tag_list: @post.tag_list
           |　
-          =link_to '編集', edit_post_path(@post), class: "btn btn-outline-secondary btn-sm m-0"
-          |　
-          = link_to '削除', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
+          - if @post.user == current_user
+            =link_to '編集', edit_post_path(@post), class: "btn btn-outline-secondary btn-sm m-0"
+            |　
+            = link_to '削除', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
           <br>
           small.m-0= @post.created_at.to_s(:datetime_jp)
           <br>
@@ -24,7 +25,7 @@
 
           / Likeボタン
           div id='like-button_#{ @post.id }'
-            = render 'like-button', post: @post
+            = render 'posts/like-button', post: @post
             
         <br>
 
@@ -33,15 +34,8 @@
     .row
       .col-lg-4
       .col-lg-4
-        - @comments.each do |comment|
-          .frame-post-comment
-            =comment.user.image
-            = link_to comment.user.name, user_path(comment.user)
-            = link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0 ml-3"
-            <br>
-            small.m-0= comment.created_at.to_s(:datetime_jp)
-            .mt-4.mb-2= comment.comment
-          <br>
+        #comment-text
+          = render 'comments/comment', comments: @comments
     .mb-5
     
     / コメントフォーム
@@ -49,7 +43,7 @@
       .col-lg-3
       .col-lg-6.text-center
         .frame-post-show
-          = form_with(model: [@post, @comment], local: true) do |f|
+          = form_with(model: [@post, @comment]) do |f|
 
             / エラーメッセージ
             = render 'users/shared/error_messages', resource: f.object 

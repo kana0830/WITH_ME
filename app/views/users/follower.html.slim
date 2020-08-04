@@ -10,8 +10,17 @@
       .col-lg-4
       .col-lg-4.text-center
         .frame-follow
-          - @followers.each do |user|
-            ul
-              li.d-inline.col-lg-4= attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x60", class: ""
-              .d-inline.text-left.col-lg-8= link_to user.name, user_path(user)
+          - if @followers.present?
+            - @followers.each do |user|
+              ul
+                li.d-inline.col-lg-4= attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x50", class: ""
+                .d-inline.text-left.col-lg-8= link_to user.name, user_path(user)
+              <br>
+          -else
+            p まだフォロワーはいません。
+            <br>
+          - if @user == current_user
+            = link_to users_path do
+              i.fas.fa-users 
+              |  仲間を探す
   .pb-5

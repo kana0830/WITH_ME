@@ -5,21 +5,26 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
+    @comments = @post.comments.all
     if @comment.save
       @post.create_notification_comment!(current_user, @comment.id)
-      redirect_to post_path(@post)
+      render :create
     else
+      @post = Post.find(params[:post_id])
+      @comments = @post.comments.all
       render 'posts/show'
     end
   end
 
   def destroy
-    Comment.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    redirect_to post_path(params[:post_id])
+    @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
+    @comment.destroy
+    render :destroy
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:comment, :post_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:comment, :post_id)
+  end
+
 end

@@ -1,0 +1,27 @@
+.user-visual
+  .container
+    .row
+      .col-lg-4
+      .col-lg-4
+        h4.mt-5.mb-4.font-weight-bold.user-caption.text-center メッセージ一覧
+
+    .row
+      .col-lg-3
+      .col-lg-6
+        - if @rooms.present?
+          - @rooms.each do |room|
+            / = attachment_image_tag room.users, :image, format: 'jpeg', fallback: "noimage.png", size: "50x40"
+            / = link_to room.user.name
+            .dm_list__content
+              = link_to room_path(room), class: "dm_list__content__link" do
+                .dm_list__content__link__box
+                  h3.dm_list__content__link__box__name
+                    = opponent_user(room)
+                  p.dm_list__content__link__box__message
+                    = most_new_message_preview(room)
+        
+        -else
+          p まだメッセージの交換はしていません。
+            = link_to users_path do
+              i.fas.fa-users 
+              |  仲間を探す

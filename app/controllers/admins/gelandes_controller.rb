@@ -1,6 +1,6 @@
 class Admins::GelandesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def new
     @gelande = Gelande.new
   end
@@ -38,9 +38,10 @@ class Admins::GelandesController < ApplicationController
     end
   end
 
+
   private
-    def gelande_params
-      params.require(:gelande).permit(:name, :count, :slope, :distance, :postal, :address, :tel, :hp, :image, :introduction, :is_active)
-    end
+  def gelande_params
+    params.require(:gelande).permit(:name, :count, :slope, :distance, :postal, :address, :tel, :hp, :image, :introduction, :is_active)
+  end
 
 end

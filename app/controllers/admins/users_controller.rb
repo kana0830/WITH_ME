@@ -26,7 +26,7 @@ class Admins::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :encrypted_password, :image_id, :gender, :address, :age, :introduction, :is_active, { :gelande_ids=> [] })
+    params.require(:user).permit(:name, :email, :encrypted_password, :image_id, :gender, :address, :age, :introduction, :is_active, { :gelande_ids => [] })
   end
 
 end

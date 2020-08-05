@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).order(updated_at: :desc)
     @user = current_user
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")

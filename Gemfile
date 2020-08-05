@@ -89,6 +89,7 @@ gem 'enum_help', '~> 0.0.15'
 gem 'select2-rails'
 gem 'lazy_high_charts'
 gem 'jquery-ui-rails'
+gem 'gon'
 group :production do
   gem 'mysql2'
 end

@@ -139,3 +139,22 @@ function buildHTML(data, i) {
 }
 
 
+
+// / 星評価
+  $("#star-average").raty({
+    size: 36,
+    starOff: "/assets/images/star-off.png",
+    starOn: "/assets/images/star-on.png",
+    starHalf: "/assets/images/star-half.png",
+    half: true,
+    readOnly: true,
+    // score: "#{@gelande.reviews.average(:star).to_f.round(1)}",
+    score: "gon.gelande_star",
+  });
+
+
+// DMページ最下部移動
+$(function(){
+  var targetOffset = $('#down').offset().top;
+  $('html,body').animate({scrollTop: targetOffset}, "slow");
+  });

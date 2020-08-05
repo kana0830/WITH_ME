@@ -24,41 +24,47 @@
             
             / 編集ページ
             - if @user == current_user
-              = link_to "編集する", edit_user_path, class: 'btn btn-outline-secondary btn-sm m-0'
+              = link_to edit_user_path, class: 'btn btn-outline-secondary btn-sm m-0' do
+                i.fas.fa-edit
             <br><br>
 
 
             .row
               .col-lg-2
-              .col-lg-4
-                / フォローボタン
-                #follow_form
-                  = render 'relationships/follow', user: @user
-
-
-              .col-lg-3
+              .col-lg-2
                 / DMボタン
                 - if @user != current_user
                   - if (current_user.following? @user) && (@user.following? current_user)
                     - if @isRoom == true
-                      = link_to room_path(@roomId), class: "btn btn-outline-warning btn-sm m-0" do
+                      .text-left= link_to room_path(@roomId), class: "btn btn-warning btn-sm m-0" do
                         i.fas.fa-envelope
                     - else
                       = form_with model: @room, local: true do |f|
                         = fields_for @entry do |e|
                           = e.hidden_field :user_id, value: @user.id
-                        = button_tag type: 'submit', class: "btn btn-outline-warning btn-sm user-show-chat m-0" do
+                        = button_tag type: 'submit', class: "btn btn-warning btn-sm user-show-chat m-0" do
                           i.fas.fa-envelope
                 - else
-                  = link_to rooms_path, class: "btn btn-outline-warning btn-sm m-0" do
+                  .text-left= link_to rooms_path, class: "btn btn btn-warning btn-sm m-0 mb-3" do
                     i.fas.fa-envelope
+
+              .col-lg-3
+                / フォローボタン
+                #follow_form
+                  - unless @user == current_user
+                    - if current_user.following?(@user)
+                      = link_to unfollow_path(@user), method: :post, class: 'btn btn-success m-0 btn-sm' do
+                        i.fas.fa-user.white.font-weight-normal フォロー中
+                    - else
+                      = link_to follow_path(@user), method: :post, class: 'btn btn-outline-success m-0 btn-sm' do
+                        i.far.fa-user フォローする
+                    <br><br>
 
 
             / フォローページ
             = link_to users_following_path(@user) do
               i.fas.fa-user
-              | フォロー#{ @user.follower.count }人
-            |　
+              | フォロー#{ @user.follower.count }人　
 
 
             / フォロワーページ
@@ -68,16 +74,13 @@
 
 
           / お気に入りゲレンデ
-          .col-lg-6.text-left
+          .col-lg-6.text-left.font-weight-bold
             | お気に入りゲレンデ
             <br><br>
-            table
-              tbody
-                - @user.favorites.each do |favorite|
-                  tr
-                    td <hr>
-                    td
-                      li.font-weight-normal= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
+            - @user.favorites.each do |favorite|
+              .favorite-gelande
+                ul
+                  li.font-weight-normal= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
         <hr><br>
 
 

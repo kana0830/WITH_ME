@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comments = @post.comments.all
     if @comment.save
-      @post.create_notification_comment!(current_user, @comment.id)
+      @post.create_notification_comment(current_user, @comment.id)
       render :create
     else
       @post = Post.find(params[:post_id])

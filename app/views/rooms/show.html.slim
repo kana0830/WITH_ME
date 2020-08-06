@@ -41,7 +41,7 @@
           .col-lg-2
           .col-lg-8.text-center
             = form_with model: @message, local: true do |f|
-              = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 4545
+              = f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 45
               = f.hidden_field :room_id, value: @room.id
               = button_tag type: 'submit', class: 'btn btn-outline-secondary btn-sm ml-2' do
                 i.fas.fa-paper-plane

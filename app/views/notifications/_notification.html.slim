@@ -24,7 +24,7 @@
             strong
               = notification.post.user.name + 'さんの投稿'
       = "にコメントしました"
-      p.text-muted.mb-0
+      p.text-muted.mb-0.ml-5
         = Comment.find_by(id: notification.comment_id)&.comment
 
 .small.text-muted.text-right

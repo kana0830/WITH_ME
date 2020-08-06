@@ -20,7 +20,7 @@ class User < ApplicationRecord
   # DM
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
-  has_many :rooms, through: :entries
+  has_many :rooms, through: :entries, dependent: :destroy
 
   # 通知
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy

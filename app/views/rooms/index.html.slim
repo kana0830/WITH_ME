@@ -10,16 +10,11 @@
       .col-lg-4
         - if @rooms.present?
           - @rooms.each do |room|
-            / = attachment_image_tag room.users, :image, format: 'jpeg', fallback: "noimage.png", size: "50x40"
-            / = link_to room.user.name
-            .frame-notification
+            .frame-room-index
               .dm_list__content
-                = link_to room_path(room), class: "dm_list__content__link" do
-                  .dm_list__content__link__box
-                    p.dm_list__content__link__box__name
-                      .font-weight-bold= opponent_user(room)
-                    small.dm_list__content__link__box__message
-                      = most_new_message_preview(room)
+                = link_to room_path(room), class: "dm_list__content__link link" do
+                  .dm_list__content__link__box.dm_list__content__link__box__name.font-weight-bold.d-inline.mr-3= opponent_user(room)
+                  small.dm_list__content__link__box__message.d-inline= most_new_message_preview(room)
         
         -else
           .text-center.frame-notification

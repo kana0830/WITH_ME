@@ -9,10 +9,10 @@ module RoomsHelper
     # メッセージの有無を判定
     if message.present?
       # メッセージがあれば内容を表示
-      tag.p "#{message.content}", class: "dm_list__content__link__box__message"
+      tag.p "#{message.content}", class: "dm_list__content__link__box__message d-inline"
     else
       # メッセージがなければ[ まだメッセージはありません ]を表示
-      tag.p "[ まだメッセージはありません ]", class: "dm_list__content__link__box__message"
+      tag.p "[ まだメッセージはありません ]", class: "dm_list__content__link__box__message d-inline"
     end
   end
 
@@ -21,9 +21,10 @@ module RoomsHelper
     # 中間テーブルから相手ユーザーのデータを取得
     entry = room.entries.where.not(user_id: current_user)
     # 相手ユーザーの名前を取得
-    name = entry[0].user.name
+    # binding.pry
+    entry_name = entry[0].user.name
     # 名前を表示
-    tag.p "#{name}", class: "dm_list__content__link__box__name"
+    tag.p "#{entry_name}", class: "dm_list__content__link__box__name d-inline"
   end
   
 end

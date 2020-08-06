@@ -15,12 +15,12 @@
             p.text-center ゲレンデを探す
 
             / フリーワード
-            = f.label :name, "キーワード検索"
+            small= f.label :name, "キーワード検索"
             = f.search_field :name_or_count_or_slope_or_distance_or_postal_or_address_or_tel_or_hp_or_introduction_cont
             <br><br>
 
             / 住所
-            = f.label :address, "住所"
+            small= f.label :address, "住所"
             / = f.collection_select(:address_eq, @gelandes, :id, :address, include_blank: true)
             <br>
             = f.select :address_cont, User::PREFECTURE,  include_blank: true

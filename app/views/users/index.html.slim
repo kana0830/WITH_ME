@@ -10,44 +10,46 @@
         .text-left.search
 
           / 検索フォーム
-          p.text-center 仲間を探す
+          h6.text-center 仲間を探す
+          <br>
 
           / ゲレンデ名検索
           = search_form_for @q do |f|
-            = f.label :name_or_gender_or_address_or_age_or_introduction, "キーワード"
-            = f.search_field :name_or_gender_or_address_or_age_or_introduction_cont
+            small= f.label :name_or_gender_or_address_or_age_or_introduction, "キーワード"
+            <br>
+            small= f.search_field :name_or_gender_or_address_or_age_or_introduction_cont
             <br><br>
 
             / 年齢検索
-            = f.label :age
+            small= f.label :age
             <br>
             = f.select(:age_gteq, options_for_select((18..85).to_a), include_blank: true)
-            | 歳以上 〜 
+            small.d-inline 歳以上 〜 
             = f.select(:age_lteq, options_for_select((18..85).to_a), include_blank: true)
-            | 歳以下
+            small.d-inline 歳以下
             <br><br>
 
             / ゲレンデ検索
-            = f.label :gelandes_id, "お気に入りゲレンデ"
+            small= f.label :gelandes_id, "お気に入りゲレンデ"
             / = f.collection_select(:name_eq, Gelande.all, :id, :name, include_blank: true)
             = f.select(:gelandes_id_eq, Gelande.all.map { |gelande| [gelande.name, gelande.id] }, { include_blank: true})
             <br><br>
 
             / 住所検索
-            = f.label :address
+            small= f.label :address
             <br>
             = f.select :address_cont, User::PREFECTURE,  include_blank: true
             <br><br>
 
             / 性別検索
-            = f.label :gender
+            small= f.label :gender
             <br>
             = f.radio_button :gender_eq, '', {:checked => true} 
-            | 指定なし　
+            small.d-inline 指定なし　
             = f.radio_button :gender_eq, 0
-            |男性　
+            small.d-inline 男性　
             = f.radio_button :gender_eq, 11
-            |女性
+            small.d-inline 女性
             <br><br>
 
             .text-center= f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0"

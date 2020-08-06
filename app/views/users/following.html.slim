@@ -7,19 +7,19 @@
 
     .row
       .col-lg-4
-      .col-lg-4.text-center
+      .col-lg-4
         .frame-follow
           - if @followings.present?
             - @followings.each do |user|
               ul
-                li.d-inline.col-lg-4= attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x50"
-                .d-inline.text-left.col-lg-8= link_to user.name, user_path(user)
+                li.d-inline.ml-4.text-center= attachment_image_tag user, :image, format: 'jpeg', fallback: "noimage.png", size: "60x50"
+                .d-inline.text-left.ml-4= link_to user.name, user_path(user)
               <br>
           -else
-            p まだフォローしていません。
+            p.text-center まだフォローしていません。
             <br>
           - if @user == current_user
-            = link_to users_path do
+            .text-center= link_to users_path do
               i.fas.fa-users
               |  仲間を探す
   .pb-5

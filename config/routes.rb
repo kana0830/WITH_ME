@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    resources :gelandes, except: [:destroy]
+    resources :gelandes, except: [:destroy] do
+      collection { post :import }
+    end
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :destroy]
     resources :reviews, only: [:index, :destroy]
@@ -36,14 +38,20 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]
+    collection do
+      get 'autocomplete'
+    end
   end
   resources :gelandes, only: [:index, :show] do
     resources :reviews, only: [:create, :index, :destroy]
   end
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :index, :show]
-  resources :notifications, only: :index
-  delete 'notifications/destroy_all', to: 'notifications#destroy_all', as: 'notifications_destroy_all'
+  resources :notifications, only: [:index] do
+    collection do
+      delete 'destroy_all', to: 'notifications#destroy_all'
+    end
+  end
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
@@ -52,4 +60,5 @@ Rails.application.routes.draw do
   get 'inquiry/index'
   post 'inquiry/confirm'
   post 'inquiry/thanks'
+
 end

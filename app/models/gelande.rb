@@ -13,4 +13,17 @@ class Gelande < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      gelande = find_by(id: row["id"]) || new
+      gelande.attributes = row.to_hash.slice(*updatable_attributes)
+      gelande.save!
+    end
+  end
+  
+  def self.updatable_attributes
+    ["id", "name", "count", "slope", "distance", "postal", "address", "tel", "hp", "introduction"]
+  end
+
 end

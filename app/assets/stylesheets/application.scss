@@ -88,7 +88,10 @@ input, select, textarea{
   color: #494949;
   }
 
-
+// rende時のレイアウト崩れ防止
+.field_with_errors {
+  display: contents;
+}
 
 
 // ヘッダー

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :viewer
+  before_action :authenticate_user!
 
   def index
     @q = Post.ransack(params[:q])
@@ -50,11 +50,17 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def autocomplete
+    all_tags = Post.tag_counts_on(:tags) #全てのタグを取得
+    tags_name = all_tags.where('name LIKE(?)', "#{params[:term]}%").pluck(:name) #tagsテーブルのnameカラムを前方一致で取得
+    render json: tags_name.to_json #前方一致で取得した値をjsonにする
+  end
+
 
   private
-
     def task_params
       params.require(:post).permit(:title, :post, :tag_list) 
       #tag_list を追加
     end
+
 end

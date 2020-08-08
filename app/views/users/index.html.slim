@@ -13,7 +13,7 @@
           h6.text-center 仲間を探す
           <br>
 
-          / ゲレンデ名検索
+          / ゲレンデ検索
           = search_form_for @q do |f|
             small= f.label :name_or_gender_or_address_or_age_or_introduction, "キーワード"
             <br>
@@ -48,7 +48,7 @@
             small.d-inline 指定なし　
             = f.radio_button :gender_eq, 0
             small.d-inline 男性　
-            = f.radio_button :gender_eq, 11
+            = f.radio_button :gender_eq, 1
             small.d-inline 女性
             <br><br>
 

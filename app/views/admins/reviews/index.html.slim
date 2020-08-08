@@ -9,6 +9,7 @@
             thead.thead-light
               tr
                 th= sort_link(@q, :id, "ID")
+                th= sort_link(@q, :created_at, "投稿日時")
                 th= sort_link(@q, :name, "ゲレンデ")
                 th= sort_link(@q, :title, "タイトル")
                 th= sort_link(@q, :star, "星")
@@ -19,10 +20,11 @@
               - @reviews.each do |review|
                 tr.position-relative
                   td.text-center style="width:50px;"= review.id
+                  td= review.created_at.to_s(:datetime_jp)
                   td= review.gelande.name
                   td= review.title
-                  td.text-center id='star-rate-#{review.id}'
-                  td style="width:480px;"= review.review
+                  td.text-center id='star-rate-#{review.id}' style="width:150px;"
+                  td style="width:380px;"= review.review
                   td= link_to '削除', admins_review_path(review), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
 
                   / 星評価

@@ -2,8 +2,6 @@
   div id="review-#{review.id}"
     .frame-review-show.float-left.m-2
       .m-0.d-inline= review.title
-      .d-inline-block= link_to gelande_review_path(review.gelande, review), method: :delete, remote: true, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0 ml-3 text-danger" do
-        i.far.fa-trash-alt
       <br>
       
       .d-inline-block id='star-rate-#{review.id}'

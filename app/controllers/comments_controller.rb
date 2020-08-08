@@ -12,7 +12,8 @@ class CommentsController < ApplicationController
     else
       @post = Post.find(params[:post_id])
       @comments = @post.comments.all
-      render 'posts/show'
+      render :create
+      # render 'posts/show'
     end
   end
 

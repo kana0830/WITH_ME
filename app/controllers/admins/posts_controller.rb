@@ -6,12 +6,10 @@ class Admins::PostsController < ApplicationController
     @posts = @q.result(distinct: true)
   end
 
-  def show
-  end
-
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to admins_posts_path
   end
+
 end

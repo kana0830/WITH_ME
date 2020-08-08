@@ -38,4 +38,17 @@
                 .text-center
                   = attachment_image_tag gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "180x120", class: "text-center"
                   .pt-4.en.text-center= gelande.name
+                  div id="star-average-#{gelande.id}"
+
+                  / 星評価
+                  javascript:
+                    $("#star-average-#{gelande.id}").raty({
+                      size: 36,
+                      starOff: "#{asset_path('star-off.png')}",
+                      starOn: "#{asset_path('star-on.png')}",
+                      starHalf: "#{asset_path('star-half.png')}",
+                      half: true,
+                      readOnly: true,
+                      score: "#{gelande.reviews.average(:star).to_f.round(1)}",
+                    });
   .pb-5

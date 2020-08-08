@@ -153,8 +153,21 @@ function buildHTML(data, i) {
   });
 
 
+
+
 // DMページ最下部移動
 $(function(){
   var targetOffset = $('#down').offset().top;
   $('html,body').animate({scrollTop: targetOffset}, "slow");
   });
+
+
+
+// タグサジェスト機能
+$(document).on('turbolinks:load', function(){
+  $(".field").autocomplete({
+    source: "/posts/autocomplete", //サジェストで表示させる値の取得先
+    autoFocus: true, //取得した値（サジェストの候補）に自動でフォーカスする
+    minLength: 1 //1文字入力すればサジェスト機能が動くようにする
+  })
+});

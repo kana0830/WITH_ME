@@ -13,6 +13,8 @@ html
     link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet"
     = include_gon
     = javascript_include_tag "application"
+    = analytics_init if Rails.env.production?
+
 
 
   body

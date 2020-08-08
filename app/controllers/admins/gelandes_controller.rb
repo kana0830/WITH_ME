@@ -38,6 +38,10 @@ class Admins::GelandesController < ApplicationController
     end
   end
 
+  def import
+    Gelande.import(params[:file])
+    redirect_to admins_gelandes_path
+  end
 
   private
   def gelande_params

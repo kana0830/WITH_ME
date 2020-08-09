@@ -1,0 +1,6 @@
+- if page.current?
+  li.page-item.active.text-center
+    = content_tag :a, page, data: { remote: remote }, rel: page.rel, class: 'page-link'
+- else
+  li.page-item.text-center
+    = link_to page, url, remote: remote, rel: page.rel, class: 'page-link'

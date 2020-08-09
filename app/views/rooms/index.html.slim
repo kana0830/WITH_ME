@@ -11,11 +11,12 @@
         - if @rooms.present?
           - @rooms.each do |room|
             .frame-room-index
+              if 
               .dm_list__content
                 = link_to room_path(room), class: "dm_list__content__link link" do
                   .dm_list__content__link__box.dm_list__content__link__box__name.font-weight-bold.d-inline.mr-3= opponent_user(room)
                   small.dm_list__content__link__box__message.d-inline= most_new_message_preview(room)
-        
+      
         -else
           .text-center.frame-notification
             p まだメッセージの交換はありません。

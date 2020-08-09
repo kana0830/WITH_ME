@@ -23,6 +23,11 @@ class RoomsController < ApplicationController
     end
   end
 
+  def following
+    @user = User.find(params[:user_id])
+    @followings = @user.following_user
+  end
+
   private
   def entry_params
     params.require(:entry).permit(:user_id, :room_id)

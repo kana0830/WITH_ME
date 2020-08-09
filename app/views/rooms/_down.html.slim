@@ -1,0 +1,6 @@
+// DMページ最下部移動
+javascript:
+  $(function(){
+    var targetOffset = $('#down').offset().top;
+    $('html,body').animate({scrollTop: targetOffset}, "slow");
+    });

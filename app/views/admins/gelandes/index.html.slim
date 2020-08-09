@@ -22,7 +22,8 @@
                   td.stretched-link= gelande.name
                   td= gelande.is_active ? "有効" : "無効"
 
-          = paginate @gelandes
+          .pagination.text-center
+            = paginate @gelandes
           <hr>
           .text-right= form_tag import_admins_gelandes_path, multipart: true do
             .d-inline.mb-5= file_field_tag :file

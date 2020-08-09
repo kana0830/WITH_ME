@@ -33,29 +33,5 @@
 
 
     / / コメント一覧表示
-    / .row
-    /   .col-lg-4
-    /   .col-lg-4
     #comment-text
       = render 'comments/comment', comments: @comments, post: @post
-    / .mb-5
-    
-  /   / コメントフォーム
-  /   .row
-  /     .col-lg-3
-  /     .col-lg-6.text-center
-  /       .frame-post-show
-  /         = form_with(model: [@post, @comment]) do |f|
-
-  /           / エラーメッセージ
-  /           = render 'users/shared/error_messages', resource: f.object 
-
-  /           / コメント文
-  /           = f.label :comment, class: "font-weight-bold col-lg-3 text-center"
-  /           <br>
-  /           = f.text_area :comment, :size=>"50x5"
-  /           <br>
-
-  /           .text-center= f.submit "投稿", class: "btn btn-outline-secondary btn-sm"
-        
-  / .pb-5

@@ -87,6 +87,7 @@ gem 'select2-rails'
 gem 'lazy_high_charts'
 gem 'jquery-ui-rails'
 gem 'roo'
+gem 'kaminari'
 group :production do
   gem 'mysql2'
 end

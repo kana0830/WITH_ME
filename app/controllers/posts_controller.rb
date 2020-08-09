@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).order(updated_at: :desc)
+    @posts = @q.result(distinct: true).order(updated_at: :desc).page(params[:page]).per(6)
     @user = current_user
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")
@@ -60,7 +60,6 @@ class PostsController < ApplicationController
   private
     def task_params
       params.require(:post).permit(:title, :post, :tag_list) 
-      #tag_list を追加
     end
 
 end

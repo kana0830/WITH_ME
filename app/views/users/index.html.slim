@@ -13,11 +13,11 @@
           h6.text-center 仲間を探す
           <br>
 
-          / ゲレンデ検索
           = search_form_for @q do |f|
-            small= f.label :name_or_gender_or_address_or_age_or_introduction, "キーワード"
+            / キーワード検索
+            small= f.label :name_or_address_or_age_or_introduction, "キーワード"
             <br>
-            small= f.search_field :name_or_gender_or_address_or_age_or_introduction_cont
+            small= f.search_field :name_or_address_or_age_or_introduction_cont
             <br><br>
 
             / 年齢検索
@@ -75,6 +75,8 @@
                 - user.favorites.each do |favorite|
                   small
                     li.text-left.mt-2= favorite.gelande.name
+
+          .text-center= paginate @users
 
   .pb-5
 

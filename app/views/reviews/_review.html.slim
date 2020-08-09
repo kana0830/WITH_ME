@@ -8,15 +8,4 @@
       |　
       = review.star
       p.mt-2= review.review
-
-      / 星評価
-      javascript:
-        $("#star-rate-#{review.id}").raty({
-          size: 36,
-          starOff: "#{asset_path('star-off.png')}",
-          starOn: "#{asset_path('star-on.png')}",
-          starHalf: "#{asset_path('star-half.png')}",
-          half: true,
-          readOnly: true,
-          score: "#{review.star}",
-        });
+      = render 'gelandes/star-rate', review: review

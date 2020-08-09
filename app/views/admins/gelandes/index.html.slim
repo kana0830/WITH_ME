@@ -11,7 +11,6 @@
           table.table.table-clickable.table-hover
             thead.thead-light
               tr
-                th= sort_link(@q, :id, "ID")
                 th= sort_link(@q, :image, "画像")
                 th= sort_link(@q, :name, "ゲレンデ名")
                 th= sort_link(@q, :is_active, "ステータス")
@@ -19,15 +18,17 @@
             tbody
               - @gelandes.each do |gelande|
                 tr.position-relative data-href= "#{admins_gelande_path(gelande)}"
-                  td= gelande.id
                   td= attachment_image_tag gelande, :image, fallback: 'noimage.png', size: "70x40"
                   td.stretched-link= gelande.name
                   td= gelande.is_active ? "有効" : "無効"
+
+          = paginate @gelandes
           <hr>
           .text-right= form_tag import_admins_gelandes_path, multipart: true do
             .d-inline.mb-5= file_field_tag :file
             .text-right.d-inline= submit_tag "インポート", class: 'btn btn-outline-secondary btn-sm'
             <hr>
             .d-block= link_to 'CSVエクスポート', admins_gelandes_path(format: :csv), class: 'btn btn-outline-secondary btn-sm'
+
 .mb-5
             

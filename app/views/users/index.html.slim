@@ -13,6 +13,9 @@
           h6.text-center 仲間を探す
           <br>
 
+          .small= link_to '検索条件クリア', request.path, class: "btn btn-outline-secondary btn-sm m-0"
+          <br>
+
           = search_form_for @q do |f|
             / キーワード検索
             small= f.label :name_or_address_or_age_or_introduction, "キーワード"

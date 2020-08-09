@@ -17,7 +17,7 @@ class Admins::GelandesController < ApplicationController
 
   def index
     @q = Gelande.ransack(params[:q])
-    @gelandes = @q.result(distinct: true)
+    @gelandes = @q.result(distinct: true).page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.csv do |csv|

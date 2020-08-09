@@ -8,7 +8,6 @@
           table.table
             thead.thead-light
               tr
-                th= sort_link(@q, :id, "ID")
                 th= sort_link(@q, :created_at, "投稿日時")
                 th= sort_link(@q, :name, "ゲレンデ")
                 th= sort_link(@q, :title, "タイトル")
@@ -19,7 +18,6 @@
             tbody.text-left
               - @reviews.each do |review|
                 tr.position-relative
-                  td.text-center style="width:50px;"= review.id
                   td= review.created_at.to_s(:datetime_jp)
                   td= review.gelande.name
                   td= review.title
@@ -38,4 +36,6 @@
                       readOnly: true,
                       score: "#{review.star}",
                     });
+
+            = paginate @reviews
 .mb-5

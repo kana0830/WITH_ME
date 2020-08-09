@@ -38,6 +38,7 @@
 
         / DM送信フォーム
         .row id="down"
+          = render 'rooms/down'
           .col-lg-2
           .col-lg-8.text-center
             = form_with model: @message, local: true do |f|

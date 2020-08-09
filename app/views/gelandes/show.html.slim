@@ -13,24 +13,12 @@
             - if @reviews.present?
               .back-star
                 small id="star-average"
+                = render 'gelandes/star_average'
                 small.font-weight-bold.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
         = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: "image-frame"
         <br>
         .mt-5.mb-5.text-left.frame-gelande-introduction= @gelande.introduction
         <br>
-        
-
-          / 星評価
-          javascript:
-            $("#star-average").raty({
-              size: 36,
-              starOff: "#{asset_path('star-off.png')}",
-              starOn: "#{asset_path('star-on.png')}",
-              starHalf: "#{asset_path('star-half.png')}",
-              half: true,
-              readOnly: true,
-              score: "#{@gelande.reviews.average(:star).to_f.round(1)}",
-            });
 
 
     .row
@@ -90,21 +78,9 @@
             .frame-review-index.float-left.mr-2
               .m-0= review.title
               .d-inline-block id='star-rate-#{review.id}'
+              = render 'gelandes/star-rate', review: review
               = review.star
               p.mt-2= review.review
-
-
-              / 星評価
-              javascript:
-                $("#star-rate-#{review.id}").raty({
-                  size: 36,
-                  starOff: "#{asset_path('star-off.png')}",
-                  starOn: "#{asset_path('star-on.png')}",
-                  starHalf: "#{asset_path('star-half.png')}",
-                  half: true,
-                  readOnly: true,
-                  score: "#{review.star}",
-                });
 
           / 口コミ詳細ページリンク
           small
@@ -117,5 +93,3 @@
               p.text-center.mt-5.white 口コミはまだありません。
           
   .pb-5
-
-  #hoge hoge

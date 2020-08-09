@@ -9,6 +9,8 @@
     .row
       .col-lg-3
         .search.text-center
+          .small.text-left= link_to '検索条件クリア', request.path, class: "btn btn-outline-secondary btn-sm m-0"
+          <br>
           = search_form_for @q do |f|
             p= f.label :title_or_post, "キーワード検索"
             = f.search_field :title_or_post_cont

@@ -51,4 +51,6 @@
                       readOnly: true,
                       score: "#{gelande.reviews.average(:star).to_f.round(1)}",
                     });
+
+        = paginate @gelandes
   .pb-5

@@ -4,12 +4,12 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).order(updated_at: :desc)
+    @users = @q.result(distinct: true).order(updated_at: :desc).page(params[:page]).per(9)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.all
+    @posts = @user.posts.all.page(params[:page]).per(9)
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     if @user.id != current_user.id

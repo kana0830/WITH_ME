@@ -4,9 +4,7 @@
     .col-lg-8.text-center
       h3.title ゲレンデ一覧
       .text-right= link_to "新規登録", new_admins_gelande_path, class: "btn btn-outline-secondary btn-sm mb-2"
-      = form_tag import_admins_gelandes_path, multipart: true do
-        = file_field_tag :file
-        .text-right= submit_tag "インポート", class: 'btn btn-outline-secondary btn-sm'
+
 
       .row
         .col-lg-12
@@ -25,5 +23,11 @@
                   td= attachment_image_tag gelande, :image, fallback: 'noimage.png', size: "70x40"
                   td.stretched-link= gelande.name
                   td= gelande.is_active ? "有効" : "無効"
+          <hr>
+          .text-right= form_tag import_admins_gelandes_path, multipart: true do
+            .d-inline.mb-5= file_field_tag :file
+            .text-right.d-inline= submit_tag "インポート", class: 'btn btn-outline-secondary btn-sm'
+            <hr>
+            .d-block= link_to 'CSVエクスポート', admins_gelandes_path(format: :csv), class: 'btn btn-outline-secondary btn-sm'
 .mb-5
             

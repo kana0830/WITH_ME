@@ -3,7 +3,8 @@ class GelandesController < ApplicationController
 
   def index
     @q = Gelande.where(is_active: "true").ransack(params[:q])
-    @gelandes = @q.result(distinct: true).shuffle
+    @gelandes = @q.result(distinct: true).page(params[:page]).per(12)
+    # @gelande_kaminari = Gelande.page(params[:page]).per(5)
   end
 
   def show

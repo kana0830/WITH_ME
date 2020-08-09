@@ -22,7 +22,7 @@
             .text-left.col-lg-11
               .frame-post-index
                 = link_to post_path(post), class:"link" do
-                = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x30", class: ""
+                = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x30", class: "mb-2"
                 = post.user.name
                 <br>
                 = post.title
@@ -31,6 +31,7 @@
                 <br>
                 small.m-0= post.created_at.to_s(:datetime_jp)
                 <br>
-                .mt-4= post.post
+                .mt-2= post.post
             <br>
+          = paginate @posts
   .pb-5

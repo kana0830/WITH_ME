@@ -25,7 +25,7 @@
               .frame-post-index
                 = link_to post_path(post), class:"link" do
                 = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x30", class: "mb-2 mr-2"
-                = post.user.name
+                small= post.user.name
                 <br>
                 = post.title
                 |　
@@ -33,7 +33,7 @@
                 <br>
                 small.m-0= post.created_at.to_s(:datetime_jp)
                 <br>
-                .mt-2= post.post
+                small.mt-2= post.post
             <br>
           
           .pagination.text-center

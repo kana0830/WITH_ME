@@ -7,7 +7,7 @@
         / 投稿内容
         .frame-post-show.text-left.mt-5
           = attachment_image_tag @post.user, :image, fallback: 'noimage.png', size: "70x60", class: "mb-3"
-          .m-3.d-inline= link_to @post.user.name, user_path(@post.user)
+          .m-2.d-inline= link_to @post.user.name, user_path(@post.user)
           <br>
           = @post.title
           |　

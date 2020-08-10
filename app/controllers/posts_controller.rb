@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @posts = @q.result(distinct: true).order(updated_at: :desc).page(params[:page]).per(6)
     @user = current_user
     if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}")
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(6)
     end
   end
 

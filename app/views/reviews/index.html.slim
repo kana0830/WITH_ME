@@ -14,44 +14,44 @@
         text-center
           h5.text-center.m-4.font-weight-bold.white.subtitle 口コミ一覧
 
-    .row
-      .col-lg-2
-      .col-lg-8.ml-3
-        - if @reviews.present?
-          #review-text
-            = render 'reviews/review', reviews: @reviews
+    / .row
+    /   .col-lg-2
+    /   .col-lg-8.ml-3
+    /     - if @reviews.present?
+    #review-text
+      = render 'reviews/review', reviews: @reviews
           
-        - else
-          p.text-center.mt-5 口コミはまだありません。
+      /   - else
+      /     p.text-center.mt-5 口コミはまだありません。
 
-    / 口コミ投稿フォーム
-    .row
-      .col-lg-3
-      .col-lg-6.frame-post-show
-        h5.text-center.font-weight-bold.pb-4 口コミ投稿
-        = form_with(model: [@gelande, @review ]) do |f|
+    / / 口コミ投稿フォーム
+    / .row
+    /   .col-lg-3
+    /   .col-lg-6.frame-post-show
+    /     h5.text-center.font-weight-bold.pb-4 口コミ投稿
+    /     = form_with(model: [@gelande, @review ]) do |f|
 
-          / エラーメッセージ
-          = render 'users/shared/error_messages', resource: f.object 
+    /       / エラーメッセージ
+    /       = render 'users/shared/error_messages', resource: f.object 
 
-          / タイトル
-          = f.label :title, class: "col-lg-3 ml-5"
-          = f.text_field :title, class: "col-lg-6"
+    /       / タイトル
+    /       = f.label :title, class: "col-lg-3 ml-5"
+    /       = f.text_field :title, class: "col-lg-6"
           
-          / 星
-          #star
-            = f.label :star, class: "col-lg-3 ml-5"
-            = f.hidden_field :star, id: :review_star, class: "col-lg-6"
-            = render 'reviews/star'
+    /       / 星
+    /       #star
+    /         = f.label :star, class: "col-lg-3 ml-5"
+    /         = f.hidden_field :star, id: :review_star, class: "col-lg-6"
+    /         = render 'reviews/star'
 
-          / 口コミ本文
-          = f.label :review, class: "col-lg-3 ml-5"
-          = f.text_area :review, :size=>"57x5", class: "col-lg-6"
+    /       / 口コミ本文
+    /       = f.label :review, class: "col-lg-3 ml-5"
+    /       = f.text_area :review, :size=>"57x5", class: "col-lg-6"
 
-          .text-center= f.submit "投稿", class: "btn btn-outline-secondary btn-sm"
+    /       .text-center= f.submit "投稿", class: "btn btn-outline-secondary btn-sm"
 
 
-  .pb-5
+  / .pb-5
 
 
 

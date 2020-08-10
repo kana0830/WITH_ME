@@ -25,17 +25,7 @@
                   td style="width:380px;"= review.review
                   td= link_to '削除', admins_review_path(review), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
 
-                  / 星評価
-                  javascript:
-                    $("#star-rate-#{review.id}").raty({
-                      size: 36,
-                      starOff: "#{asset_path('star-off.png')}",
-                      starOn: "#{asset_path('star-on.png')}",
-                      starHalf: "#{asset_path('star-half.png')}",
-                      half: true,
-                      readOnly: true,
-                      score: "#{review.star}",
-                    });
+                  = render 'admins/reviews/star_rate', review: review
 
             .pagination.text-center
               = paginate @reviews

@@ -24,7 +24,7 @@
             .text-left.col-lg-11
               .frame-post-index
                 = link_to post_path(post), class:"link" do
-                = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x30", class: "mb-2"
+                = attachment_image_tag post.user, :image, format: 'jpeg', fallback: "noimage.png", size: "40x30", class: "mb-2 mr-2"
                 = post.user.name
                 <br>
                 = post.title

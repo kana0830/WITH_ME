@@ -13,11 +13,12 @@ class ReviewsController < ApplicationController
     @reviews = @gelande.reviews.all
     if @review.save
       flash[:notice] = '口コミを投稿しました'
+      @review = @gelande.reviews.new(review_params)
       render :create
     else
       @gelande = Gelande.find_by(id: params[:gelande_id])
       @reviews = @gelande.reviews.all
-      render 'index'
+      render :create
     end
   end
 

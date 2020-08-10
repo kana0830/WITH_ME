@@ -63,22 +63,22 @@
         .row.
           - @users.each do |user|
             .col-lg-4
-              .row.frame-user-index.ml-3
-                = link_to user_path(user), class:"link" do
-                .mb-3= attachment_image_tag user, :image, fallback: 'noimage.png', size: "70x60"
-                .mt-3.ml-2= user.name
-                <br>
-                small.text-center
+              .frame-user-index.ml-3
+                .row
+                  = link_to user_path(user), class:"link" do
+                  .mb-3= attachment_image_tag user, :image, fallback: 'noimage.png', size: "70x60"
+                  .mt-3.ml-2= user.name
+                small.row
                   = user.gender
                   | 　
                   - if user.age != nil
                     = "#{user.age}歳"
                     | 　
                   = user.address
-                  <br>
-                - user.favorites.each do |favorite|
-                  small
-                    li.text-left.mt-2= favorite.gelande.name
+                .row
+                  - user.favorites.each do |favorite|
+                    small
+                      li.text-left.mt-2= favorite.gelande.name
 
           .pagination.text-center
             = paginate @users

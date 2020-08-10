@@ -195,3 +195,13 @@ footer{
   width: 35%;
 }
 
+
+/*ページネーション自体のデザイン*/
+.paginate>li>a {          
+  color: #696969;   /*文字の色を変える*/
+}
+
+.paginate{
+  margin: 0 auto;
+  width: 50%;
+}

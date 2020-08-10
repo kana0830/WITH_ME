@@ -22,7 +22,7 @@
                   td.stretched-link= gelande.name
                   td= gelande.is_active ? "有効" : "無効"
 
-          .pagination.text-center
+          .paginate.text-center
             = paginate @gelandes
           <hr>
           .text-right= form_tag import_admins_gelandes_path, multipart: true do

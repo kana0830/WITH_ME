@@ -67,6 +67,7 @@
                 = link_to user_path(user), class:"link" do
                 .mb-3= attachment_image_tag user, :image, fallback: 'noimage.png', size: "70x60"
                 .mt-3.ml-2= user.name
+                <br>
                 small.text-center
                   = user.gender
                   | 　

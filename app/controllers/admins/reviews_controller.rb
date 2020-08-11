@@ -5,4 +5,10 @@ class Admins::ReviewsController < ApplicationController
     @q = Review.ransack(params[:q])
     @reviews = @q.result(distinct: true).page(params[:page]).per(10)
   end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_back(fallback_location: root_path)
+  end
 end

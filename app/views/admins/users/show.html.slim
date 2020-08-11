@@ -9,20 +9,21 @@
             .row
               .col-lg-5.text-left
                 .col-lg-3.float-left 会員ID
-                .col-lg-2.float-left= @user.id
-                <br><br>
+                .col-lg-9= @user.id
+                <br>
 
-                .col-lg-4.float-left 名前
-                .col-lg-8= @user.name
+                .col-lg-3.float-left 名前
+                .col-lg-9= @user.name
                 <br>
 
                 .col-lg-3.float-left 画像
-                .col-lg-9.float-left= attachment_image_tag @user, :image, fallback: 'noimage.png', size: "150x100"
-                <br><br><br><br><br>
+                .col-lg-9.float-left.mb-3= attachment_image_tag @user, :image, fallback: 'noimage.png', size: "150x100"
 
-                .col-lg-3.float-left 自己紹介
-                .col-lg-9.float-left= @user.introduction
-                <br><br><br>
+                .col-lg-3.float-left.mb-5 自己紹介
+                - if @user.introduction.present?
+                  .col-lg-9.float-left= @user.introduction
+                - else
+                  .col-lg-9 未登録
                 
 
 
@@ -33,26 +34,41 @@
                 <br>
 
                 .col-lg-4.float-left 性別
-                .col-lg-8= @user.gender
+                - if @user.gender.present?
+                  .col-lg-8= @user.gender
+                - else
+                  .col-lg-8 未登録
                 <br>
 
                 .col-lg-4.float-left 住所
-                .col-lg-8= @user.address
+                - if @user.address.present?
+                  .col-lg-8= @user.address
+                - else
+                  .col-lg-8 未登録
                 <br>
 
                 .col-lg-4.float-left 年齢
-                .col-lg-8= @user.age
+                - if @user.age.present?
+                  .col-lg-8= @user.age
+                - else
+                  .col-lg-8 未登録
                 <br>
 
                 .col-lg-4.float-left お気に入りゲレンデ
-                .col-lg-8.float-left
-                  table
-                    tbody
-                      - @user.favorites.each do |favorite|
-                        tr
-                          td <hr>
-                          td
-                            li.link-border= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
+                - if @user.favorites.present?
+                  .col-lg-8.float-left
+                    table
+                      tbody
+                        - @user.favorites.each do |favorite|
+                          tr
+                            td <hr>
+                            td
+                              - if favorite.gelande.is_active?
+                                li.link-border= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
+                              - else
+                                li style="color:#494949;" = favorite.gelande.name
+                - else
+                  .col-lg-8 未登録
                   <br>
 
           

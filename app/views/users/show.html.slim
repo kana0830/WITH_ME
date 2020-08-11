@@ -80,7 +80,10 @@
             - @user.favorites.each do |favorite|
               .favorite-gelande
                 ul
-                  li.font-weight-normal= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
+                  - if favorite.gelande.is_active?
+                    li.font-weight-normal= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
+                  - else
+                    li= favorite.gelande.name
         <hr><br>
 
 

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  # before_action :check_guest, only: %i[update destroy]
+  before_action :check_guest, only: %i[update destroy]
 
   def index
     @q = User.ransack(params[:q])

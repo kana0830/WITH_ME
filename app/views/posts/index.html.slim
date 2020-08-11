@@ -33,7 +33,19 @@
                 <br>
                 small.m-0= post.created_at.to_s(:datetime_jp)
                 <br>
-                small.mt-2= post.post
+                small
+                  .mt-2= post.post
+                  .text-right
+                    - if post.likes.count == 0
+                      i.far.fa-heart
+                    - else 
+                      i.fas.fa-heart
+                    = "#{post.likes.count}　"
+                    - if post.comments.count == 0
+                      i.far.fa-comment-alt
+                    - else
+                      i.fas.fa-comment-alt
+                    = post.comments.count
             <br>
           
           .pagination.text-center

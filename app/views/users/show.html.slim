@@ -23,8 +23,8 @@
             |　
             
             / 編集ページ
-            / - if @user == current_user
-            = link_to edit_user_path, class: 'btn btn-outline-secondary btn-sm m-0' do
+            - if @user == current_user
+              = link_to edit_user_path, class: 'btn btn-outline-secondary btn-sm m-0' do
                 i.fas.fa-edit
             <br><br>
 

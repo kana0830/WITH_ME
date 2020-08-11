@@ -122,7 +122,8 @@
           .col-lg-10
             h5.font-weight-bold.d-inline 投稿一覧
           .col-lg-2
-            .d-inline= link_to "投稿", new_post_path, class: 'btn btn-outline-secondary btn-sm m-0'
+            .d-inline= link_to new_post_path, class: 'btn btn-outline-secondary btn-sm m-0' do
+              i.fas.fa-comment-dots  新規投稿
             <br><br><br>
 
         - @posts.each do |post|

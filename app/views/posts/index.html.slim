@@ -4,6 +4,9 @@
       .col-lg-4
       .col-lg-4.text-center
         h3.title.post-caption みんなの投稿
+      .col-lg-4
+        .text-right.new-post= link_to new_post_path, class: 'btn btn-light m-0' do
+          i.fas.fa-comment-dots  新規投稿
 
     / 投稿検索
     .row
@@ -16,6 +19,7 @@
             = f.search_field :title_or_post_cont
             <br><br>
             = f.submit "検索", class: "btn btn-outline-secondary btn-sm m-0"
+        
 
       / 投稿一覧
       .col-lg-9.pl-5

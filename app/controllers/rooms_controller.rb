@@ -9,7 +9,7 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @rooms = current_user.rooms
+    @rooms = current_user.rooms.order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def show

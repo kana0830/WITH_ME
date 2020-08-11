@@ -6,14 +6,15 @@
 
         / 上部ゲレンデ紹介
         .row
-          .col-lg-4
-          .col-lg-4.mt-5.mb-5
+          .col-lg-3
+          .col-lg-6.mt-5.mb-5
             h3.en.d-inline.gelande-caption= @gelande.name
-          .col-lg-4.text-left.mt-5.mb-5
+          .col-lg-3.text-left.mt-5.mb-5
             - if @reviews.present?
               .back-star
                 small id="star-average"
                 = render 'gelandes/star_average'
+                <br>
                 small.font-weight-bold.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
         = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: "image-frame"
         <br>

@@ -15,10 +15,10 @@
                 small id="star-average"
                 = render 'gelandes/star_average'
                 <br>
-                small.font-weight-bold.ml-3= "口コミ #{@gelande.reviews.average(:star).to_f.round(1)}"
+                small.font-weight-bold.ml-3= "クチコミ #{@gelande.reviews.average(:star).to_f.round(1)}"
         = attachment_image_tag @gelande, :image, format: 'jpeg', fallback: "noimage.png", size: "550x320", class: "image-frame"
         <br>
-        .mt-5.mb-5.text-left.frame-gelande-introduction= @gelande.introduction
+        .mt-5.mb-3.text-left.frame-gelande-introduction= @gelande.introduction
         <br>
 
 
@@ -70,11 +70,11 @@
         .row
           .col-lg-4
           .col-lg-4
-            h5.text-center.m-3.font-weight-bold.white.subtitle 口コミ
-          .col-lg-4.text-right.mt-3.link-white= link_to "口コミを投稿する", gelande_reviews_path(@gelande)
+            h5.text-center.m-3.font-weight-bold.white.subtitle クチコミ
+          .col-lg-4.text-right.mt-3.link-white= link_to "クチコミを投稿する", gelande_reviews_path(@gelande)
 
         - if @reviews.present?
-          / 口コミランダム表示
+          / クチコミランダム表示
           - @reviews.shuffle.first(3).each do |review|
             .frame-review-index.float-left.mr-2
               .m-0= review.title
@@ -83,7 +83,7 @@
               = review.star
               p.mt-2= review.review
 
-          / 口コミ詳細ページリンク
+          / クチコミ詳細ページリンク
           small
             - if @reviews.count >= 4
               .more.link-white= link_to "もっと見る", gelande_reviews_path(@gelande)
@@ -91,6 +91,6 @@
         - else
           .row
             .col-lg-12
-              p.text-center.mt-5.white 口コミはまだありません。
+              p.text-center.mt-5.white クチコミはまだありません。
           
   .pb-5

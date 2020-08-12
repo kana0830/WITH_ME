@@ -21,6 +21,6 @@
                   td= post.post
                   td= link_to '削除', admins_post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm m-0"
 
-            .paginate.text-center
-              = paginate @posts
+        .paginate.text-center
+          = paginate @posts
 .mb-5

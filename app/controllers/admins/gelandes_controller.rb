@@ -17,7 +17,7 @@ class Admins::GelandesController < ApplicationController
 
   def index
     @q = Gelande.ransack(params[:q])
-    @gelandes = @q.result(distinct: true).page(params[:page]).per(10)
+    @gelandes = @q.result(distinct: true).page(params[:page]).per(20)
     respond_to do |format|
       format.html
       format.csv do |csv|
@@ -44,11 +44,13 @@ class Admins::GelandesController < ApplicationController
     end
   end
 
+  # CSVインポート
   def import
     Gelande.import(params[:file])
     redirect_to admins_gelandes_path
   end
 
+  # CSVエクスポート
   def send_users_csv(gelandes)
     csv_data = CSV.generate do |csv|
       header = %w(id name count slope distance postal address tel hp introduction)
@@ -60,6 +62,7 @@ class Admins::GelandesController < ApplicationController
     end
     send_data(csv_data, filename: 'ゲレンデ一覧情報')
   end
+
 
   private
   def gelande_params

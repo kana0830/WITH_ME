@@ -88,6 +88,7 @@ gem 'lazy_high_charts'
 gem 'jquery-ui-rails'
 gem 'roo'
 gem 'kaminari'
+gem 'simple_calendar', '~> 2.0'
 group :production do
   gem 'mysql2'
 end

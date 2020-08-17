@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       delete 'destroy_all', to: 'notifications#destroy_all'
     end
   end
+  resources :gelandes, except: [:new, :index]
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'

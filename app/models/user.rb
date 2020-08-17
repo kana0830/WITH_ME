@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :gelandes, through: :favorites
+  has_many :schedules, dependent: :destroy
 
   # DM
   has_many :messages, dependent: :destroy

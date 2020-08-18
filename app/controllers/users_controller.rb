@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     @posts = @user.posts.all.page(params[:page]).per(9)
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
+    @schedules = current_user.schedules
+    @schedule = current_user.schedules.new
     if @user.id != current_user.id
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|

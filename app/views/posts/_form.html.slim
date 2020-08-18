@@ -12,14 +12,14 @@
         = f.text_field :tag_list, value: post.tag_list.join(','), :placeholder => "カンマ(,)区切りで複数入力可能" , class: "col-lg-8 field"
 
         / 投稿文
-        = f.label :post, class: "col-lg-3 text-center "
+        = f.label :post, class: "col-lg-3 text-center align-top"
         = f.text_area :post, :size=>"57x5", class: "col-lg-8"
         <br>
 
         / 新規登録の場合
         - if post.new_record?
-          .text-center= f.submit "登録する", class: "btn btn-outline-secondary btn-sm"
+          .text-center= f.submit "登録", class: "btn btn-outline-secondary btn-sm"
 
         / 編集更新の場合
         - else
-          .text-center= f.submit "更新する", class: "btn btn-outline-secondary btn-sm"
+          .text-center= f.submit "更新", class: "btn btn-outline-secondary btn-sm"

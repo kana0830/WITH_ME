@@ -118,7 +118,7 @@
       .col-lg-2
       .col-lg-8.frame-user-show.text-center
         #calender
-          p.text-center カレンダー
+          p.text-center ★滑走予定や記録を共有してね★
           - if @user == current_user 
             .text-right= link_to '予定を登録する', new_schedule_path, class: 'btn btn-outline-secondary btn-sm m-0'
           = month_calendar events: @schedules do |date, schedules|

@@ -2,7 +2,7 @@
   .row
     .col-lg-4
     .col-lg-4.frame-user-show
-      .text-right= link_to 'カレンダーに戻る', user_path(anchor: 'calender'), class: "btn btn-outline-secondary btn-sm"
+      .text-right= link_to 'カレンダーに戻る', user_path(@schedule.user_id, anchor: 'calender'), class: "btn btn-outline-secondary btn-sm"
       p.text-center= @schedule.title
       table.table.table-bordered.table-sm
         tr

@@ -45,6 +45,7 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
   gem 'rspec-rails'
+  gem 'factory_bot_rails', '~> 4.11'
 end
 
 group :development do
@@ -88,6 +89,7 @@ gem 'lazy_high_charts'
 gem 'jquery-ui-rails'
 gem 'roo'
 gem 'kaminari'
+gem 'simple_calendar', '~> 2.0'
 group :production do
   gem 'mysql2'
 end

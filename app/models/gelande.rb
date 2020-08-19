@@ -4,6 +4,7 @@ class Gelande < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
+  has_many :schedules, dependent: :destroy
 
   validates :postal, presence: true
   validates :address, presence: true

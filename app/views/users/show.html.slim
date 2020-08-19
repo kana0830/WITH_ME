@@ -113,6 +113,18 @@
             = @user.introduction
     <br>
 
+    / カレンダー
+    .row
+      .col-lg-2
+      .col-lg-8.frame-user-show.text-center
+        #calender
+          p.text-center カレンダー
+          .text-right= link_to '予定を登録する', new_schedule_path, class: 'btn btn-outline-secondary btn-sm m-0'
+          = month_calendar events: @schedules do |date, schedules|
+            .text-left= date.day
+            -schedules.each do |schedule|
+              small= link_to schedule.title, schedule_path(schedule)
+
 
     / 投稿一覧
     .row

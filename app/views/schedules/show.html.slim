@@ -1,0 +1,26 @@
+.user-visual
+  .row
+    .col-lg-4
+    .col-lg-4.frame-user-show
+      .text-right= link_to 'カレンダーに戻る', user_path(anchor: 'calender'), class: "btn btn-outline-secondary btn-sm"
+      p.text-center= @schedule.title
+      table.table.table-bordered.table-sm
+        tr
+          th 開始日時
+          td= @schedule.start_time.to_s(:datetime_jp)
+        tr
+          th 終了日時
+          td= @schedule.end_time.to_s(:datetime_jp)
+        tr
+          th ゲレンデ
+          td= @schedule.gelande.name
+        tr
+          th 詳細
+          td= @schedule.content
+
+      .text-center
+        = link_to edit_schedule_path, class: 'btn btn-outline-secondary btn-sm mr-4' do
+          i.fas.fa-edit
+
+        = link_to schedule_path, method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger btn-sm text-danger" do
+          i.far.fa-trash-alt

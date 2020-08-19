@@ -1,0 +1,38 @@
+/ 新規・編集投稿フォーム
+= form_with model: schedule, local: true do |f|
+
+  / タイトル
+  = f.label :title, class: "col-lg-4 m-2"
+  = f.text_field :title, class: "col-lg-7"
+  <br>
+
+  / 開始日時
+  = f.label :start_time, class: "col-lg-4 m-2"
+  = f.datetime_select :start_time
+  <br>
+
+  / 終了日時
+  = f.label :end_time, class: "col-lg-4 m-2"
+  = f.datetime_select :end_time
+  <br>
+
+  / ゲレンデ
+  = f.label :gelande_id, class: "col-lg-4 m-2"
+  = f.select(:gelande_id, Gelande.all.map { |gelande| [gelande.name, gelande.id] }, { include_blank: true})
+  <br>
+
+  / 詳細
+  = f.label :content, class: "col-lg-4 m-2 align-top"
+  = f.text_area :content, :size=>"57x5", class: "col-lg-7 mt-2"
+  <br>
+
+  .text-center
+    / 新規登録の場合
+    - if schedule.new_record?
+      = f.submit '登録', class: 'btn btn-outline-secondary btn-sm m-0'
+
+    / 編集更新の場合
+    - else
+      = f.submit '更新', class: 'btn btn-outline-secondary btn-sm m-0'
+
+  .text-right= link_to 'カレンダーに戻る', user_path(schedule.user, anchor: 'calender'), class: "btn btn-outline-secondary btn-sm"

@@ -2,13 +2,11 @@ class SchedulesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @user = User.find(params[:id])
-    @schedule = @user.schedules.new
+    @schedule = current_user.schedules.new
   end
 
   def create
-    @user = User.find(params[:id])
-    @schedule = @user.schedules.new(params_schedule)
+    @schedule = current_user.schedules.new(params_schedule)
     if @schedule.save
       redirect_to @schedule
     else
@@ -41,7 +39,7 @@ class SchedulesController < ApplicationController
 
   private
     def params_schedule
-      params.require(:schedule).permit(:title, :content, :start_time, :end_time, :gelande_id)
+      params.require(:schedule).permit(:title, :content, :start_time, :end_time, :gelande_id, :user_id)
     end
 
 end

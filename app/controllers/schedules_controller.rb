@@ -2,11 +2,13 @@ class SchedulesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @schedule = current_user.schedules.new
+    @user = User.find(params[:id])
+    @schedule = @user.schedules.new
   end
 
   def create
-    @schedule = current_user.schedules.new(params_schedule)
+    @user = User.find(params[:id])
+    @schedule = @user.schedules.new(params_schedule)
     if @schedule.save
       redirect_to @schedule
     else

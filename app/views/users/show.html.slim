@@ -119,7 +119,8 @@
       .col-lg-8.frame-user-show.text-center
         #calender
           p.text-center カレンダー
-          .text-right= link_to '予定を登録する', new_schedule_path, class: 'btn btn-outline-secondary btn-sm m-0'
+          - if @user == current_user 
+            .text-right= link_to '予定を登録する', new_schedule_path, class: 'btn btn-outline-secondary btn-sm m-0'
           = month_calendar events: @schedules do |date, schedules|
             .text-left= date.day
             -schedules.each do |schedule|
@@ -134,8 +135,9 @@
           .col-lg-10
             h5.font-weight-bold.d-inline 投稿一覧
           .col-lg-2
-            .d-inline= link_to new_post_path, class: 'btn btn-outline-secondary btn-sm m-0' do
-              i.fas.fa-comment-dots  新規投稿
+            - if @user == current_user 
+              .d-inline= link_to new_post_path, class: 'btn btn-outline-secondary btn-sm m-0' do
+                i.fas.fa-comment-dots  新規投稿
             <br><br><br>
 
         - @posts.each do |post|

@@ -27,7 +27,7 @@
           <hr>
           .text-right= form_tag import_admins_gelandes_path, multipart: true do
             .d-inline.mb-5= file_field_tag :file
-            .text-right.d-inline= submit_tag "インポート", class: 'btn btn-outline-secondary btn-sm'
+            .text-right.d-inline= submit_tag "CSVインポート", class: 'btn btn-outline-secondary btn-sm'
             <hr>
             .d-block= link_to 'CSVエクスポート', admins_gelandes_path(format: :csv), class: 'btn btn-outline-secondary btn-sm'
 

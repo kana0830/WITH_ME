@@ -4,33 +4,28 @@ RSpec.describe User, "モデルに関するテスト", type: :model do
 
   describe 'バリデーションのテスト' do
     before do
-      @user = User.new
+      @user = FactoryBot.build(:user)
     end
-    subject { @test_user.valid? }
+    subject { @user.valid? }
+
     context 'nameカラム' do
-      before do
-        @test_user = @user
-      end
       it '空欄でないこと' do
-        @test_user.name = ''
+        @user.name = ''
         is_expected.to eq false;
       end
       it '2文字以上であること' do
-        @test_user.name = "a"
+        @user.name = "a"
         is_expected.to eq false;
       end
       it '10文字以下であること' do
-        @test_user.name = ("a" * 11).to_s
+        @user.name = ("a" * 11).to_s
         is_expected.to eq false;
       end
     end
 
     context 'emailカラム' do
-      before do
-        @test_user = @user
-      end
       it '50文字以下であること' do
-        @test_user.email = (("a" * 51).to_s) + "@gmail.com"
+        @user.email = (("a" * 51).to_s) + "@gmail.com"
         is_expected.to eq false
       end
     end
@@ -59,9 +54,4 @@ RSpec.describe User, "モデルに関するテスト", type: :model do
     end
   end
 
-  # describe 'フォローのテスト' do
-  #   it 'ユーザーをフォローする' do
-      
-  #   end
-  # end
 end

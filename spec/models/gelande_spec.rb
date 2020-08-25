@@ -4,49 +4,34 @@ RSpec.describe Gelande, "モデルに関するテスト", type: :model do
 
   describe 'バリデーションのテスト' do
     before do
-      @gelande = Gelande.new
+      @gelande = FactoryBot.build(:gelande)
     end
-    subject { @test_gelande.valid? }
+    subject { @gelande.valid? }
     context 'postalカラム' do
-      before do
-        @test_gelande = @gelande
-      end
       it '空欄でないこと' do
         @gelande.postal = ''
         is_expected.to eq false;
       end
     end
     context 'addressカラム' do
-      before do
-        @test_gelande = @gelande
-      end
       it '空欄でないこと' do
         @gelande.address = ''
         is_expected.to eq false;
       end
     end
     context 'telカラム' do
-      before do
-        @test_gelande = @gelande
-      end
       it '空欄でないこと' do
         @gelande.tel = ''
         is_expected.to eq false;
       end
     end
     context 'introductionカラム' do
-      before do
-        @test_gelande = @gelande
-      end
       it '空欄でないこと' do
         @gelande.introduction = ''
         is_expected.to eq false;
       end
     end
     context 'nameカラム' do
-      before do
-        @test_gelande = @gelande
-      end
       it '空欄でないこと' do
         @gelande.name = ''
         is_expected.to eq false;

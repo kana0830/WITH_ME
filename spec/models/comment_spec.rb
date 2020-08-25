@@ -4,13 +4,10 @@ RSpec.describe Comment, "モデルに関するテスト", type: :model do
 
   describe 'バリデーションのテスト' do
     before do
-      @comment = Comment.new
+      @comment = FactoryBot.build(:comment)
     end
-    subject { @test_comment.valid? }
+    subject { @comment.valid? }
     context 'commentカラム' do
-      before do
-        @test_comment = @comment
-      end
       it '空欄でないこと' do
         @comment.comment = ''
         is_expected.to eq false;

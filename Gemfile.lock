@@ -131,10 +131,10 @@ GEM
       railties (>= 3.2)
     erubi (1.9.0)
     execjs (2.7.0)
-    factory_bot (4.11.1)
+    factory_bot (4.10.0)
       activesupport (>= 3.0.0)
-    factory_bot_rails (4.11.1)
-      factory_bot (~> 4.11.1)
+    factory_bot_rails (4.10.0)
+      factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
     ffi (1.13.1)
     geocoder (1.6.3)
@@ -361,6 +361,8 @@ GEM
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
     spring (2.1.0)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -419,7 +421,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   dotenv-rails
-  factory_bot_rails (~> 4.11)
+  factory_bot_rails (~> 4.10.0)
   geocoder
   gon
   html2slim
@@ -448,6 +450,7 @@ DEPENDENCIES
   simplecov
   slim-rails
   spring
+  spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   tzinfo-data

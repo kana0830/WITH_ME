@@ -4,13 +4,10 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
 
   describe 'バリデーションのテスト' do
     before do
-      @post = Post.new
+      @post = FactoryBot.build(:post)
     end
-    subject { @test_post.valid? }
+    subject { @post.valid? }
     context 'titileカラム' do
-      before do
-        @test_post = @post
-      end
       it '空欄でないこと' do
         @post.title = ''
         is_expected.to eq false;
@@ -18,9 +15,6 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
     end
 
     context 'postカラム' do
-      before do
-        @test_post = @post
-      end
       it '空欄でないこと' do
         @post.post = ''
         is_expected.to eq false;

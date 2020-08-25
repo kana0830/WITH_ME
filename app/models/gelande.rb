@@ -15,6 +15,8 @@ class Gelande < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  
+  # CSVインポート
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       gelande = find_by(id: row["id"]) || new

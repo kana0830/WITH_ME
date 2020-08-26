@@ -12,4 +12,5 @@ class GelandesController < ApplicationController
     @address = @gelande.address.match(/^.{2,3}[都道府県]/).to_s
     @reviews = @gelande.reviews.all
   end
+
 end

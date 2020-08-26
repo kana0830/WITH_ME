@@ -78,7 +78,7 @@
           1,
           null,
           1,
-          1,
+          10,
           null,
           null,
           null
@@ -162,6 +162,19 @@
           null
         ]
       },
+      "/home/vagrant/work/WITH_ME/app/models/favorite.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/home/vagrant/work/WITH_ME/app/models/gelande.rb": {
         "lines": [
           1,
@@ -192,6 +205,40 @@
           null,
           null,
           1,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/vagrant/work/WITH_ME/app/models/inquiry.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/vagrant/work/WITH_ME/app/models/message.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
           0,
           null,
           null,
@@ -249,6 +296,19 @@
           null
         ]
       },
+      "/home/vagrant/work/WITH_ME/app/models/review.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/home/vagrant/work/WITH_ME/app/models/schedule.rb": {
         "lines": [
           1,
@@ -260,13 +320,11 @@
           null
         ]
       },
-      "/home/vagrant/work/WITH_ME/app/models/favorite.rb": {
+      "/home/vagrant/work/WITH_ME/app/models/room.rb": {
         "lines": [
           1,
           null,
           1,
-          1,
-          null,
           1,
           1,
           null,
@@ -287,7 +345,7 @@
           null,
           null,
           1,
-          1,
+          7,
           null,
           null,
           1,
@@ -325,7 +383,7 @@
           null,
           1,
           1,
-          2,
+          22,
           null,
           null,
           null
@@ -343,13 +401,13 @@
           null,
           null,
           1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
           0,
           0,
           0,
@@ -366,7 +424,7 @@
           null,
           null,
           1,
-          0,
+          1,
           null,
           null,
           1,
@@ -442,12 +500,93 @@
           1,
           null,
           null,
-          3,
+          21,
           null,
           1,
           1,
           1,
           1,
+          null,
+          null
+        ]
+      },
+      "/home/vagrant/work/WITH_ME/app/controllers/users/registrations_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           null
         ]
@@ -477,19 +616,6 @@
         "branches": {
         }
       },
-      "/home/vagrant/work/WITH_ME/app/models/room.rb": {
-        "lines": [
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/home/vagrant/work/WITH_ME/app/models/admin.rb": {
         "lines": [
           0,
@@ -511,59 +637,8 @@
         "branches": {
         }
       },
-      "/home/vagrant/work/WITH_ME/app/models/message.rb": {
-        "lines": [
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/home/vagrant/work/WITH_ME/app/models/like.rb": {
         "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vagrant/work/WITH_ME/app/models/review.rb": {
-        "lines": [
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vagrant/work/WITH_ME/app/models/inquiry.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          0,
-          null,
           0,
           0,
           0,
@@ -1479,89 +1554,6 @@
         "branches": {
         }
       },
-      "/home/vagrant/work/WITH_ME/app/controllers/users/registrations_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/home/vagrant/work/WITH_ME/app/controllers/inquiry_controller.rb": {
         "lines": [
           0,
@@ -1810,6 +1802,6 @@
         }
       }
     },
-    "timestamp": 1598344713
+    "timestamp": 1598440183
   }
 }

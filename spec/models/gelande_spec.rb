@@ -44,27 +44,4 @@ RSpec.describe Gelande, "モデルに関するテスト", type: :model do
     end
   end
 
-  describe 'アソシエーションのテスト' do
-    context 'Reviewモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Gelande.reflect_on_association(:reviews).macro).to eq :has_many
-      end
-    end
-    context 'Favoriteモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Gelande.reflect_on_association(:favorites).macro).to eq :has_many
-      end
-    end
-    context 'Userモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Gelande.reflect_on_association(:users).macro).to eq :has_many
-      end
-    end
-    context 'Scheduleモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Gelande.reflect_on_association(:schedules).macro).to eq :has_many
-      end
-    end
-  end
-
 end

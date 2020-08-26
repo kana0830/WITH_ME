@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Posts", type: :feature do
-  scenario "みんなの投稿が表示される" do
+RSpec.describe "Posts", type: :system do
+  it "みんなの投稿が表示される" do
     user = FactoryBot.create(:user)
 
     visit new_user_session_path

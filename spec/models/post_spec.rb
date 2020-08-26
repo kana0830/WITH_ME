@@ -22,22 +22,4 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
     end
   end
 
-  describe 'アソシエーションのテスト' do
-    context 'Commentモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Post.reflect_on_association(:comments).macro).to eq :has_many
-      end
-    end
-    context 'Likeモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Post.reflect_on_association(:likes).macro).to eq :has_many
-      end
-    end
-    context 'Notificationモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Post.reflect_on_association(:notifications).macro).to eq :has_many
-      end
-    end
-  end
-
 end

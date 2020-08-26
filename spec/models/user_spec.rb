@@ -29,27 +29,16 @@ RSpec.describe User, "モデルに関するテスト", type: :model do
         is_expected.to eq false
       end
     end
-  end
 
-  describe 'アソシエーションのテスト' do
-    context 'Postモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(User.reflect_on_association(:posts).macro).to eq :has_many
-      end
-    end
-    context 'Commentモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(User.reflect_on_association(:comments).macro).to eq :has_many
-      end
-    end
-    context 'Likeモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(User.reflect_on_association(:likes).macro).to eq :has_many
-      end
-    end
-    context 'Favoriteモデルとの関係' do
-      it '1:Nとなっている' do
-        expect(User.reflect_on_association(:favorites).macro).to eq :has_many
+    context 'お気に入りゲレンデ' do
+      it '選択できるのは3つ以下であること' do
+        FactoryBot.create(:gelande)
+        FactoryBot.create(:gelande)
+        FactoryBot.create(:gelande)
+        FactoryBot.create(:gelande)
+        @user.gelande_ids = [1,2,3,4]
+        is_expected.to eq false
+        expect(@user.errors[:base]).to include("お気に入りゲレンデを選択できるのは3つまでです。")
       end
     end
   end

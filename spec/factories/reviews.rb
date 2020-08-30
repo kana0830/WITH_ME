@@ -3,5 +3,6 @@ FactoryBot.define do
     star 4
     title "おすすめ"
     review "おすすめ"
+    gelande_id 1
   end
 end

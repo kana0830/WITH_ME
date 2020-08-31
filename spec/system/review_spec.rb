@@ -35,11 +35,11 @@ RSpec.describe "Review", type: :system do
       subject { @review.valid? }
       it 'クチコミ投稿に成功する' do
         @review = FactoryBot.create(:review)
-        is_expected.to eq true;
+        is_expected.to eq true
       end
       it 'クチコミ投稿に失敗する' do
         @review = Review.create(title: "")
-        is_expected.to eq false;
+        is_expected.to eq false
       end
     end
   end

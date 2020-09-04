@@ -64,7 +64,7 @@
                             td <hr>
                             td
                               - if favorite.gelande.is_active?
-                                li.link-border= link_to favorite.gelande.name, gelande_path(favorite.gelande_id)
+                                li= link_to favorite.gelande.name, admins_gelande_path(favorite.gelande_id)
                               - else
                                 li= favorite.gelande.name
                 - else

@@ -1,6 +1,6 @@
 *.slim linguist-language=Ruby  # ".slim"の拡張子をRubyとして検出
 *.erb linguist-language=Ruby  # ".erb"の拡張子をRubyとして検出
-*.html linguist-language=Ruby  # ".erb"の拡張子をRubyとして検出
+*.html.erb linguist-language=Ruby  # ".html.erb"の拡張子をRubyとして検出
 
 folder/* linguist-vendored  # vendored codeとして認識
 file.js linguist-vendored=false  # vendored codeから除外

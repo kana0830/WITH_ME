@@ -66,16 +66,17 @@ class UsersController < ApplicationController
     @followers = @user.follower_user
   end
 
+  
+  private
+  def user_params
+    params.require(:user).permit(:name, :email, :encrypted_password, :image, :gender, :address, :age, :introduction, :is_active, { :gelande_ids=> [] })
+  end
+  
   def check_guest
     user = User.find(params[:id])
     if user.email == 'test@example.com'
       redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end
   end
-
-  private
-  def user_params
-    params.require(:user).permit(:name, :email, :encrypted_password, :image, :gender, :address, :age, :introduction, :is_active, { :gelande_ids=> [] })
-  end
-
+  
 end

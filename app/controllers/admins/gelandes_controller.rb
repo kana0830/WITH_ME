@@ -60,7 +60,7 @@ class Admins::GelandesController < ApplicationController
         csv << values
       end
     end
-    send_data(csv_data, filename: 'ゲレンデ一覧情報')
+    send_data(csv_data, filename: "ゲレンデ一覧情報_#{(DateTime.now).to_s(:datetime_csv)}.csv")
   end
 
 

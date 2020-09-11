@@ -46,8 +46,17 @@ class Admins::GelandesController < ApplicationController
 
   # CSVインポート
   def import
-    Gelande.import(params[:file])
-    redirect_to admins_gelandes_path
+    if params[:file].blank?
+      redirect_to action: 'index'
+      flash[:notice] = '読み込むCSVを選択してください'
+    elsif File.extname(params[:file].original_filename) != ".csv"
+      redirect_to action: 'index'
+      flash[:notice] = 'csvファイルのみ読み込み可能です'
+    else
+      Gelande.import(params[:file])
+      redirect_to admins_gelandes_path
+      flash[:notice] = "データ情報を追加/更新しました"
+    end
   end
 
   # CSVエクスポート

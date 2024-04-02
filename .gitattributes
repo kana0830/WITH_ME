@@ -11,3 +11,5 @@
 # file.rb linguist-documentation=false  # documentationから除外
 
 # *.html linguist-detectable=false
+# *.rb linguist-detectable=true
+# *.erb linguist-detectable=true

@@ -9,3 +9,5 @@
 
 # folder/* linguist-documentation  # documentationとして認識
 # file.rb linguist-documentation=false  # documentationから除外
+
+# *.html linguist-detectable=false
